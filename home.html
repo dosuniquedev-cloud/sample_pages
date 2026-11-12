@@ -9,10 +9,9 @@
     <meta content="" name="description">
 
     <!-- Google Web Fonts -->
-    <link href="https://fonts.cdnfonts.com/css/ballet" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
 
     <!-- icons Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -30,69 +29,963 @@
     <link href="css/style.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        /* ============================================================
+           BENGAL ODYSSEY — HOME PAGE PREMIUM TOKENS & OVERRIDES
+           Design system: 60-30-10 · 8px grid · 5-state interactions
+           ============================================================ */
+        :root {
+            --accent:           #13357B;
+            --accent-dark:      #0d2557;
+            --accent-sky:       #0284c7;
+            --accent-sky-lt:    #38bdf8;
+            --accent-amber:     #d97706;
+            --accent-amber-lt:  #fbbf24;
+            --surface-00:       #ffffff;
+            --surface-01:       #f8fafc;
+            --surface-02:       #f1f5f9;
+            --border:           #e2e8f0;
+            --border-strong:    #cbd5e1;
+            --text-heading:     #0f172a;
+            --text-body:        #334155;
+            --text-muted:       #64748b;
+            --text-on-dark:     rgba(255,255,255,0.88);
+            --shadow-xs:        0 1px 2px rgba(0,0,0,0.05);
+            --shadow-sm:        0 1px 3px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04);
+            --shadow-md:        0 4px 12px rgba(15,23,42,0.10), 0 1px 3px rgba(15,23,42,0.06);
+            --shadow-lg:        0 10px 30px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.06);
+            --radius-sm:        6px;
+            --radius-md:        10px;
+            --radius-lg:        14px;
+            --radius-xl:        20px;
+            --ease:             all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-brand:       'Plus Jakarta Sans', 'Jost', sans-serif;
+        }
+
+        /* ---- Global base ---- */
+        body { font-family: var(--font-brand); color: var(--text-body); }
+
+        /* ============================================================
+           TOPBAR — Premium dark command bar
+           ============================================================ */
+        .container-fluid.bg-primary.px-5 {
+            background: linear-gradient(90deg, #060d1f 0%, #0d1f4a 60%, #0a1832 100%) !important;
+            border-bottom: 1px solid rgba(56,189,248,0.12);
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+
+        /* Left — Brand tagline */
         .custom-heading {
-            font-family: Papyrus;
-            font-size: 30px;
-            font-style: normal;
-            color: goldenrod;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
+            font-family: var(--font-brand);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.80) !important;
+            text-shadow: none;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Accent pulse dot before tagline */
+        .custom-heading::before {
+            content: '';
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-sky-lt);
+            box-shadow: 0 0 6px 2px rgba(56,189,248,0.55);
+            flex-shrink: 0;
+            animation: topbar-pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes topbar-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.75); }
         }
 
-        .dropdown-item {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: block;
-            margin-bottom: 10px;
+        /* Right — auth cluster wrapper */
+        .container-fluid.bg-primary .d-inline-flex {
+            gap: 4px;
+            height: auto !important;
+            align-items: center;
+        }
+
+        /* Welcome dropdown toggle */
+        .container-fluid.bg-primary .dropdown-toggle.text-light {
+            font-family: var(--font-brand);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.75) !important;
             text-decoration: none;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            transition: var(--ease);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .container-fluid.bg-primary .dropdown-toggle.text-light:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.22);
+            color: #fff !important;
+        }
+        .container-fluid.bg-primary .dropdown-toggle.text-light:focus-visible {
+            outline: 2px solid var(--accent-sky-lt);
+            outline-offset: 2px;
+        }
+        .container-fluid.bg-primary .dropdown-toggle small {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        /* Remove old scaleAnimation */
+        .dropdown-toggle:hover small { animation: none; }
+
+        /* Register & Login links */
+        .container-fluid.bg-primary a[href="#"] small.text-light,
+        .container-fluid.bg-primary .col-lg-4 a small.text-light {
+            font-family: var(--font-brand);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.72) !important;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            transition: var(--ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .container-fluid.bg-primary a:hover small.text-light,
+        .container-fluid.bg-primary .col-lg-4 a:hover small.text-light {
+            color: #fff !important;
+            border-color: rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.07);
+        }
+        .container-fluid.bg-primary a:focus-visible {
+            outline: 2px solid var(--accent-sky-lt);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
         }
 
-        .dropdown-item:hover {
-            background-color: #45a049;
+        /* ---- Topbar dropdown menu ---- */
+        .container-fluid.bg-primary .dropdown-menu {
+            background-color: var(--surface-00) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: var(--radius-lg) !important;
+            box-shadow: var(--shadow-lg) !important;
+            padding: 8px !important;
+            min-width: 192px;
         }
-
+        /* Hide bare @csrf text node — it's a text child of the form,
+           font-size:0 collapses it; child elements restore their own size */
+        .container-fluid.bg-primary .dropdown-menu form:has(.btn-danger) {
+            font-size: 0;
+            line-height: 0;
+        }
+        .container-fluid.bg-primary .dropdown-menu form:has(.btn-danger) * {
+            font-size: revert;
+            line-height: revert;
+        }
+        /* ---- Auth dropdown button — Logout ---- */
         .btn-danger {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            background-color: #ef4444;
+            background-image: none;
             color: #fff;
             border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-md);
+            padding: 7px 18px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: var(--font-brand);
+            transition: var(--ease);
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-sm);
+            width: 100%;
         }
+        .btn-danger:hover  { background-color: #dc2626; box-shadow: var(--shadow-md); transform: translateY(-1px); color: #fff; }
+        .btn-danger:focus-visible { outline: 2px solid var(--accent-sky-lt); outline-offset: 2px; }
+        .btn-danger:active { background-color: #b91c1c; transform: translateY(1px); box-shadow: var(--shadow-xs); color: #fff; }
+        .btn-danger:disabled, .btn-danger.disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
-        .btn-danger:hover {
-            background: linear-gradient(45deg, #FF8E8E, #FF6B6B);
+        /* ---- Dropdown items (My Profile, Change Password) ---- */
+        .dropdown-item {
+            background-color: transparent !important;
+            color: var(--text-heading) !important;
+            border: none !important;
+            border-radius: var(--radius-sm) !important;
+            padding: 8px 16px !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            font-family: var(--font-brand) !important;
+            transition: var(--ease) !important;
+            cursor: pointer !important;
+            display: block !important;
+            margin-bottom: 2px !important;
+            text-decoration: none !important;
+            box-shadow: none !important;
         }
+        .dropdown-item:hover  { background-color: var(--surface-02) !important; color: var(--accent) !important; }
+        .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; background-color: var(--surface-02) !important; }
+        .dropdown-item:active { background-color: var(--border) !important; transform: translateY(1px); }
 
-        .dropdown-menu {
-            background-color: transparent;
-        }
+        /* ============================================================
+           NAVBAR — Full specificity override of style.css
+           Design: transparent over hero → frosted glass on scroll
+           ============================================================ */
 
-        .dropdown-toggle:hover small {
-            animation: scaleAnimation 0.3s ease forwards;
-        }
-
-        @keyframes scaleAnimation {
-            0% {
-                transform: scale(1);
+        /* ---- Floating state: navbar over carousel ---- */
+        @media (min-width: 992px) {
+            /* Kill the full-height bg fill that style.css uses for active/hover */
+            .navbar-light .navbar-nav .nav-link::before {
+                display: none !important;
+            }
+            /* Navbar — fully transparent, floats over carousel */
+            .navbar-light {
+                background: transparent !important;
+                border-bottom: 1px solid rgba(255,255,255,0.10) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                z-index: 999 !important;
+            }
+            /* Links: crisp white — guaranteed contrast */
+            .navbar-light .navbar-nav .nav-link {
+                font-family: var(--font-brand) !important;
+                font-weight: 600 !important;
+                font-size: 0.875rem !important;
+                letter-spacing: 0.02em !important;
+                color: rgba(255,255,255,0.80) !important;
+                padding: 28px 16px !important;
+                outline: none !important;
+                position: relative !important;
+                transition: color 0.18s ease !important;
+            }
+            /* Clean underline indicator */
+            .navbar-light .navbar-nav .nav-link::after {
+                content: '' !important;
+                display: block !important;
+                position: absolute !important;
+                bottom: 0 !important; left: 16px !important; right: 16px !important;
+                height: 2px !important;
+                background: var(--accent-sky-lt) !important;
+                border-radius: 2px 2px 0 0 !important;
+                transform: scaleX(0) !important;
+                transform-origin: center !important;
+                transition: transform 0.22s cubic-bezier(0.16,1,0.3,1) !important;
+            }
+            .navbar-light .navbar-nav .nav-link:hover {
+                color: #fff !important;
+            }
+            .navbar-light .navbar-nav .nav-link:hover::after {
+                transform: scaleX(1) !important;
+            }
+            .navbar-light .navbar-nav .nav-link.active {
+                color: #fff !important;
+                font-weight: 700 !important;
+            }
+            .navbar-light .navbar-nav .nav-link.active::after {
+                transform: scaleX(1) !important;
+            }
+            .navbar-light .navbar-nav .nav-link:focus-visible {
+                outline: 2px solid var(--accent-sky-lt) !important;
+                outline-offset: 2px !important;
+                border-radius: 3px !important;
+            }
+            /* Brand: white in floating state */
+            .navbar-light .navbar-brand h1 {
+                font-family: var(--font-brand) !important;
+                font-size: 1.25rem !important;
+                font-weight: 800 !important;
+                color: #fff !important;
+                letter-spacing: -0.02em !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
+                line-height: 1 !important;
+            }
+            .navbar-light .navbar-brand img {
+                max-height: 40px !important;
+                border-radius: 6px !important;
+                filter: brightness(0) invert(1);
             }
 
-            100% {
-                transform: scale(1.1);
+            /* ---- Sticky / scrolled state: white glass bar ---- */
+            .sticky-top.navbar-light {
+                background: rgba(255,255,255,0.97) !important;
+                backdrop-filter: blur(20px) saturate(180%) !important;
+                -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                border-bottom: 1px solid var(--border) !important;
+                box-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 4px 24px rgba(15,23,42,0.09) !important;
+            }
+            .sticky-top.navbar-light .navbar-nav .nav-link {
+                color: var(--text-body) !important;
+                padding: 24px 16px !important;
+            }
+            .sticky-top.navbar-light .navbar-nav .nav-link::after {
+                background: var(--accent) !important;
+            }
+            .sticky-top.navbar-light .navbar-nav .nav-link:hover {
+                color: var(--accent) !important;
+            }
+            .sticky-top.navbar-light .navbar-nav .nav-link.active {
+                color: var(--accent) !important;
+            }
+            .sticky-top.navbar-light .navbar-nav .nav-link:focus-visible {
+                outline-color: var(--accent) !important;
+            }
+            .sticky-top.navbar-light .navbar-brand h1 {
+                color: var(--text-heading) !important;
+            }
+            .sticky-top.navbar-light .navbar-brand img {
+                max-height: 36px !important;
+                filter: none;
+            }
+            /* Sticky Book Now: solid navy pill */
+            .sticky-top.navbar-light .btn-primary {
+                background-color: var(--accent) !important;
+                color: #fff !important;
+                box-shadow: 0 2px 8px rgba(19,53,123,0.28) !important;
+            }
+            .sticky-top.navbar-light .btn-primary:hover {
+                background-color: #1a4494 !important;
+                box-shadow: 0 6px 20px rgba(19,53,123,0.38) !important;
             }
         }
+
+        /* ---- Dropdown toggle FA chevron (style.css uses FA icon) ---- */
+        .navbar .dropdown-toggle::after {
+            font-size: 0.75em !important;
+            opacity: 0.7;
+            margin-left: 5px !important;
+            vertical-align: middle !important;
+        }
+
+        /* ---- Pages dropdown panel ---- */
+        .navbar .nav-item:hover .dropdown-menu,
+        .navbar-nav .dropdown-menu {
+            background: var(--surface-00) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: var(--radius-lg) !important;
+            box-shadow: 0 8px 32px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.06) !important;
+            padding: 6px !important;
+            min-width: 210px !important;
+            margin-top: 0 !important;
+        }
+        /* Animate the dropdown — override the rotateX flip */
+        @media (min-width: 1200px) {
+            .navbar .nav-item .dropdown-menu {
+                transform: translateY(-8px) !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                display: block !important;
+                transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.16,1,0.3,1), visibility 0.18s !important;
+            }
+            .navbar .nav-item:hover .dropdown-menu {
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+        /* Dropdown items */
+        .navbar-nav .dropdown-item,
+        .dropdown .dropdown-menu a {
+            font-family: var(--font-brand) !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            color: var(--text-body) !important;
+            padding: 9px 14px !important;
+            border-radius: var(--radius-sm) !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin-bottom: 1px !important;
+            transition: background 0.15s ease, color 0.15s ease, padding 0.15s ease !important;
+            display: block !important;
+        }
+        .navbar-nav .dropdown-item:hover,
+        .dropdown .dropdown-menu a:hover {
+            background: var(--surface-02) !important;
+            color: var(--accent) !important;
+            padding-left: 20px !important;
+        }
+        .navbar-nav .dropdown-item:focus-visible {
+            outline: 2px solid var(--accent) !important;
+            outline-offset: 2px !important;
+            background: var(--surface-02) !important;
+        }
+        .navbar-nav .dropdown-item:active {
+            background: var(--border) !important;
+            transform: translateY(1px) !important;
+        }
+
+        /* ---- Book Now CTA pill ---- */
+        .navbar .btn-primary {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 0.875rem !important;
+            border-radius: var(--radius-xl) !important;
+            padding: 10px 28px !important;
+            transition: var(--ease) !important;
+            letter-spacing: 0.02em !important;
+            border: none !important;
+            margin: 14px 0 14px 16px !important;
+            /* Floating state: white pill, navy text — max contrast pop */
+            background-color: #fff !important;
+            color: var(--accent) !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.20), 0 1px 3px rgba(0,0,0,0.12) !important;
+        }
+        .navbar .btn-primary:hover {
+            background-color: var(--accent-sky-lt) !important;
+            color: #0d2557 !important;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.22) !important;
+            transform: translateY(-1px) !important;
+        }
+        .navbar .btn-primary:focus-visible {
+            outline: 2px solid #fff !important;
+            outline-offset: 3px !important;
+        }
+        .navbar .btn-primary:active {
+            transform: translateY(1px) !important;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
+            background-color: #e0f2fe !important;
+        }
+        .navbar .btn-primary:disabled {
+            opacity: 0.55 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+        }
+
+        /* ---- Mobile toggler + collapsed nav ---- */
+        @media (max-width: 991.98px) {
+            .navbar-light {
+                background: rgba(255,255,255,0.97) !important;
+                backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid var(--border) !important;
+                box-shadow: 0 2px 16px rgba(15,23,42,0.08) !important;
+                position: relative !important;
+                padding: 12px 16px !important;
+            }
+            .navbar-light .navbar-brand h1 { color: var(--text-heading) !important; }
+            .navbar-light .navbar-brand img { filter: none !important; max-height: 36px !important; }
+            .navbar-light .navbar-nav .nav-link {
+                color: var(--text-body) !important;
+                padding: 12px 8px !important;
+                font-size: 0.9rem !important;
+                border-radius: var(--radius-sm) !important;
+            }
+            .navbar-light .navbar-nav .nav-link::after { display: none !important; }
+            .navbar-light .navbar-nav .nav-link:hover { background: var(--surface-02) !important; color: var(--accent) !important; }
+            .navbar-light .navbar-nav .nav-link.active { color: var(--accent) !important; background: rgba(19,53,123,0.06) !important; }
+            .navbar .btn-primary { margin: 8px 0 8px !important; width: 100% !important; text-align: center !important; }
+            .navbar-toggler {
+                border: 1px solid var(--border) !important;
+                border-radius: var(--radius-md) !important;
+                padding: 8px 12px !important;
+                background: var(--surface-01) !important;
+                color: var(--text-heading) !important;
+            }
+            .navbar-toggler:hover { background: var(--surface-02) !important; }
+            .navbar-toggler:focus-visible { outline: 2px solid var(--accent) !important; box-shadow: none !important; }
+        }
+
+        /* ============================================================
+           HERO CAROUSEL
+           ============================================================ */
+        .carousel-caption h4 {
+            font-family: var(--font-brand);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-amber-lt);
+            margin-bottom: 8px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+        .carousel-caption h1 {
+            font-family: var(--font-brand);
+            font-weight: 800;
+            font-size: clamp(1.75rem, 4vw, 3.25rem);
+            line-height: 1.15;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+        }
+        .carousel-caption p {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.90) !important;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+        }
+        .carousel-caption .btn-primary {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            border-radius: var(--radius-xl);
+            padding: 12px 32px;
+            font-size: 0.95rem;
+            transition: var(--ease);
+            box-shadow: 0 4px 16px rgba(19,53,123,0.4);
+        }
+        .carousel-caption .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(19,53,123,0.5); }
+        .carousel-caption .btn-primary:active { transform: translateY(1px); }
+        .carousel-indicators button {
+            width: 32px !important;
+            height: 4px !important;
+            border-radius: 2px !important;
+            opacity: 0.5;
+            transition: var(--ease);
+        }
+        .carousel-indicators button.active { opacity: 1; width: 48px !important; }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        /* ============================================================
+           SECTION TITLES (shared)
+           ============================================================ */
+        .section-title {
+            display: inline-block;
+            font-family: var(--font-brand);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 4px 16px;
+            border-left: 3px solid var(--accent);
+            border-right: 3px solid var(--accent);
+        }
+        h1, h2, h3, h4, h5 { font-family: var(--font-brand); color: var(--text-heading); line-height: 1.2; }
+        /* Only set body text color on light surfaces — dark sections manage their own color */
+        p { line-height: 1.65; }
+
+        /* ============================================================
+           ABOUT SECTION
+           ============================================================ */
+        .section-about-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        /* About list items — refine the check icons */
+        .container-fluid.about .text-primary { color: var(--accent) !important; }
+        /* Read More btn */
+        .container-fluid.about .btn-primary {
+            border-radius: var(--radius-xl);
+            font-family: var(--font-brand);
+            font-weight: 700;
+            padding: 12px 32px;
+            transition: var(--ease);
+        }
+        .container-fluid.about .btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .container-fluid.about .btn-primary:active { transform: translateY(1px); }
+
+        /* ============================================================
+           SERVICES SECTION
+           ============================================================ */
+        .services .service-content-inner {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: var(--ease);
+            background-color: var(--surface-00);
+        }
+        .services .service-content-inner:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(19,53,123,0.15);
+        }
+        .services .service-content-inner .btn-square.bg-primary {
+            transition: var(--ease);
+            border-radius: var(--radius-sm) !important;
+        }
+        .services .service-content-inner:hover .btn-square.bg-primary {
+            transform: scale(1.08) rotate(-3deg);
+        }
+        .services h5 { font-family: var(--font-brand); font-weight: 700; color: var(--text-heading); }
+
+        /* ============================================================
+           DESTINATION SECTION
+           ============================================================ */
+        .destination .destination-img {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .destination .destination-img img {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .destination .destination-img:hover img { transform: scale(1.06); }
+        .destination .destination-overlay {
+            background: linear-gradient(to top, rgba(10,22,50,0.80) 0%, rgba(10,22,50,0.0) 60%);
+            transition: var(--ease);
+        }
+        .destination h6, .destination .destination-img h6 {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+        .destination .tab-btn-class .nav-link {
+            font-family: var(--font-brand);
+            font-weight: 600;
+            border-radius: var(--radius-xl);
+            transition: var(--ease);
+        }
+
+        /* ============================================================
+           EXPLORE TOUR / NATIONAL ITEMS
+           ============================================================ */
+        .national-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--ease);
+        }
+        .national-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .national-item img { transition: transform 0.35s ease; }
+        .national-item:hover img { transform: scale(1.05); }
+
+        /* ============================================================
+           PACKAGES SECTION
+           ============================================================ */
+        .packages-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--ease);
+            background: var(--surface-00);
+        }
+        .packages-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .packages-price {
+            font-family: var(--font-brand);
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+            border-radius: var(--radius-sm);
+        }
+        .packages-info small {
+            font-size: 0.775rem;
+            font-weight: 500;
+            color: var(--text-on-dark);
+        }
+        .packages-info { background: rgba(10,22,50,0.72); backdrop-filter: blur(4px); }
+        .packages-content h5 {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-heading);
+        }
+        .packages-content small.text-uppercase {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+        .packages-content .fa-star { color: var(--accent-amber) !important; }
+        .packages-content p { font-size: 0.875rem; color: var(--text-body); line-height: 1.6; }
+        .packages-content .btn-hover {
+            font-family: var(--font-brand);
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: var(--ease);
+        }
+        .packages-content .btn-hover:hover { background-color: var(--accent-dark) !important; }
+        /* Owl carousel nav */
+        .owl-nav button {
+            border-radius: var(--radius-md) !important;
+            transition: var(--ease) !important;
+        }
+        .owl-nav button:hover { background-color: var(--accent-dark) !important; }
+
+        /* ============================================================
+           GALLERY SECTION
+           ============================================================ */
+        .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+        .gallery-item img { transition: transform 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.06); }
+        .gallery-content {
+            background: linear-gradient(to top, rgba(10,22,50,0.80) 0%, transparent 70%);
+            border-radius: var(--radius-md);
+        }
+        .gallery-info h5 {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.06em;
+        }
+        .gallery-info .btn-hover {
+            font-family: var(--font-brand);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--ease);
+        }
+        .gallery-info .btn-hover:hover { color: var(--accent-amber-lt) !important; }
+        .gallery-plus-icons a { transition: var(--ease); }
+        .gallery-plus-icons a:hover { transform: scale(1.2); color: var(--accent-amber-lt) !important; }
+        .gallery-plus-icons a:focus-visible { outline: 2px solid var(--accent-sky-lt); outline-offset: 2px; }
+
+        /* ============================================================
+           BOOKING SECTION (home inline form)
+           ============================================================ */
+        .container-fluid.booking {
+            position: relative;
+            background: linear-gradient(rgba(19, 53, 123, 0.78), rgba(19, 53, 123, 0.78)), url(img/tour-booking-bg.jpg) center center no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .container-fluid.booking .section-booking-title {
+            font-family: var(--font-brand);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-amber-lt);
+        }
+        .container-fluid.booking h1 { font-family: var(--font-brand); font-weight: 700; }
+        .container-fluid.booking p.text-white { color: rgba(255, 255, 255, 0.9) !important; font-size: 0.95rem; line-height: 1.65; }
+
+        .container-fluid.booking form {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: 0 20px 45px rgba(8, 15, 38, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+        .container-fluid.booking .custom-alert {
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            background-color: #ecfdf5;
+            color: #065f46;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .container-fluid.booking form .form-floating > .form-control,
+        .container-fluid.booking form .form-floating > .form-select {
+            height: 56px;
+            border-radius: var(--radius-md) !important;
+            border: 1px solid var(--border) !important;
+            background-color: #ffffff !important;
+            color: var(--text-heading) !important;
+            font-family: var(--font-brand);
+            font-size: 0.95rem;
+            transition: var(--ease);
+            padding: 1rem 0.85rem;
+        }
+        .container-fluid.booking form .form-floating > .form-control:focus,
+        .container-fluid.booking form .form-floating > .form-select:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 0;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 3px rgba(19, 53, 123, 0.15);
+        }
+        .container-fluid.booking form .form-floating > label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 1rem 0.85rem;
+            transition: var(--ease);
+            pointer-events: none;
+        }
+        .container-fluid.booking form .form-floating > .form-control:focus ~ label,
+        .container-fluid.booking form .form-floating > .form-control:not(:placeholder-shown) ~ label,
+        .container-fluid.booking form .form-floating > .form-select ~ label {
+            color: var(--accent);
+            font-weight: 600;
+            opacity: 1;
+            transform: scale(0.82) translateY(-0.75rem) translateX(0.15rem);
+        }
+        .container-fluid.booking form textarea.form-control {
+            height: 100px !important;
+            resize: vertical;
+        }
+        .container-fluid.booking form .form-select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+        }
+        .container-fluid.booking form button[type="submit"] {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: var(--radius-md) !important;
+            font-family: var(--font-brand);
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            letter-spacing: 0.04em !important;
+            text-transform: uppercase !important;
+            padding: 15px 24px !important;
+            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.35) !important;
+            transition: var(--ease) !important;
+            cursor: pointer;
+        }
+        .container-fluid.booking form button[type="submit"]:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(19, 53, 123, 0.45) !important;
+        }
+        .container-fluid.booking form button[type="submit"]:focus-visible {
+            outline: 2px solid var(--accent-sky-lt) !important;
+            outline-offset: 3px !important;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3) !important;
+        }
+        .container-fluid.booking form button[type="submit"]:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(19, 53, 123, 0.3) !important;
+        }
+        .container-fluid.booking form button[type="submit"]:disabled {
+            opacity: 0.55 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+        }
+
+        /* ============================================================
+           TRAVEL GUIDE SECTION
+           ============================================================ */
+        .guide-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--ease);
+            box-shadow: var(--shadow-sm);
+        }
+        .guide-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .guide-img img { transition: transform 0.4s ease; }
+        .guide-item:hover .guide-img img { transform: scale(1.05); }
+        .guide-title { background-color: var(--surface-01) !important; }
+        .guide-title h4 { font-family: var(--font-brand); font-weight: 700; color: var(--text-heading); }
+        .guide-title p { font-size: 0.85rem; color: var(--text-muted); }
+        .guide-icons .btn-square {
+            transition: var(--ease);
+            box-shadow: var(--shadow-xs);
+        }
+        .guide-icons .btn-square:hover { transform: scale(1.12); box-shadow: var(--shadow-md); }
+        .guide-icons .btn-square:focus-visible { outline: 2px solid var(--accent-sky-lt); outline-offset: 2px; }
+
+        /* ============================================================
+           BLOG / VIDEOS SECTION
+           ============================================================ */
+        .blog-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--ease);
+            box-shadow: var(--shadow-sm);
+        }
+        .blog-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .blog-content { background: var(--surface-00); }
+        .blog-content a.h4 {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-heading);
+            text-decoration: none;
+            transition: var(--ease);
+        }
+        .blog-content a.h4:hover { color: var(--accent); }
+        .blog-content p { font-size: 0.875rem; line-height: 1.6; color: var(--text-body); }
+        .blog-content { border-color: var(--border) !important; border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important; }
+        .blog-img-inner iframe { border-radius: var(--radius-md) var(--radius-md) 0 0; display: block; }
+        .container-fluid.blog .btn-primary {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            border-radius: var(--radius-xl);
+            padding: 12px 32px;
+            transition: var(--ease);
+        }
+        .container-fluid.blog .btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .container-fluid.blog .btn-primary:active { transform: translateY(1px); }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .container-fluid.footer {
+            background: linear-gradient(160deg, #060f24 0%, #0d1f4a 50%, #0a1832 100%) !important;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-item h4 {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            color: #fff;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(56,189,248,0.4);
+            display: inline-block;
+        }
+        .footer-item a {
+            font-family: var(--font-brand);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.65) !important;
+            text-decoration: none !important;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--ease);
+        }
+        .footer-item a:hover { color: #fff !important; padding-left: 4px; }
+        .footer-item a:focus-visible { outline: 2px solid var(--accent-sky-lt); outline-offset: 2px; border-radius: 2px; }
+        .footer-item a i { color: var(--accent-sky-lt); font-size: 0.75rem; }
+        .footer-item .btn-square {
+            width: 36px; height: 36px;
+            border-radius: 50% !important;
+            font-size: 0.8rem;
+            transition: var(--ease);
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            background: rgba(255,255,255,0.08) !important;
+            color: #fff !important;
+        }
+        .footer-item .btn-square:hover {
+            background: var(--accent-sky-lt) !important;
+            border-color: var(--accent-sky-lt) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56,189,248,0.4);
+            color: #0f172a !important;
+        }
+        .footer-item .btn-square:focus-visible { outline: 2px solid var(--accent-sky-lt); outline-offset: 2px; }
+        .footer-item .fa-share { color: rgba(255,255,255,0.4) !important; font-size: 1rem !important; }
+
+        /* Copyright bar */
+        .container-fluid.copyright {
+            background: rgba(0,0,0,0.3) !important;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .container-fluid.copyright a { color: var(--accent-sky-lt) !important; text-decoration: none; }
+        .container-fluid.copyright a:hover { text-decoration: underline; }
+        .container-fluid.copyright .fa-copyright { color: var(--accent-sky-lt); }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            border-radius: var(--radius-md) !important;
+            transition: var(--ease) !important;
+            box-shadow: var(--shadow-md) !important;
+        }
+        .back-to-top:hover { transform: translateY(-3px) !important; box-shadow: var(--shadow-lg) !important; }
+        .back-to-top:active { transform: translateY(1px) !important; }
+
+        /* ============================================================
+           EXPLORE MORE / CTA BUTTONS
+           ============================================================ */
+        .btn.btn-primary.rounded-pill {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--ease);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn.btn-primary.rounded-pill:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn.btn-primary.rounded-pill:active { transform: translateY(1px); }
+        .btn.btn-primary.rounded-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     </style>
 
 </head>
@@ -581,7 +1474,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Destination End -->
+            </div>
+        </div>
+    </div>
+    <!-- Destination End -->
 
                 <!-- Explore Tour Start -->
                 <div class="container-fluid ExploreTour py-5">
@@ -695,8 +1591,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- Explore Tour End -->
 
         <!-- Packages Start -->
@@ -1255,88 +2149,86 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <!-- Travel Guide End -->
+        <!-- Travel Guide End -->
 
-    <!-- Blog Start -->
-    <div class="container-fluid blog py-5">
-        <div class="container py-5">
-            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3">Our Blog</h5>
-                <h1 class="mb-4">Popular Travel Videos</h1>
-                <p class="mb-0">West Bengal travel videos offer a captivating glimpse into the diverse tapestry of this
-                    Indian state. From the bustling streets of Kolkata,
-                    with its colonial architecture and vibrant markets, to the serene beauty of the Sundarbans mangrove
-                    forests teeming with wildlife, each frame invites viewers on a
-                    journey of discovery. </p>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <!-- First Video -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <div class="blog-img-inner">
-                                <!-- Replace the video tag with YouTube embedded player -->
-                                <iframe width="100%" height="315"
-                                    src="https://www.youtube.com/embed/rwCTpdeuVe8?si=RqZHQK8zDxlJXY8P" frameborder="0"
-                                    allowfullscreen></iframe>
+        <!-- Blog Start -->
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Our Blog</h5>
+                    <h1 class="mb-4">Popular Travel Videos</h1>
+                    <p class="mb-0">West Bengal travel videos offer a captivating glimpse into the diverse tapestry of this
+                        Indian state. From the bustling streets of Kolkata,
+                        with its colonial architecture and vibrant markets, to the serene beauty of the Sundarbans mangrove
+                        forests teeming with wildlife, each frame invites viewers on a
+                        journey of discovery. </p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <!-- First Video -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <!-- Replace the video tag with YouTube embedded player -->
+                                    <iframe width="100%" height="315"
+                                        src="https://www.youtube.com/embed/rwCTpdeuVe8?si=RqZHQK8zDxlJXY8P" frameborder="0"
+                                        allowfullscreen></iframe>
+                                </div>
                             </div>
-                        </div>
-                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
 
-                            <a href="#" class="h4">Bengali Heritage</a>
-                            <p class="my-3">Bengali heritage is a vibrant tapestry of rich cultural traditions,
-                                encompassing literature, music, dance, cuisine, and a long history of resilience and
-                                artistic expression.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Second Video -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <div class="blog-img-inner">
-                                <!-- Replace the video tag with YouTube embedded player -->
-                                <iframe width="100%" height="315"
-                                    src="https://www.youtube.com/embed/WyGqxPL2hKw?si=nM0-KWM92A1MyTyh" frameborder="0"
-                                    allowfullscreen></iframe>
+                                <a href="#" class="h4">Bengali Heritage</a>
+                                <p class="my-3">Bengali heritage is a vibrant tapestry of rich cultural traditions,
+                                    encompassing literature, music, dance, cuisine, and a long history of resilience and
+                                    artistic expression.</p>
                             </div>
                         </div>
-                        <div class="blog-content border border-top-0 rounded-bottom p-4">
-                            <a href="#" class="h4">Murshidabad</a>
-                            <p class="my-3">Murshidabad, a haven for heritage tourism. Explore the beauty of
-                                Bengal.Murshidabad, a haven for heritage tourism. Explore the beauty of Bengal.</p>
-                        </div>
                     </div>
-                </div>
-                <!-- Add more columns for additional videos if needed -->
-                <!-- Third Video -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <div class="blog-img-inner">
-                                <!-- Replace the video tag with YouTube embedded player -->
-                                <iframe width="100%" height="315"
-                                    src="https://www.youtube.com/embed/0-ZerRrf0UM?si=HP9PV1ytMleoUyrR" frameborder="0"
-                                    allowfullscreen></iframe>
+                    <!-- Second Video -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <!-- Replace the video tag with YouTube embedded player -->
+                                    <iframe width="100%" height="315"
+                                        src="https://www.youtube.com/embed/WyGqxPL2hKw?si=nM0-KWM92A1MyTyh" frameborder="0"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <a href="#" class="h4">Murshidabad</a>
+                                <p class="my-3">Murshidabad, a haven for heritage tourism. Explore the beauty of
+                                    Bengal.Murshidabad, a haven for heritage tourism. Explore the beauty of Bengal.</p>
                             </div>
                         </div>
-                        <div class="blog-content border border-top-0 rounded-bottom p-4">
-                            <a href="#" class="h4">Bishnupur</a>
-                            <p class="my-3">ByteQuest welcomes you to Bishnupur, an ancient kingdom that still offers
-                                the best combination of old and new. From magnificent terracotta artefacts to vibrant
-                                textiles to delicious cuisine and spectacular landscapes, Bishnupur has something for
-                                everyone. </p>
+                    </div>
+                    <!-- Third Video -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <!-- Replace the video tag with YouTube embedded player -->
+                                    <iframe width="100%" height="315"
+                                        src="https://www.youtube.com/embed/0-ZerRrf0UM?si=HP9PV1ytMleoUyrR" frameborder="0"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <a href="#" class="h4">Bishnupur</a>
+                                <p class="my-3">ByteQuest welcomes you to Bishnupur, an ancient kingdom that still offers
+                                    the best combination of old and new. From magnificent terracotta artefacts to vibrant
+                                    textiles to delicious cuisine and spectacular landscapes, Bishnupur has something for
+                                    everyone. </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Add more columns for additional videos if needed -->
                 <div class="text-center mt-4">
                     <a href="{{url('/blog')}}" class="btn btn-primary">Click here for more Travel Blog</a>
                 </div>
-
-                <!-- Blog End -->
+            </div>
+        </div>
+        <!-- Blog End -->
 
 
 
@@ -1345,38 +2237,34 @@
                 <div class="container-fluid footer py-5">
                     <div class="container py-5">
                         <div class="row g-5">
-                            <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="col-md-6 col-lg-4 col-xl-4">
                                 <div class="footer-item d-flex flex-column">
                                     <h4 class="mb-4 text-white">Get In Touch</h4>
                                     <a href=""><i class="fas fa-home me-2"></i> Berhampore, Murshidabad,WB-India</a>
                                     <a href=""><i class="fas fa-envelope me-2"></i> Mr. Tanmay Das</a>
                                     <a href=""><i class="fas fa-phone me-2"></i> +91 8348146101</a>
 
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center mt-3">
                                         <i class="fas fa-share fa-2x text-white me-2"></i>
-                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Facebook"><i
                                                 class="fab fa-facebook-f"></i></a>
-                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Twitter"><i
                                                 class="fab fa-twitter"></i></a>
-                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Instagram"><i
                                                 class="fab fa-instagram"></i></a>
-                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                        <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="LinkedIn"><i
                                                 class="fab fa-linkedin-in"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="col-md-6 col-lg-4 col-xl-4">
                                 <div class="footer-item d-flex flex-column">
                                     <h4 class="mb-4 text-white">Bengal Odyssey</h4>
                                     <a href="{{url('about')}}"><i class="fas fa-angle-right me-2"></i> About</a>
-
                                     <a href="{{url('blog')}}"><i class="fas fa-angle-right me-2"></i> Blog</a>
-
-
-
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="col-md-6 col-lg-4 col-xl-4">
                                 <div class="footer-item d-flex flex-column">
                                     <h4 class="mb-4 text-white">Support</h4>
                                     <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
@@ -1387,24 +2275,23 @@
                                     <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
 
-                            <!-- Footer End -->
-
-                            <!-- Copyright Start -->
-                            <div class="container-fluid copyright text-body py-4">
-                                <div class="container">
-                                    <div class="row g-4 align-items-center">
-                                        <div class="col-md-6 text-center text-md-end mb-md-0">
-                                            <i class="fas fa-copyright me-2"></i><a class="text-white"
-                                                href="http://127.0.0.1:8000/home">Bengal Odyssey</a>, All right
-                                            reserved.
-                                        </div>
-
-                                    </div>
-                                </div>
+                <!-- Copyright Start -->
+                <div class="container-fluid copyright text-body py-4">
+                    <div class="container">
+                        <div class="row g-4 align-items-center justify-content-center">
+                            <div class="col-12 text-center">
+                                <i class="fas fa-copyright me-2"></i><a class="text-white"
+                                    href="http://127.0.0.1:8000/home">Bengal Odyssey</a>, All rights reserved.
                             </div>
                         </div>
-                        <!-- Copyright End -->
+                    </div>
+                </div>
+                <!-- Copyright End -->
 
                         <!-- Back to Top -->
                         <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i

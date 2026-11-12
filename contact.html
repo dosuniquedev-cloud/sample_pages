@@ -3,391 +3,2150 @@
 
 <head>
     <meta charset="utf-8">
-    <title>contact page</title>
+    <title>Contact &mdash; Bengal Odyssey</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="contact, travel desk, Berhampore, West Bengal tourism, custom itinerary" name="keywords">
+    <meta content="Talk to the Bengal Odyssey travel desk — plan a custom journey, ask about an existing booking, or visit our studio in Berhampore." name="description">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- icons Font Stylesheet -->
+    <!-- Icons Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-iconss@1.4.1/font/bootstrap-iconss.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Senior UI/UX Premium Stylesheet (Adheres to AGENTS.md rules) -->
     <style>
-        .custom-heading {
-            font-family: Papyrus;
-            font-size: 30px;
-            font-style: normal;
-            color: goldenrod;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
+        /* --------------------------------------------------
+           DESIGN TOKENS — 60 / 30 / 10 DISCIPLINE
+        -------------------------------------------------- */
+        :root {
+            /* 60% Dominant Base */
+            --page-bg: #f4f6fa;
+            --ink: #0b1528;
+
+            /* 30% Structural Surface */
+            --surface: #ffffff;
+            --surface-subtle: #f8fafc;
+            --surface-muted: #f1f5f9;
+            --border: #e6ebf2;
+            --border-strong: #d7dfe9;
+
+            /* 10% Purposeful Accent */
+            --navy: #13357b;
+            --navy-deep: #0d2557;
+            --navy-tint: #eef2fb;
+            --sky: #0284c7;
+            --sky-light: #38bdf8;
+
+            /* Semantic */
+            --success: #047857;
+            --success-bg: #ecfdf5;
+            --gold: #b98a2f;
+            --gold-bg: #fdf6e7;
+            --danger: #b91c1c;
+            --danger-bg: #fef2f2;
+
+            /* Typography */
+            --heading: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+
+            /* Layered Subtle Shadows */
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 6px rgba(15, 23, 42, 0.04);
+            --shadow-lg: 0 24px 48px -16px rgba(11, 21, 40, 0.32);
+
+            /* Radii */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            /* Motion */
+            --ease: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+            /* 8px Grid */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
         }
 
-        .dropdown-item {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
             font-size: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--page-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: radial-gradient(1200px 320px at 50% -80px, rgba(19, 53, 123, 0.07), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a {
+            color: var(--navy);
+        }
+
+        img {
+            max-width: 100%;
             display: block;
-            margin-bottom: 10px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0;
+            color: var(--heading);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-32);
+            position: relative;
+            z-index: 1;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid var(--sky);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* --------------------------------------------------
+           APP HEADER
+        -------------------------------------------------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            min-height: 80px;
+            padding: 0 var(--space-32);
+            display: flex;
+            align-items: center;
+            gap: var(--space-24);
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
             text-decoration: none;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
         }
 
-        .dropdown-item:hover {
-            background-color: #45a049;
+        .brand img {
+            height: 44px;
+            width: auto;
         }
 
-        .btn-danger {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+        .brand-name {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            line-height: 1.15;
+        }
+
+        .brand-tag {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: var(--space-4);
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .main-nav a {
+            padding: var(--space-8) var(--space-16);
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            transition: var(--ease);
+            white-space: nowrap;
+        }
+
+        .main-nav a:hover {
+            color: var(--heading);
+            background: var(--surface-muted);
+        }
+
+        .main-nav a.is-active {
+            color: var(--navy);
+            background: var(--navy-tint);
+        }
+
+        .main-nav a:active {
+            transform: translateY(1px);
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .icon-btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--ease);
         }
 
-        .btn-danger:hover {
-            background: linear-gradient(45deg, #FF8E8E, #FF6B6B);
+        .icon-btn:hover {
+            color: var(--navy);
+            border-color: var(--navy);
+            background: var(--navy-tint);
         }
 
-        .dropdown-menu {
-            background-color: transparent;
+        .icon-btn:active {
+            transform: translateY(1px) scale(0.97);
         }
 
-        .dropdown-toggle:hover small {
-            animation: scaleAnimation 0.3s ease forwards;
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding-left: var(--space-16);
+            margin-left: var(--space-8);
+            border-left: 1px solid var(--border);
+            text-decoration: none;
         }
 
-        @keyframes scaleAnimation {
-            0% {
-                transform: scale(1);
+        .user-chip img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px var(--border-strong);
+        }
+
+        .user-chip .name {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.25;
+        }
+
+        .user-chip .role {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        /* --------------------------------------------------
+           HERO — TRAVEL DESK INTRO
+        -------------------------------------------------- */
+        .hero {
+            padding-top: var(--space-32);
+        }
+
+        .hero-panel {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+            gap: var(--space-48);
+            align-items: center;
+            padding: var(--space-48);
+            border-radius: var(--radius-xl);
+            background-color: var(--ink);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(560px 280px at 88% -10%, rgba(56, 189, 248, 0.14), transparent 70%),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 40px);
+            pointer-events: none;
+        }
+
+        .hero-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: var(--space-48);
+            right: var(--space-48);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+            pointer-events: none;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sky-light);
+            margin-bottom: var(--space-8);
+        }
+
+        .hero-name {
+            font-size: clamp(2rem, 3.6vw, 2.75rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .hero-lede {
+            margin-top: var(--space-16);
+            max-width: 520px;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8) var(--space-24);
+            margin-top: var(--space-24);
+            font-size: 0.86rem;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .hero-meta i {
+            color: var(--sky-light);
+            width: 16px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Desk card */
+        .desk-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .desk-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-16);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: var(--space-16);
+        }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-sm);
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #6ee7b7;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            white-space: nowrap;
+        }
+
+        .live-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34d399;
+        }
+
+        .agent {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+        }
+
+        .agent img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+            flex-shrink: 0;
+        }
+
+        .agent-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .agent-role {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.62);
+            line-height: 1.5;
+            margin-top: var(--space-4);
+        }
+
+        .desk-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            margin-top: var(--space-24);
+            padding-top: var(--space-16);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-solid-light,
+        .btn-ghost-light {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            min-height: 44px;
+            padding: 0 var(--space-16);
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--ease);
+            border: 1px solid transparent;
+        }
+
+        .btn-solid-light {
+            background: #ffffff;
+            color: var(--ink);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
+        }
+
+        .btn-solid-light:hover {
+            color: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+        }
+
+        .btn-solid-light:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+        }
+
+        .btn-ghost-light {
+            background: transparent;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .btn-ghost-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost-light:active {
+            transform: translateY(1px);
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .btn-solid-light i,
+        .btn-ghost-light i {
+            font-size: 0.82rem;
+        }
+
+        /* --------------------------------------------------
+           CONTACT METHOD CARDS
+        -------------------------------------------------- */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .contact-card {
+            display: flex;
+            gap: var(--space-16);
+            padding: var(--space-24);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--ease);
+            text-decoration: none;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .contact-card:active {
+            transform: translateY(0);
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            background: var(--navy-tint);
+            color: var(--navy);
+        }
+
+        .contact-icon.is-sky {
+            background: #e8f4fd;
+            color: var(--sky);
+        }
+
+        .contact-icon.is-gold {
+            background: var(--gold-bg);
+            color: var(--gold);
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.4;
+            margin-bottom: var(--space-4);
+        }
+
+        .contact-value {
+            display: block;
+            font-size: 0.94rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-sub {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-top: var(--space-4);
+        }
+
+        .contact-card .go {
+            margin-left: auto;
+            align-self: flex-start;
+            color: #94a3b8;
+            font-size: 0.66rem;
+            transition: var(--ease);
+        }
+
+        .contact-card:hover .go {
+            color: var(--navy);
+            transform: translateX(2px);
+        }
+
+        /* --------------------------------------------------
+           MAIN GRID
+        -------------------------------------------------- */
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+            gap: var(--space-24);
+            align-items: start;
+            padding-top: var(--space-24);
+            padding-bottom: var(--space-64);
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-24);
+            min-width: 0;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: var(--space-16);
+            flex-wrap: wrap;
+            padding: var(--space-24);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: 1.06rem;
+            font-weight: 700;
+            color: var(--heading);
+            letter-spacing: -0.015em;
+        }
+
+        .panel-title i {
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .panel-sub {
+            margin-top: var(--space-4);
+            font-size: 0.84rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .panel-body {
+            padding: var(--space-24);
+        }
+
+        /* --------------------------------------------------
+           FORM
+        -------------------------------------------------- */
+        .form-panel-head {
+            padding: var(--space-32) var(--space-32) 0;
+        }
+
+        .form-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: var(--heading);
+            line-height: 1.25;
+        }
+
+        .form-lede {
+            margin-top: var(--space-8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--muted);
+            max-width: 560px;
+        }
+
+        .query-form {
+            padding: var(--space-24) var(--space-32) var(--space-32);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-16);
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .field.is-full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--heading);
+            margin-bottom: var(--space-8);
+        }
+
+        .field label .req {
+            color: var(--danger);
+            margin-left: var(--space-4);
+        }
+
+        .field .hint {
+            font-size: 0.74rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-top: var(--space-4);
+        }
+
+        .form-control-c,
+        .form-select-c {
+            width: 100%;
+            min-height: 48px;
+            padding: 0 var(--space-16);
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--heading);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 500;
+            line-height: 1.5;
+            transition: var(--ease);
+        }
+
+        .form-control-c::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .form-control-c:hover,
+        .form-select-c:hover {
+            border-color: #c3cfe3;
+        }
+
+        .form-control-c:focus,
+        .form-select-c:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 4px rgba(19, 53, 123, 0.12);
+            background: #ffffff;
+        }
+
+        .form-control-c:disabled,
+        .form-select-c:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            background: var(--surface-subtle);
+        }
+
+        textarea.form-control-c {
+            min-height: 152px;
+            padding: 12px var(--space-16);
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-select-c {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+        }
+
+        .consent {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-8);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .consent input {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            accent-color: var(--navy);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .consent a {
+            color: var(--navy);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #c9d4e6;
+        }
+
+        .consent a:hover {
+            border-bottom-color: var(--navy);
+        }
+
+        .form-foot {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .btn-navy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            min-height: 48px;
+            padding: 0 var(--space-24);
+            border: 1px solid transparent;
+            border-radius: var(--radius-md);
+            background: var(--navy);
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: var(--ease);
+            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.28);
+        }
+
+        .btn-navy:hover {
+            background: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(19, 53, 123, 0.36);
+        }
+
+        .btn-navy:focus-visible {
+            outline: 2px solid var(--sky);
+            outline-offset: 2px;
+        }
+
+        .btn-navy:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(19, 53, 123, 0.28);
+        }
+
+        .btn-navy:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-navy i {
+            font-size: 0.78rem;
+        }
+
+        .form-assurance {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .form-assurance i {
+            color: var(--success);
+            font-size: 0.72rem;
+        }
+
+        /* --------------------------------------------------
+           SIDEBAR
+        -------------------------------------------------- */
+        .hours-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: var(--space-16);
+            padding: var(--space-8) 0;
+            font-size: 0.86rem;
+            line-height: 1.5;
+        }
+
+        .hours-row + .hours-row {
+            border-top: 1px solid var(--surface-muted);
+        }
+
+        .hours-row dt,
+        .hours-row .day {
+            margin: 0;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .hours-row dd,
+        .hours-row .time {
+            margin: 0;
+            color: var(--heading);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .hours-row.is-today .day,
+        .hours-row.is-today .time {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .today-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 var(--space-8);
+            margin-left: var(--space-8);
+            border-radius: var(--radius-sm);
+            background: var(--navy-tint);
+            color: var(--navy);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            line-height: 1.6;
+            vertical-align: 1px;
+        }
+
+        .hours-note {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+            padding: var(--space-16);
+            border-radius: var(--radius-md);
+            background: var(--surface-subtle);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .hours-note i {
+            color: var(--sky);
+            margin-top: var(--space-4);
+            font-size: 0.78rem;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+        }
+
+        .step {
+            display: flex;
+            gap: var(--space-16);
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy-tint);
+            border: 1px solid #dbe4f5;
+            color: var(--navy);
+            font-size: 0.72rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .step h3 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.45;
+        }
+
+        .step p {
+            margin-top: var(--space-4);
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--muted);
+        }
+
+        .urgent {
+            padding: var(--space-24);
+            border-radius: var(--radius-lg);
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .urgent-label {
+            display: block;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--sky-light);
+            margin-bottom: var(--space-8);
+        }
+
+        .urgent h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .urgent p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-top: var(--space-8);
+        }
+
+        .urgent a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: var(--space-4);
+            transition: var(--ease);
+        }
+
+        .urgent a:hover {
+            color: var(--sky-light);
+            border-bottom-color: var(--sky-light);
+        }
+
+        .urgent a i {
+            font-size: 0.7rem;
+        }
+
+        /* --------------------------------------------------
+           VISIT / MAP
+        -------------------------------------------------- */
+        .visit-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            gap: var(--space-24);
+            padding: var(--space-24);
+            align-items: stretch;
+        }
+
+        .visit-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+            padding: var(--space-8);
+        }
+
+        .visit-item {
+            display: flex;
+            gap: var(--space-16);
+        }
+
+        .visit-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--surface-muted);
+            color: var(--navy);
+            font-size: 0.82rem;
+        }
+
+        .visit-item dt {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 var(--space-4);
+            line-height: 1.4;
+        }
+
+        .visit-item dd {
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--heading);
+        }
+
+        .visit-item dd a {
+            color: var(--heading);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-strong);
+            transition: var(--ease);
+        }
+
+        .visit-item dd a:hover {
+            color: var(--navy);
+            border-bottom-color: var(--navy);
+        }
+
+        .map-frame {
+            position: relative;
+            min-height: 320px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface-muted);
+        }
+
+        .map-frame iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: 0;
+            filter: saturate(0.9);
+        }
+
+        .map-caption {
+            position: absolute;
+            left: var(--space-16);
+            bottom: var(--space-16);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-sm);
+            background: rgba(11, 21, 40, 0.9);
+            color: #ffffff;
+            font-size: 0.76rem;
+            font-weight: 600;
+            line-height: 1.4;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: var(--ease);
+        }
+
+        .map-caption:hover {
+            background: var(--navy);
+            color: #ffffff;
+        }
+
+        .map-caption i {
+            color: var(--sky-light);
+            font-size: 0.72rem;
+        }
+
+        /* --------------------------------------------------
+           FAQ
+        -------------------------------------------------- */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-16);
+            padding: var(--space-24);
+        }
+
+        .faq {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--surface);
+            transition: var(--ease);
+        }
+
+        .faq:hover {
+            border-color: var(--border-strong);
+            background: #fbfcfe;
+        }
+
+        .faq[open] {
+            border-color: #c9d4e6;
+            background: var(--surface-subtle);
+        }
+
+        .faq summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            cursor: pointer;
+            list-style: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: var(--heading);
+        }
+
+        .faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq summary:hover {
+            color: var(--navy);
+        }
+
+        .faq summary .faq-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy-tint);
+            color: var(--navy);
+            font-size: 0.62rem;
+            transition: transform 0.2s ease;
+        }
+
+        .faq[open] summary .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq p {
+            padding: 0 var(--space-24) var(--space-16);
+            font-size: 0.86rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        /* --------------------------------------------------
+           CTA BAND
+        -------------------------------------------------- */
+        .cta-band {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-32);
+            flex-wrap: wrap;
+            padding: var(--space-32) var(--space-48);
+            border-radius: var(--radius-lg);
+            background: var(--ink);
+            margin-bottom: var(--space-64);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(480px 200px at 90% 0%, rgba(56, 189, 248, 0.14), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-copy h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+            line-height: 1.25;
+        }
+
+        .cta-copy p {
+            margin-top: var(--space-4);
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.66);
+            line-height: 1.6;
+        }
+
+        .cta-actions {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-16);
+        }
+
+        /* --------------------------------------------------
+           FOOTER
+        -------------------------------------------------- */
+        .site-footer {
+            background: var(--ink);
+            color: rgba(226, 232, 240, 0.72);
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
+            gap: var(--space-48);
+            padding: var(--space-48) 0;
+        }
+
+        .footer-brand img {
+            height: 44px;
+            width: auto;
+            margin-bottom: var(--space-16);
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            line-height: 1.65;
+            max-width: 340px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: var(--space-16);
+        }
+
+        .footer-col a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            width: fit-content;
+            padding: var(--space-4) 0;
+            font-size: 0.88rem;
+            color: rgba(226, 232, 240, 0.72);
+            text-decoration: none;
+            transition: var(--ease);
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .footer-col a:active {
+            transform: translateX(2px);
+        }
+
+        .socials {
+            display: flex;
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+        }
+
+        .socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.82rem;
+            transition: var(--ease);
+        }
+
+        .socials a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .socials a:active {
+            transform: translateY(0);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-24) 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-8);
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--sky-light);
+        }
+
+        /* --------------------------------------------------
+           RESPONSIVE
+        -------------------------------------------------- */
+        @media screen and (max-width: 1199px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
             }
 
-            100% {
-                transform: scale(1.1);
+            .hero-panel {
+                gap: var(--space-32);
+            }
+
+            .visit-grid {
+                grid-template-columns: minmax(0, 1fr);
             }
         }
 
-        #map {
-            height: 600px;
+        @media screen and (max-width: 991px) {
+            .hero-panel {
+                grid-template-columns: minmax(0, 1fr);
+                padding: var(--space-32);
+            }
+
+            .hero-panel::after {
+                left: var(--space-32);
+                right: var(--space-32);
+            }
+
+            .contact-cards {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: calc(100% + 1px);
+                left: var(--space-16);
+                right: var(--space-16);
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--space-4);
+                padding: var(--space-8);
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-md);
+            }
+
+            .main-nav.is-open {
+                display: flex;
+            }
+
+            .main-nav a {
+                border-radius: var(--radius-sm);
+            }
+
+            .faq-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: var(--space-32);
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .shell {
+                padding: 0 var(--space-16);
+            }
+
+            .header-inner {
+                padding: 0 var(--space-16);
+                min-height: 72px;
+                gap: var(--space-16);
+            }
+
+            .brand img {
+                height: 38px;
+            }
+
+            .brand-tag,
+            .user-chip .meta-text {
+                display: none;
+            }
+
+            .user-chip {
+                padding-left: var(--space-8);
+                gap: 0;
+            }
+
+            .hero {
+                padding-top: var(--space-16);
+            }
+
+            .hero-panel {
+                padding: var(--space-24);
+                border-radius: var(--radius-lg);
+            }
+
+            .hero-panel::after {
+                left: var(--space-24);
+                right: var(--space-24);
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: var(--space-8);
+            }
+
+            .contact-cards {
+                gap: var(--space-8);
+                margin-top: var(--space-16);
+            }
+
+            .contact-card {
+                padding: var(--space-16);
+            }
+
+            .layout {
+                padding-top: var(--space-16);
+                padding-bottom: var(--space-48);
+                gap: var(--space-16);
+            }
+
+            .stack {
+                gap: var(--space-16);
+            }
+
+            .panel-head,
+            .panel-body {
+                padding: var(--space-16);
+            }
+
+            .form-panel-head {
+                padding: var(--space-24) var(--space-16) 0;
+            }
+
+            .query-form {
+                padding: var(--space-16);
+            }
+
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: var(--space-16);
+            }
+
+            .form-foot {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-navy {
+                width: 100%;
+            }
+
+            .form-assurance {
+                justify-content: center;
+            }
+
+            .visit-grid {
+                padding: var(--space-16);
+                gap: var(--space-16);
+            }
+
+            .map-frame,
+            .map-frame iframe {
+                min-height: 260px;
+            }
+
+            .faq-grid {
+                padding: var(--space-16);
+                gap: var(--space-8);
+            }
+
+            .cta-band {
+                padding: var(--space-24);
+                margin-bottom: var(--space-48);
+                gap: var(--space-24);
+            }
+
+            .cta-actions {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .cta-actions .btn-solid-light,
+            .cta-actions .btn-ghost-light {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: var(--space-32);
+                padding: var(--space-32) 0;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .brand-name {
+                font-size: 0.98rem;
+            }
+
+            .hero-name {
+                font-size: 1.8rem;
+            }
+
+            .contact-card .go {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
-
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-
-    <div class="container-fluid bg-primary px-5  d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <h1 class="custom-heading">ByteQuest: Fusion of Tech, Culture, and Adventure</h1>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-
-                    <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown">
-                        <small><i class="fa fa-home me-2"></i>Welcome</small>
-                    </a>
-                    <div class="dropdown-menu rounded">
-                        <form method="get" action="{{ url('/show', ['id' => $client->user_id]) }}">
-                            <div class="text-center">
-                                <button class="dropdown-item">My Profile</button>
-                            </div>
-                        </form>
-                        <form method="get" action="{{url('/changepassword')}}{{$client->user_id}}">
-                            <div class="text-center">
-                                <button class="dropdown-item">Change Password</button>
-                            </div>
-                        </form>
-                        <form method="post" action="{{ route('logout') }}">
-
-                            <div class="text-center">
-                                <button class="btn btn-danger" type="submit">
-                                    <i class="fas fa-power-off me-2"></i>Logout
-                                </button>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="" class="navbar-brand p-0">
-                <h1 class="m-0"><img src="img/logo.png" alt="Logo"> </i>Bengal Odyssey</h1>
-
+    <!-- Header Start -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="home.html" class="brand" aria-label="Bengal Odyssey home">
+                <img src="img/logo.png" alt="">
+                <span>
+                    <span class="brand-name">Bengal Odyssey</span>
+                    <span class="brand-tag">Travel Desk</span>
+                </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ url('home') }}" class="nav-item nav-link active">Home</a>
-                    <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
-                    <a href="{{ url('service') }}" class="nav-item nav-link">Services</a>
-                    <a href="{{ url('package') }}" class="nav-item nav-link">Packages</a>
-                    <a href="{{ url('blog') }}" class="nav-item nav-link">Blog</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="{{ url('destination') }}" class="dropdown-item">Destination</a>
-                            <a href="{{ url('tour') }}" class="dropdown-item">Explore Tour</a>
-                            <a href="{{ url('booking') }}" class="dropdown-item">Travel Booking</a>
-                            <a href="{{ url('gallery') }}" class="dropdown-item">Our Gallery</a>
-                            <a href="{{ url('guides') }}" class="dropdown-item">Travel Guides</a>
 
-                        </div>
-                    </div>
-                    <a href="{{ url('contact') }}" class="nav-item nav-link">Questions? Just ask!</a>
-                </div>
-                <a href="{{ url('booking') }}" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
-            </div>
-        </nav>
+            <nav class="main-nav" id="mainNav" aria-label="Primary">
+                <a href="home.html">Home</a>
+                <a href="booking.html">Book a Tour</a>
+                <a href="user_profile.html">My Account</a>
+                <a href="contact.html" class="is-active" aria-current="page">Support</a>
+                <a href="booking.html">Plan a Trip</a>
+            </nav>
 
-        <div class="container-fluid bg-breadcrumb">
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Contact Us</h1>
-
+            <div class="header-actions">
+                <a href="booking.html" class="user-chip" aria-label="Signed in as Tanmay Das">
+                    <img src="img/user.jpg" alt="">
+                    <span class="meta-text">
+                        <span class="name">Tanmay Das</span>
+                        <span class="role">Gold traveller</span>
+                    </span>
+                </a>
+                <button type="button" class="icon-btn nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
-        <div class="container-fluid contact bg-light py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Contact Us</h5>
-                    <h1 class="mb-0">Contact For Any Query</h1>
+    </header>
+    <!-- Header End -->
+
+    <main>
+        <!-- Hero Start -->
+        <section class="hero" aria-labelledby="contactTitle">
+            <div class="shell">
+                <div class="hero-panel">
+                    <div class="hero-copy">
+                        <span class="eyebrow">Contact &middot; Bengal Odyssey</span>
+                        <h1 class="hero-name" id="contactTitle">Plan it with a human.</h1>
+                        <p class="hero-lede">Every itinerary we build starts with a conversation. Tell us the pace you like, the places you have been meaning to see, and we will shape the rest around it.</p>
+                        <p class="hero-meta">
+                            <span><i class="far fa-clock" aria-hidden="true"></i> Mon&ndash;Sat &middot; 9:00&ndash;19:00 IST</span>
+                            <span><i class="fas fa-bolt" aria-hidden="true"></i> Average reply in 2 hours</span>
+                            <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Berhampore, West Bengal</span>
+                        </p>
+                    </div>
+
+                    <aside class="desk-card" aria-label="Your travel planner">
+                        <div class="desk-card-top">
+                            Your travel desk
+                            <span class="live-pill">Online now</span>
+                        </div>
+                        <div class="agent">
+                            <img src="img/user2.webp" alt="Portrait of Ananya Sen">
+                            <div>
+                                <div class="agent-name">Ananya Sen</div>
+                                <p class="agent-role">Senior travel planner &middot; 6 years in Bengal</p>
+                            </div>
+                        </div>
+                        <div class="desk-actions">
+                            <a href="https://wa.me/918348146101" class="btn-solid-light" rel="noopener">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+                            </a>
+                            <a href="tel:+918348146101" class="btn-ghost-light">
+                                <i class="fas fa-phone-alt" aria-hidden="true"></i> +91 83481 46101
+                            </a>
+                        </div>
+                    </aside>
                 </div>
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-4">
-                        <div class="bg-white rounded p-4">
-                            <div class="text-center mb-4">
-                                <i class="fa fa-map-marker-alt fa-3x text-primary"></i>
-                                <h4 class="text-primary">
-                                    <Address></Address>
-                                </h4>
-                                <p class="mb-0">India</p>
-                            </div>
-                            <div class="text-center mb-4">
-                                <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
-                                <h4 class="text-primary">Mobile</h4>
-                                <p class="mb-0">098301 xxxxx</p>
-                                <p class="mb-0">098301 xxxxx</p>
-                            </div>
 
-                            <div class="text-center">
-                                <i class="fa fa-envelope-open fa-3x text-primary mb-3"></i>
-                                <h4 class="text-primary">Email</h4>
-                                <p class="mb-0">abc@gmail.com</p>
-                                <p class="mb-0">def@gmail.com</p>
-                            </div>
+                <!-- Quick contact methods -->
+                <div class="contact-cards">
+                    <a href="tel:+918348146101" class="contact-card">
+                        <span class="contact-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></span>
+                        <span>
+                            <span class="contact-label">Call the desk</span>
+                            <span class="contact-value">+91 83481 46101</span>
+                            <span class="contact-sub">Weekdays, 9:00&ndash;19:00 IST</span>
+                        </span>
+                        <i class="fas fa-arrow-up go" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:hello@bengalodyssey.in" class="contact-card">
+                        <span class="contact-icon is-sky"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                        <span>
+                            <span class="contact-label">Write to us</span>
+                            <span class="contact-value">hello@bengalodyssey.in</span>
+                            <span class="contact-sub">Replies within one business day</span>
+                        </span>
+                        <i class="fas fa-arrow-up go" aria-hidden="true"></i>
+                    </a>
+                    <a href="#visit" class="contact-card">
+                        <span class="contact-icon is-gold"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+                        <span>
+                            <span class="contact-label">Visit the studio</span>
+                            <span class="contact-value">Station Road, Berhampore</span>
+                            <span class="contact-sub">Murshidabad, West Bengal 742101</span>
+                        </span>
+                        <i class="fas fa-arrow-right go" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Hero End -->
+
+        <!-- Form + Sidebar Start -->
+        <div class="shell">
+            <div class="layout">
+                <div class="stack">
+                    <section class="panel" aria-labelledby="formTitle">
+                        <div class="form-panel-head">
+                            <h2 class="form-title" id="formTitle">Send us a message</h2>
+                            <p class="form-lede">Share a rough idea or a fully formed plan &mdash; either is perfect. A planner reads every message personally.</p>
                         </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <h3 class="mb-2">Send us a message</h3>
-                        <p class="mb-4">Feel free to send us anything you want to know or if you have any queries. Our
-                            services are available 24/7, so don't hesitate to ask us anything.</p>
 
-
-
-                        <div class="query-container">
-                            <form method="post" action="/qsubmit">
-
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="name"
-                                                placeholder="Your Name" name="name">
-                                            <label for="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control border-0" id="email"
-                                                placeholder="Your Email" name="email">
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="subject"
-                                                placeholder="Subject" name="subject">
-                                            <label for="subject">Subject</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control border-0" placeholder="Leave a message here"
-                                                id="message" style="height: 160px" name="message"></textarea>
-                                            <label for="message">Message</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit" name="submit">Send
-                                            Message</button>
-                                    </div>
-
+                        <form class="query-form" method="post" action="/qsubmit">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+                                    <input type="text" class="form-control-c" id="name" name="name" placeholder="Tanmay Das" autocomplete="name" required>
                                 </div>
-                            </form>
+
+                                <div class="field">
+                                    <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+                                    <input type="email" class="form-control-c" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                                </div>
+
+                                <div class="field">
+                                    <label for="phone">Phone <span style="color: var(--muted); font-weight: 500;">(optional)</span></label>
+                                    <input type="tel" class="form-control-c" id="phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel">
+                                </div>
+
+                                <div class="field">
+                                    <label for="subject">What is this about? <span class="req" aria-hidden="true">*</span></label>
+                                    <select class="form-select-c" id="subject" name="subject" required>
+                                        <option value="" selected disabled>Choose a subject</option>
+                                        <option value="New booking">A new journey</option>
+                                        <option value="Custom itinerary">A custom itinerary</option>
+                                        <option value="Existing booking">My existing booking</option>
+                                        <option value="Group travel">Group or family travel</option>
+                                        <option value="Feedback">Feedback</option>
+                                    </select>
+                                </div>
+
+                                <div class="field is-full">
+                                    <label for="message">Your message <span class="req" aria-hidden="true">*</span></label>
+                                    <textarea class="form-control-c" id="message" name="message" placeholder="Tell us when you would like to travel, who is coming along, and anything you already know you want to see." required></textarea>
+                                    <span class="hint">Dates, group size and destinations help us reply with something useful on the first try.</span>
+                                </div>
+
+                                <div class="field is-full">
+                                    <label class="consent" for="consent">
+                                        <input type="checkbox" id="consent" name="consent" required>
+                                        <span>I agree to be contacted about this enquiry and accept the <a href="#">privacy policy</a>.</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-foot">
+                                <button type="submit" class="btn-navy" name="submit">
+                                    Send message <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
+                                <span class="form-assurance">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> No newsletters, no resale &mdash; one thoughtful reply.
+                                </span>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="stack" aria-label="Travel desk information">
+                    <section class="panel" aria-labelledby="hoursTitle">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title" id="hoursTitle">
+                                    <i class="far fa-clock" aria-hidden="true"></i> Desk hours
+                                </h2>
+                                <p class="panel-sub">Indian Standard Time, all year round.</p>
+                            </div>
                         </div>
+                        <div class="panel-body">
+                            <dl style="margin: 0;">
+                                <div class="hours-row is-today">
+                                    <dt class="day">Monday &ndash; Friday <span class="today-chip">Today</span></dt>
+                                    <dd class="time">9:00 &ndash; 19:00</dd>
+                                </div>
+                                <div class="hours-row">
+                                    <dt class="day">Saturday</dt>
+                                    <dd class="time">10:00 &ndash; 16:00</dd>
+                                </div>
+                                <div class="hours-row">
+                                    <dt class="day">Sunday</dt>
+                                    <dd class="time">Closed</dd>
+                                </div>
+                            </dl>
+                            <div class="hours-note">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                <span>Messages sent after hours are answered the next morning, before the first trip departs.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="stepsTitle">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title" id="stepsTitle">
+                                    <i class="fas fa-route" aria-hidden="true"></i> What happens next
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="steps">
+                                <div class="step">
+                                    <span class="step-num" aria-hidden="true">1</span>
+                                    <div>
+                                        <h3>A planner reads it</h3>
+                                        <p>No autoresponder. Your message goes straight to the desk and is assigned to a planner.</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num" aria-hidden="true">2</span>
+                                    <div>
+                                        <h3>You get a first outline</h3>
+                                        <p>A rough route, honest costs and the trade-offs that matter &mdash; usually within two hours.</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num" aria-hidden="true">3</span>
+                                    <div>
+                                        <h3>We refine together</h3>
+                                        <p>Dates, pace and stays are adjusted until the plan feels right. Then you confirm.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="urgent">
+                        <span class="urgent-label">Travelling in the next 48 hours?</span>
+                        <h3>Call the on-trip line</h3>
+                        <p>For pick-up changes, delays or anything urgent on an active trip, phone us directly rather than using the form.</p>
+                        <a href="tel:+918348146101">+91 83481 46101 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
+                </aside>
+            </div>
+        </div>
+        <!-- Form + Sidebar End -->
 
+        <!-- Visit Start -->
+        <section class="shell" id="visit" aria-labelledby="visitTitle">
+            <div class="panel" style="margin-bottom: var(--space-24);">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title" id="visitTitle">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Visit the studio
+                        </h2>
+                        <p class="panel-sub">A short walk from Berhampore Court station &mdash; good coffee, better maps.</p>
+                    </div>
+                    <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="btn-navy" style="min-height: 40px; padding: 0 var(--space-16); font-size: 0.82rem;" target="_blank" rel="noopener">
+                        Get directions <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                    </a>
+                </div>
 
-                    <div class="col-12">
-                        <div class="rounded" id="map">
-                            <iframe class="rounded w-100" style="height: 450px;"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="visit-grid">
+                    <dl class="visit-details">
+                        <div class="visit-item">
+                            <span class="visit-icon"><i class="fas fa-location-arrow" aria-hidden="true"></i></span>
+                            <div>
+                                <dt>Address</dt>
+                                <dd>12, Station Road, Berhampore,<br>Murshidabad, West Bengal 742101</dd>
+                            </div>
                         </div>
+                        <div class="visit-item">
+                            <span class="visit-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                            <div>
+                                <dt>Email</dt>
+                                <dd><a href="mailto:hello@bengalodyssey.in">hello@bengalodyssey.in</a></dd>
+                            </div>
+                        </div>
+                        <div class="visit-item">
+                            <span class="visit-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></span>
+                            <div>
+                                <dt>Phone</dt>
+                                <dd><a href="tel:+918348146101">+91 83481 46101</a></dd>
+                            </div>
+                        </div>
+                        <div class="visit-item">
+                            <span class="visit-icon"><i class="far fa-clock" aria-hidden="true"></i></span>
+                            <div>
+                                <dt>Studio hours</dt>
+                                <dd>Mon&ndash;Sat &middot; 10:00&ndash;18:00<br>Sunday visits by appointment</dd>
+                            </div>
+                        </div>
+                    </dl>
+
+                    <div class="map-frame">
+                        <iframe title="Map showing Bengal Odyssey studio in Berhampore, West Bengal" src="https://maps.google.com/maps?q=Berhampore%2C%20Murshidabad%2C%20West%20Bengal&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="map-caption" target="_blank" rel="noopener">
+                            <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Open in Google Maps
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- Visit End -->
 
-
-
-
-        <div class="container-fluid footer py-5">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> Berhampore, Murshidabad,WB-India</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> Mr. Tanmay Das</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +91 8348146101</a>
-
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-share fa-2x text-white me-2"></i>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Bengal Odyssey</h4>
-                            <a href="{{url('about')}}"><i class="fas fa-angle-right me-2"></i> About</a>
-
-                            <a href="{{url('blog')}}"><i class="fas fa-angle-right me-2"></i> Blog</a>
-
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Support</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
-                        </div>
-                    </div>
-
-
-                    <div class="container-fluid copyright text-body py-4">
-                        <div class="container">
-                            <div class="row g-4 align-items-center">
-                                <div class="col-md-6 text-center text-md-end mb-md-0">
-                                    <i class="fas fa-copyright me-2"></i><a class="text-white"
-                                        href="http://127.0.0.1:8000/home">Bengal Odyssey</a>, All right reserved.
-                                </div>
-
-                            </div>
-                        </div>
+        <!-- FAQ Start -->
+        <section class="shell" aria-labelledby="faqTitle">
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title" id="faqTitle">
+                            <i class="far fa-question-circle" aria-hidden="true"></i> Before you write
+                        </h2>
+                        <p class="panel-sub">The four questions the desk answers most often.</p>
                     </div>
                 </div>
 
-                <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
-                        class="fa fa-arrow-up"></i></a>
+                <div class="faq-grid">
+                    <details class="faq">
+                        <summary>
+                            How quickly will I hear back?
+                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <p>During desk hours, most enquiries get a first reply within two hours. Anything sent overnight is answered the next morning &mdash; always by a planner, never a template.</p>
+                    </details>
 
-                <script>
-                    var map = L.map('map').setView([22.9786, 87.7478], 8);
+                    <details class="faq">
+                        <summary>
+                            Can you build a fully custom itinerary?
+                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <p>Yes, and it is most of what we do. Share your dates, group and interests, and we will design a private route with stays, transfers and guides quoted separately so nothing is hidden.</p>
+                    </details>
 
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(map);
+                    <details class="faq">
+                        <summary>
+                            What are the payment and cancellation terms?
+                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <p>A 30% deposit confirms dates, with the balance due 15 days before departure. Changes are free up to 15 days out; cancellations within 7 days retain the deposit. Full terms are sent with every quote.</p>
+                    </details>
 
+                    <details class="faq">
+                        <summary>
+                            Do you arrange pick-ups from Kolkata or Berhampore?
+                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <p>We do &mdash; station and airport transfers are part of every itinerary we quote, including the early-morning departures for the hills and the Sundarbans.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ End -->
 
-                    var locations = [
-                        { name: "Hazarduari", location: [24.1719, 88.2752] },
-                        { name: "Kolkata", location: [22.5726, 88.3639] },
-                        { name: "Kalimpong", location: [27.0717, 88.4729] },
-                        { name: "Sundarban", location: [21.9497, 88.9308] },
-                        { name: "Digha", location: [21.6264, 87.5079] },
-                        { name: "Darjeeling", location: [27.0344, 88.5176] },
-                        { name: "Dooars", location: [26.7153, 89.1226] },
-                        { name: "Shantiniketan", location: [23.6822, 87.6856] },
-                        { name: "Purulia", location: [23.3300, 86.3630] },
-                        { name: "Bishnupur", location: [23.0798, 87.3217] },
-                        { name: "Siliguri", location: [26.7341, 88.4120] },
-                        { name: "Lataguri", location: [26.6398, 88.1588] },
-                        { name: "Lava", location: [27.0314, 88.6223] },
-                        { name: "Loegaon", location: [27.0639, 88.6581] },
-                        { name: "Bankura", location: [23.2325, 87.8619] },
-                        { name: "Shankarpur", location: [21.5977, 87.3318] },
-                        { name: "Malda", location: [25.0158, 88.1454] }
-                    ];
-                    for (var i = 0; i < locations.length; i++) {
-                        var marker = L.marker(locations[i].location).addTo(map);
-                        marker.bindPopup(locations[i].name);
+        <!-- CTA Start -->
+        <div class="shell">
+            <div class="cta-band">
+                <div class="cta-copy">
+                    <h2>Still deciding where to go?</h2>
+                    <p>Bring us a month and a mood. We will bring the map.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="booking.html" class="btn-solid-light">Start a booking <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    <a href="tel:+918348146101" class="btn-ghost-light"><i class="fas fa-phone-alt" aria-hidden="true"></i> Call the desk</a>
+                </div>
+            </div>
+        </div>
+        <!-- CTA End -->
+    </main>
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="shell">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="img/logo.png" alt="Bengal Odyssey">
+                    <p>Thoughtfully crafted journeys across West Bengal &mdash; from the tea gardens of Darjeeling to the mangrove creeks of the Sundarbans.</p>
+                    <div class="socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="home.html">Home</a>
+                    <a href="booking.html">Book a tour</a>
+                    <a href="user_profile.html">My account</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="contact.html">Contact the desk</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Terms &amp; conditions</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 <a href="home.html">Bengal Odyssey</a>. All rights reserved.</span>
+                <span>Berhampore, Murshidabad &middot; West Bengal, India</span>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <script>
+        (function () {
+            'use strict';
+
+            var navToggle = document.getElementById('navToggle');
+            var mainNav = document.getElementById('mainNav');
+
+            if (navToggle && mainNav) {
+                navToggle.addEventListener('click', function () {
+                    var open = mainNav.classList.toggle('is-open');
+                    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                    navToggle.innerHTML = open
+                        ? '<i class="fas fa-times" aria-hidden="true"></i>'
+                        : '<i class="fas fa-bars" aria-hidden="true"></i>';
+                });
+
+                mainNav.addEventListener('click', function (event) {
+                    if (event.target.closest('a')) {
+                        mainNav.classList.remove('is-open');
+                        navToggle.setAttribute('aria-expanded', 'false');
                     }
-                </script>
+                });
+            }
 
+            // Keep only one FAQ panel open at a time
+            var faqs = Array.prototype.slice.call(document.querySelectorAll('.faq'));
 
+            faqs.forEach(function (item) {
+                item.addEventListener('toggle', function () {
+                    if (item.open) {
+                        faqs.forEach(function (other) {
+                            if (other !== item) {
+                                other.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+        })();
+    </script>
 
 </body>
 
