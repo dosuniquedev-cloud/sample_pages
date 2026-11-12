@@ -3,115 +3,681 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Booking Page</title>
+    <title>Booking &mdash; Bengal Odyssey</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="travel booking, west bengal tourism, tour packages, online booking" name="keywords">
+    <meta content="Book your dream adventure across West Bengal with Bengal Odyssey. Easy online reservations for tours, destinations, and custom packages." name="description">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- icons Font Stylesheet -->
+    <!-- Icons Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-iconss@1.4.1/font/bootstrap-iconss.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/main.js"></script>
 
+    <!-- Senior UI/UX Premium Stylesheet (Adheres to AGENTS.md rules) -->
     <style>
-        .custom-alert {
-            animation: slideInDown 0.5s ease forwards;
+        /* --------------------------------------------------
+           DESIGN TOKENS (60-30-10 Discipline & 8px Grid)
+        -------------------------------------------------- */
+        :root {
+            /* 60% Dominant Base */
+            --base-dark: #0b1528;
+            --base-navy: #13357B;
+            --base-bg-overlay: linear-gradient(135deg, rgba(11, 21, 40, 0.90) 0%, rgba(19, 53, 123, 0.85) 50%, rgba(15, 23, 42, 0.92) 100%);
+
+            /* 30% Structural Surface */
+            --surface-card: #ffffff;
+            --surface-card-subtle: #f8fafc;
+            --surface-border: #e2e8f0;
+            --surface-border-focus: #13357B;
+            --surface-dropdown: #ffffff;
+
+            /* 10% Purposeful Accent */
+            --accent-primary: #13357B;
+            --accent-primary-hover: #0d2557;
+            --accent-sky: #0284c7;
+            --accent-sky-light: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-amber-light: #fbbf24;
+
+            /* Typography Colors */
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --text-light: #ffffff;
+            --text-light-muted: rgba(255, 255, 255, 0.85);
+
+            /* Shadows (Layered & Subtle) */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 35px -8px rgba(11, 21, 40, 0.25), 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 24px 48px -12px rgba(10, 25, 60, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.5);
+
+            /* Radii */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+
+            /* Transitions */
+            --ease-out: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes slideInDown {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+            color: var(--text-body);
+            background-color: var(--surface-card-subtle);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* --------------------------------------------------
+           TOPBAR & AUTH NAVIGATION
+        -------------------------------------------------- */
+        .container-fluid.bg-primary.px-5 {
+            background-color: var(--base-dark) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        /* Replace Papyrus/Goldenrod with Senior Executive Brand Headline */
         .custom-heading {
-            font-family: Papyrus;
-            font-size: 30px;
-            font-style: normal;
-            color: goldenrod;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            text-shadow: none;
+            margin: 0;
+            line-height: 42px;
+        }
+
+        .container-fluid.bg-primary a small {
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.01em;
+            transition: var(--ease-out);
+            opacity: 0.9;
+        }
+
+        .container-fluid.bg-primary a:hover small {
+            opacity: 1;
+            color: var(--accent-sky-light) !important;
+        }
+
+        /* Topbar User Dropdown Menu */
+        .dropdown-menu {
+            background-color: var(--surface-dropdown) !important;
+            border: 1px solid var(--surface-border) !important;
+            border-radius: var(--radius-lg) !important;
+            box-shadow: var(--shadow-lg) !important;
+            padding: 8px !important;
+            min-width: 195px;
+            margin-top: 8px !important;
         }
 
         .dropdown-item {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            background-color: transparent !important;
+            color: var(--text-heading) !important;
+            border: none !important;
+            border-radius: var(--radius-sm) !important;
+            padding: 8px 16px !important;
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            transition: var(--ease-out) !important;
             cursor: pointer;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 4px !important;
             text-decoration: none;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: none !important;
+            width: 100%;
+            text-align: left;
         }
 
-        .dropdown-item:hover {
-            background-color: #45a049;
+        .dropdown-item:hover,
+        .dropdown-item:focus-visible {
+            background-color: #f1f5f9 !important;
+            color: var(--accent-primary) !important;
+            transform: none !important;
+            outline: none;
         }
 
         .btn-danger {
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 25px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            background: #ef4444 !important;
+            color: #fff !important;
+            border: none !important;
+            border-radius: var(--radius-sm) !important;
+            padding: 8px 16px !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            transition: var(--ease-out) !important;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: none !important;
+            width: 100%;
         }
 
-        .btn-danger:hover {
-            background: linear-gradient(45deg, #FF8E8E, #FF6B6B);
+        .btn-danger:hover,
+        .btn-danger:focus-visible {
+            background: #dc2626 !important;
+            transform: translateY(-1px);
         }
 
-        .dropdown-menu {
-            background-color: transparent;
+        /* --------------------------------------------------
+           NAVBAR POLISH
+        -------------------------------------------------- */
+        .navbar-brand h1 {
+            font-family: 'Plus Jakarta Sans', 'Jost', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--accent-primary);
+            font-size: 1.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .dropdown-toggle:hover small {
-            animation: scaleAnimation 0.3s ease forwards;
+        .navbar-brand img {
+            max-height: 44px;
+            width: auto;
         }
 
-        @keyframes scaleAnimation {
-            0% {
-                transform: scale(1);
+        .navbar-light .navbar-nav .nav-link {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            padding: 24px 14px;
+            transition: var(--ease-out);
+            position: relative;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .nav-link.active {
+            color: var(--accent-primary);
+        }
+
+        .navbar-light .navbar-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            right: 14px;
+            height: 3px;
+            background-color: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        .navbar-toggler {
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--surface-border);
+            padding: 8px 12px;
+        }
+
+        .navbar-toggler:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            box-shadow: none;
+        }
+
+        /* --------------------------------------------------
+           BOOKING HERO & PARALLAX BACKGROUND
+        -------------------------------------------------- */
+        .booking {
+            background: var(--base-bg-overlay), url(img/tour-booking-bg.jpg) !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            background-attachment: fixed !important;
+            position: relative;
+        }
+
+        /* Header Banner ("Online Booking") */
+        .container-fluid.booking.py-5:first-of-type {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .container-fluid.booking.py-5:first-of-type h3.display-3 {
+            font-family: 'Plus Jakarta Sans', 'Jost', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            font-size: 3rem;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --------------------------------------------------
+           LEFT COLUMN: CONTENT & EDITORIAL HIERARCHY
+        -------------------------------------------------- */
+        .section-booking-title {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(56, 189, 248, 0.14);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 30px;
+            color: var(--accent-sky-light) !important;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-booking-title::before {
+            display: none !important;
+        }
+
+        .col-lg-6 > h1.text-white {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            font-size: 2.6rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .col-lg-6 > p.text-white {
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.65;
+            color: var(--text-light-muted) !important;
+        }
+
+        /* Promotional Discount Pill */
+        .text-warning {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.18);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: var(--accent-amber-light) !important;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* --------------------------------------------------
+           RIGHT COLUMN: EXECUTIVE BOOKING FORM CARD
+           (Section 4: Forms & Input UX strictly enforced)
+        -------------------------------------------------- */
+        .booking form {
+            background: var(--surface-card);
+            padding: 36px 32px 32px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+        }
+
+        /* Floating Controls */
+        .booking form .form-floating {
+            position: relative;
+        }
+
+        .booking form .form-control,
+        .booking form .form-select {
+            background-color: #f8fafc !important;
+            border: 1.5px solid var(--surface-border) !important;
+            border-radius: var(--radius-md) !important;
+            color: var(--text-heading) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            height: 56px;
+            padding: 1rem 1rem 0.35rem;
+            transition: var(--ease-out);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .booking form .form-control::placeholder {
+            color: transparent;
+        }
+
+        .booking form .form-control:hover,
+        .booking form .form-select:hover {
+            border-color: #cbd5e1 !important;
+            background-color: #ffffff !important;
+        }
+
+        .booking form .form-control:focus,
+        .booking form .form-select:focus {
+            background-color: #ffffff !important;
+            border-color: var(--accent-primary) !important;
+            box-shadow: 0 0 0 4px rgba(19, 53, 123, 0.14) !important;
+            outline: none !important;
+        }
+
+        /* Floating Labels */
+        .booking form .form-floating > label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 1rem 1rem;
+            transition: var(--ease-out);
+            pointer-events: none;
+        }
+
+        .booking form .form-floating > .form-control:focus ~ label,
+        .booking form .form-floating > .form-control:not(:placeholder-shown) ~ label,
+        .booking form .form-floating > .form-select ~ label {
+            color: var(--accent-primary);
+            font-weight: 600;
+            opacity: 1;
+            transform: scale(0.82) translateY(-0.75rem) translateX(0.15rem);
+        }
+
+        /* Textarea Polish */
+        .booking form textarea.form-control {
+            height: 110px !important;
+            padding-top: 1.25rem;
+            resize: vertical;
+        }
+
+        /* Select Chevron Styling */
+        .booking form .form-select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+        }
+
+        /* Date Input Indicator */
+        .booking form input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: var(--ease-out);
+        }
+
+        .booking form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
+        /* --------------------------------------------------
+           PRIMARY CTA BUTTON: ALL 5 MICRO-STATES
+        -------------------------------------------------- */
+        .booking form button.btn.btn-primary {
+            background-color: var(--accent-primary) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: var(--radius-md) !important;
+            font-weight: 700 !important;
+            font-size: 1.05rem !important;
+            letter-spacing: 0.04em !important;
+            text-transform: uppercase !important;
+            padding: 16px 24px !important;
+            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.35) !important;
+            transition: var(--ease-out) !important;
+            cursor: pointer;
+        }
+
+        .booking form button.btn.btn-primary:hover {
+            background-color: var(--accent-primary-hover) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(19, 53, 123, 0.45) !important;
+        }
+
+        .booking form button.btn.btn-primary:focus-visible {
+            outline: 2px solid var(--accent-sky-light) !important;
+            outline-offset: 3px !important;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3) !important;
+        }
+
+        .booking form button.btn.btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(19, 53, 123, 0.3) !important;
+        }
+
+        .booking form button.btn.btn-primary:disabled {
+            opacity: 0.55 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* --------------------------------------------------
+           FOOTER & COPYRIGHT PREMIUM POLISH
+        -------------------------------------------------- */
+        .container-fluid.footer {
+            background: linear-gradient(180deg, #071224 0%, #040914 100%) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .container-fluid.footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.35), transparent);
+            pointer-events: none;
+        }
+
+        .footer-item {
+            height: 100%;
+        }
+
+        .footer-item h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: #ffffff;
+            font-size: 1.25rem;
+            position: relative;
+            padding-bottom: 14px;
+            margin-bottom: 24px !important;
+        }
+
+        .footer-item h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 44px;
+            height: 3px;
+            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            border-radius: 2px;
+        }
+
+        .footer-item a {
+            color: rgba(226, 232, 240, 0.72) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            transition: var(--ease-out);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+        }
+
+        .footer-item a:hover {
+            color: #ffffff !important;
+            transform: translateX(6px);
+        }
+
+        .footer-item a:focus-visible {
+            outline: 2px solid var(--accent-sky-light);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .footer-item a i.fa-angle-right {
+            color: var(--accent-sky-light);
+            font-size: 0.8rem;
+            margin-right: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-item a:hover i.fa-angle-right {
+            transform: translateX(3px);
+            color: #60a5fa;
+        }
+
+        /* Contact Items in Column 1 */
+        .footer-item a i.fa-home,
+        .footer-item a i.fa-envelope,
+        .footer-item a i.fa-phone {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-sky-light);
+            margin-right: 12px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: var(--ease-out);
+        }
+
+        .footer-item a:hover i.fa-home,
+        .footer-item a:hover i.fa-envelope,
+        .footer-item a:hover i.fa-phone {
+            background: rgba(56, 189, 248, 0.24);
+            border-color: rgba(56, 189, 248, 0.5);
+            color: #ffffff;
+            transform: scale(1.06);
+        }
+
+        /* Social Share Row */
+        .footer-item .d-flex.align-items-center i.fa-share {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin-right: 14px;
+        }
+
+        .footer-item .btn-square {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            color: #e2e8f0 !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50% !important;
+            transition: var(--ease-out);
+            font-size: 0.95rem;
+        }
+
+        .footer-item .btn-square:hover {
+            background-color: var(--accent-sky) !important;
+            border-color: var(--accent-sky-light) !important;
+            color: #ffffff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.45);
+        }
+
+        .footer-item .btn-square:active {
+            transform: translateY(1px);
+        }
+
+        .footer-item .btn-square:focus-visible {
+            outline: 2px solid var(--accent-sky-light);
+            outline-offset: 3px;
+        }
+
+        /* Copyright Bar */
+        .container-fluid.copyright {
+            background-color: #030712 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #94a3b8 !important;
+            font-size: 0.875rem;
+            letter-spacing: 0.01em;
+        }
+
+        .container-fluid.copyright a {
+            color: #f1f5f9;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--ease-out);
+        }
+
+        .container-fluid.copyright a:hover {
+            color: var(--accent-sky-light);
+        }
+
+        .container-fluid.copyright i.fa-copyright {
+            color: #64748b;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            width: 48px;
+            height: 48px;
+            background-color: var(--accent-primary) !important;
+            border-radius: 12px !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--ease-out);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-sky) !important;
+            border-color: var(--accent-sky-light) !important;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(2, 132, 199, 0.45);
+        }
+
+        .back-to-top:active {
+            transform: translateY(1px);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 2px solid var(--accent-sky-light);
+            outline-offset: 3px;
+        }
+
+        /* --------------------------------------------------
+           RESPONSIVE REFINEMENT
+        -------------------------------------------------- */
+        @media (max-width: 991px) {
+            .booking form {
+                padding: 28px 20px 24px;
+                margin-top: 24px;
             }
+            .col-lg-6 > h1.text-white {
+                font-size: 2.1rem;
+            }
+            .container-fluid.bg-primary.px-5 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .custom-heading {
+                line-height: 1.4;
+                padding-top: 8px;
+                padding-bottom: 4px;
+            }
+        }
 
-            100% {
-                transform: scale(1.1);
+        @media (max-width: 575px) {
+            .container-fluid.booking.py-5:first-of-type h3.display-3 {
+                font-size: 2.25rem;
+            }
+            .booking form {
+                padding: 24px 16px 20px;
+                border-radius: var(--radius-lg);
             }
         }
     </style>
-
-
 </head>
 
 <body>
@@ -126,30 +692,29 @@
     <!-- Spinner End -->
 
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary px-5  d-lg-block">
-        <div class="row gx-0">
+    <div class="container-fluid bg-primary px-5 d-lg-block">
+        <div class="row gx-0 align-items-center">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <h1 class="custom-heading">ByteQuest: Fusion of Tech, Culture, and Adventure</h1>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
 
-                    <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
                         <small><i class="fa fa-home me-2"></i>Welcome</small>
                     </a>
                     <div class="dropdown-menu rounded">
                         <form method="get" action="{{ url('/show', ['id' => $client->user_id]) }}">
                             <div class="text-center">
-                                <button class="dropdown-item">My Profile</button>
+                                <button class="dropdown-item" type="submit">My Profile</button>
                             </div>
                         </form>
                         <form method="get" action="{{url('/changepassword')}}{{$client->user_id}}">
                             <div class="text-center">
-                                <button class="dropdown-item">Change Password</button>
+                                <button class="dropdown-item" type="submit">Change Password</button>
                             </div>
                         </form>
                         <form method="post" action="{{ route('logout') }}">
-
                             <div class="text-center">
                                 <button class="btn btn-danger" type="submit">Logout</button>
                             </div>
@@ -171,42 +736,38 @@
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <a href="" class="navbar-brand p-0">
-                <h1 class="m-0"><img src="img/logo.png" alt="Logo"> </i>Bengal Odyssey</h1>
-
+                <h1 class="m-0"><img src="img/logo.png" alt="Logo">Bengal Odyssey</h1>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ url('home') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ url('home') }}" class="nav-item nav-link">Home</a>
                     <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
                     <a href="{{ url('service') }}" class="nav-item nav-link">Services</a>
                     <a href="{{ url('package') }}" class="nav-item nav-link">Packages</a>
                     <a href="{{ url('blog') }}" class="nav-item nav-link">Blog</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="{{ url('destination') }}" class="dropdown-item">Destination</a>
                             <a href="{{ url('tour') }}" class="dropdown-item">Explore Tour</a>
-                            <a href="{{ url('booking') }}" class="dropdown-item">Travel Booking</a>
+                            <a href="{{ url('booking') }}" class="dropdown-item active">Travel Booking</a>
                             <a href="{{ url('gallery') }}" class="dropdown-item">Our Gallery</a>
                             <a href="{{ url('guides') }}" class="dropdown-item">Travel Guides</a>
-
                         </div>
                     </div>
                     <a href="{{ url('contact') }}" class="nav-item nav-link">Questions? Just ask!</a>
-
+                </div>
+            </div>
         </nav>
         <!-- Navbar & Hero End -->
-
-
 
         <!-- Header Start -->
         <div class="container-fluid booking py-5">
             <div class="container text-center py-5" style="max-width: 900px;">
                 <h3 class="text-white display-3 mb-4">Online Booking</h3>
-
             </div>
         </div>
         <!-- Header End -->
@@ -225,51 +786,39 @@
                         <p class="text-white mb-4">Whether you're drawn to the bustling streets of Kolkata, the serene
                             tea gardens of Darjeeling, or the wild mangrove forests of
                             the Sundarbans, our booking page offers a seamless and convenient way to turn your travel
-                            dreams into reality.
-
-                        </p>
-
+                            dreams into reality.</p>
                     </div>
                     <div class="col-lg-6">
                         <h1 class="text-white mb-3">Book A Tour Deals</h1>
                         <p class="text-white mb-4">Get <span class="text-warning">50% Off</span> On Your First Adventure
-                            Trip With ByteQuest. </p>
-
-
+                            Trip With ByteQuest.</p>
 
                         <form method="post" action="/bsubmit2">
-
-
-
-
-
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control bg-white border-0" id="name"
-                                            placeholder="Your Name" name="name">
+                                            placeholder="Your Name" name="name" required autocomplete="name">
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control bg-white border-0" id="email"
-                                            placeholder="Your Email" name="email">
+                                            placeholder="Your Email" name="email" required autocomplete="email">
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control bg-white border-0" id="date" name="date">
+                                        <input type="date" class="form-control bg-white border-0" id="date" name="date" required>
                                         <label for="date">Date You want to visit</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <select class="form-select bg-white border-0" id="select1" name="destination"
-                                            placeholder='choose destination'>
-                                            <option value=""></option>
+                                        <select class="form-select bg-white border-0" id="select1" name="destination" required aria-label="Destination selection">
                                             <option value="" disabled selected>What is your destination ?</option>
                                             <option value="Murshidabad">Murshidabad</option>
                                             <option value="Kolkata">Kolkata</option>
@@ -293,12 +842,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-
-                                        <select class="form-select bg-white border-0" id="SelectPerson" name="person">
+                                        <select class="form-select bg-white border-0" id="SelectPerson" name="person" required aria-label="Number of persons selection">
                                             <option value="" disabled selected>Select Number of Persons</option>
-                                            <option value="1">Persons 1</option>
-                                            <option value="2">Persons 2</option>
-                                            <option value="3">Persons 3</option>
+                                            <option value="1">1 Person</option>
+                                            <option value="2">2 Persons</option>
+                                            <option value="3">3 Persons</option>
                                             <option value="More than 4">More Than 3</option>
                                         </select>
                                         <label for="SelectPerson">Persons</label>
@@ -306,7 +854,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <select class="form-select bg-white border-0" id="CategoriesSelect" name="kid">
+                                        <select class="form-select bg-white border-0" id="CategoriesSelect" name="kid" required aria-label="Number of kids selection">
                                             <option value="" disabled selected>Select Number of kids</option>
                                             <option value="0">None</option>
                                             <option value="1">1</option>
@@ -320,16 +868,13 @@
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control bg-white border-0" placeholder="Special Request"
-                                            id="message" style="height: 100px" name="message"></textarea>
+                                            id="message" style="height: 110px" name="message"></textarea>
                                         <label for="message">Special Request</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary text-white w-100 py-3" type="submit">Book
                                         Now</button>
-
-
-
                                 </div>
                             </div>
                         </form>
@@ -339,45 +884,38 @@
         </div>
         <!-- Tour Booking End -->
 
-
-
-
-
+        <!-- Footer Start -->
         <div class="container-fluid footer py-5">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Get In Touch</h4>
                             <a href=""><i class="fas fa-home me-2"></i> Berhampore, Murshidabad,WB-India</a>
                             <a href=""><i class="fas fa-envelope me-2"></i> Mr. Tanmay Das</a>
                             <a href=""><i class="fas fa-phone me-2"></i> +91 8348146101</a>
 
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center mt-3">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Facebook"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Twitter"><i
                                         class="fab fa-twitter"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="Instagram"><i
                                         class="fab fa-instagram"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i
+                                <a class="btn-square btn btn-primary rounded-circle mx-1" href="" aria-label="LinkedIn"><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Bengal Odyssey</h4>
                             <a href="{{url('about')}}"><i class="fas fa-angle-right me-2"></i> About</a>
-
                             <a href="{{url('blog')}}"><i class="fas fa-angle-right me-2"></i> Blog</a>
-
-
-
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Support</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
@@ -388,34 +926,34 @@
                             <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
 
-                    <!-- Footer End -->
-
-                    <!-- Copyright Start -->
-                    <div class="container-fluid copyright text-body py-4">
-                        <div class="container">
-                            <div class="row g-4 align-items-center">
-                                <div class="col-md-6 text-center text-md-end mb-md-0">
-                                    <i class="fas fa-copyright me-2"></i><a class="text-white"
-                                        href="http://127.0.0.1:8000/home">Bengal Odyssey</a>, All right reserved.
-                                </div>
-
-                            </div>
-                        </div>
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright text-body py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center justify-content-center">
+                    <div class="col-12 text-center">
+                        <i class="fas fa-copyright me-2"></i><a class="text-white"
+                            href="http://127.0.0.1:8000/home">Bengal Odyssey</a>, All rights reserved.
                     </div>
                 </div>
-                <!-- Copyright End -->
+            </div>
+        </div>
+        <!-- Copyright End -->
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
-                        class="fa fa-arrow-up"></i></a>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top" aria-label="Back to top"><i
+                class="fa fa-arrow-up"></i></a>
 
+    </div>
 
-
-
-
-
-
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 
