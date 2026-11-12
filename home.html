@@ -587,67 +587,417 @@
         .container-fluid.about .btn-primary:active { transform: translateY(1px); }
 
         /* ============================================================
-           SERVICES SECTION
+           SERVICES SECTION — Premium Card Elevation & Badge Polish
            ============================================================ */
-        .services .service-content-inner {
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            transition: var(--ease);
-            background-color: var(--surface-00);
+        .container-fluid.service {
+            background-color: var(--surface-01) !important;
+            position: relative;
         }
-        .services .service-content-inner:hover {
+
+        /* Desktop: Guarantee pixel-perfect row-for-row alignment between Left & Right */
+        @media (min-width: 992px) {
+            .service .row.g-4 > .col-lg-6 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .service .col-lg-6 > .row.g-4 {
+                display: grid !important;
+                grid-template-rows: repeat(4, 1fr) !important;
+                gap: 24px !important;
+                margin: 0 !important;
+                height: 100%;
+                flex: 1 1 auto;
+            }
+
+            .service .col-lg-6 > .row.g-4 > .col-12 {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: flex;
+                width: 100%;
+                height: 100%;
+            }
+
+            .service .service-content-inner {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        /* Override the harsh border-primary and style.css hover background */
+        .service .service-content-inner {
+            background-color: #ffffff !important;
+            border: 1px solid rgba(226, 232, 240, 0.9) !important;
+            border-radius: var(--radius-lg) !important;
+            padding: 20px 24px !important;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            position: relative;
+            overflow: hidden;
+            gap: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Content fills available space so icons align flush */
+        .service .service-content {
+            flex: 1 1 auto;
+        }
+
+        /* Subtle top luminous hairline on each card */
+        .service .service-content-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        /* Hover: Card elevates cleanly without solid harsh fill */
+        .service .service-content-inner:hover {
+            transform: translateY(-4px);
+            background-color: #ffffff !important;
+            border-color: rgba(19, 53, 123, 0.25) !important;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+        }
+
+        .service .service-content-inner:hover::before {
+            opacity: 1;
+        }
+
+        /* Heading & paragraph transitions */
+        .service .service-content-inner .service-content h5 {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 1.1rem !important;
+            color: var(--text-heading) !important;
+            margin-bottom: 6px !important;
+            letter-spacing: -0.015em;
+            transition: color 0.2s ease !important;
+        }
+
+        .service .service-content-inner:hover .service-content h5 {
+            color: var(--accent) !important;
+        }
+
+        .service .service-content-inner .service-content p {
+            font-size: 0.875rem !important;
+            line-height: 1.6 !important;
+            color: var(--text-muted) !important;
+            margin: 0 !important;
+            transition: color 0.2s ease !important;
+        }
+
+        .service .service-content-inner:hover .service-content p {
+            color: var(--text-body) !important;
+        }
+
+        /* Icon Container: Elegant circular/rounded badge tile */
+        .service .service-content-inner .service-icons {
+            width: 76px;
+            height: 76px;
+            min-width: 76px;
+            border-radius: var(--radius-md);
+            background: rgba(19, 53, 123, 0.05);
+            border: 1px solid rgba(19, 53, 123, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+        }
+
+        .service .service-content-inner .service-icons i {
+            font-size: 1.85rem !important;
+            color: var(--accent) !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* On Card Hover: Icon Tile lights up with primary brand & elevation */
+        .service .service-content-inner:hover .service-icons {
+            background-color: var(--accent) !important;
+            border-color: var(--accent) !important;
+            transform: scale(1.06);
+            box-shadow: 0 8px 20px rgba(19, 53, 123, 0.25);
+        }
+
+        .service .service-content-inner:hover .service-icons i {
+            color: #ffffff !important;
+            transform: scale(1.05);
+        }
+
+        /* Service More Button: 5 micro-states */
+        .service .btn-primary {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 0.95rem !important;
+            border-radius: var(--radius-xl) !important;
+            padding: 14px 40px !important;
+            letter-spacing: 0.02em;
+            background-color: var(--accent) !important;
+            border: none !important;
+            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.28) !important;
+            transition: var(--ease) !important;
+            display: inline-block;
+        }
+
+        .service .btn-primary:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(19, 53, 123, 0.38) !important;
+            color: #ffffff !important;
+        }
+
+        .service .btn-primary:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .service .btn-primary:active {
+            transform: translateY(1px);
+            box-shadow: var(--shadow-xs) !important;
+        }
+
+        .service .btn-primary:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 575.98px) {
+            .service .service-content-inner {
+                padding: 16px !important;
+                gap: 12px !important;
+            }
+            .service .service-content-inner .service-icons {
+                width: 60px !important;
+                height: 60px !important;
+                min-width: 60px !important;
+            }
+            .service .service-content-inner .service-icons i {
+                font-size: 1.5rem !important;
+            }
+            .service .service-content-inner .service-content h5 {
+                font-size: 1rem !important;
+            }
+            .service .service-content-inner .service-content p {
+                font-size: 0.825rem !important;
+            }
+        }
+
+        /* ============================================================
+           DESTINATION SECTION — Synchronized Aspect & Grid Alignment
+           ============================================================ */
+        .destination .tab-class .tab-content {
+            margin-top: 24px;
+        }
+
+        /* Standard Destination Card: Fixed uniform height & aspect ratio */
+        .destination .destination-img {
+            position: relative;
+            border-radius: var(--radius-lg) !important;
+            overflow: hidden;
+            height: 250px;
+            width: 100%;
+            background: #0f172a;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .destination .destination-img img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .destination .destination-img:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
-            border-color: rgba(19,53,123,0.15);
         }
-        .services .service-content-inner .btn-square.bg-primary {
-            transition: var(--ease);
-            border-radius: var(--radius-sm) !important;
-        }
-        .services .service-content-inner:hover .btn-square.bg-primary {
-            transform: scale(1.08) rotate(-3deg);
-        }
-        .services h5 { font-family: var(--font-brand); font-weight: 700; color: var(--text-heading); }
 
-        /* ============================================================
-           DESTINATION SECTION
-           ============================================================ */
-        .destination .destination-img {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
+        .destination .destination-img:hover img {
+            transform: scale(1.08) !important;
         }
-        .destination .destination-img img {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+        /* Tall Featured Card on Desktop (Bishnupur col-xl-4):
+           Spans the exact full height of the 2x2 grid (250px + 24px gutter + 250px = 524px) */
+        @media (min-width: 1200px) {
+            .destination .row.g-4 > .col-xl-4 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .destination .row.g-4 > .col-xl-4 > .destination-img {
+                height: 100% !important;
+                min-height: 524px !important;
+                flex: 1 1 auto;
+            }
         }
-        .destination .destination-img:hover img { transform: scale(1.06); }
+
+        @media (max-width: 1199.98px) {
+            .destination .row.g-4 > .col-xl-4 > .destination-img {
+                height: 300px !important;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .destination .destination-img {
+                height: 200px !important;
+            }
+        }
+
+        /* Destination Overlay */
         .destination .destination-overlay {
-            background: linear-gradient(to top, rgba(10,22,50,0.80) 0%, rgba(10,22,50,0.0) 60%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 38, 0.05) 0%, rgba(8, 15, 38, 0.5) 45%, rgba(8, 15, 38, 0.94) 100%) !important;
             transition: var(--ease);
+            padding: 20px 24px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 3;
         }
-        .destination h6, .destination .destination-img h6 {
-            font-family: var(--font-brand);
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.01em;
+
+        .destination .destination-overlay h4 {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+            letter-spacing: -0.01em;
+            color: #ffffff !important;
+            margin: 0 0 6px 0 !important;
+            text-transform: capitalize !important;
         }
-        .destination .tab-btn-class .nav-link {
+
+        .destination .destination-overlay .btn-hover {
             font-family: var(--font-brand);
+            font-size: 0.85rem;
             font-weight: 600;
-            border-radius: var(--radius-xl);
+            color: rgba(255, 255, 255, 0.85) !important;
+            text-decoration: none;
+            transition: var(--ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .destination .destination-overlay .btn-hover:hover {
+            color: var(--accent-sky-lt) !important;
+            padding-left: 4px;
+        }
+
+        .destination .search-icons {
+            z-index: 4;
             transition: var(--ease);
         }
 
-        /* ============================================================
-           EXPLORE TOUR / NATIONAL ITEMS
-           ============================================================ */
-        .national-item {
-            border-radius: var(--radius-lg);
-            overflow: hidden;
+        .destination .search-icons a i {
+            border-radius: var(--radius-md) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             transition: var(--ease);
         }
-        .national-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-        .national-item img { transition: transform 0.35s ease; }
-        .national-item:hover img { transform: scale(1.05); }
+
+        .destination .search-icons a:hover i {
+            transform: scale(1.15);
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+        }
+
+        /* ============================================================
+           EXPLORE TOUR / BENGAL'S FESTIVE FIESTA
+           ============================================================ */
+        .ExploreTour .tab-content {
+            margin-top: 24px;
+        }
+
+        /* Every National Item Card has identical uniform height */
+        .national-item {
+            position: relative;
+            border-radius: var(--radius-lg) !important;
+            overflow: hidden;
+            height: 270px;
+            width: 100%;
+            background: #0f172a;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .national-item img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .national-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .national-item:hover img {
+            transform: scale(1.08) !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .national-item {
+                height: 220px !important;
+            }
+        }
+
+        /* National Content Overlay: clean dark gradient bottom-up */
+        .national-item .national-content {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 38, 0.15) 0%, rgba(8, 15, 38, 0.5) 50%, rgba(8, 15, 38, 0.92) 100%) !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px !important;
+            transition: var(--ease);
+            z-index: 2;
+        }
+
+        .national-item .national-content .national-info {
+            text-align: left;
+        }
+
+        .national-item .national-content h5 {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+            letter-spacing: 0.02em;
+            color: #ffffff !important;
+            margin-bottom: 6px !important;
+        }
+
+        .national-item .national-content .btn-hover {
+            font-family: var(--font-brand);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85) !important;
+            text-decoration: none;
+            transition: var(--ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .national-item .national-content .btn-hover:hover {
+            color: var(--accent-sky-lt) !important;
+            padding-left: 4px;
+        }
 
         /* ============================================================
            PACKAGES SECTION

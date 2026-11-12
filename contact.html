@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Contact &mdash; Bengal Odyssey</title>
+    <title>Contact &mdash; Bengal Odyssey Travel Desk</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="contact, travel desk, Berhampore, West Bengal tourism, custom itinerary" name="keywords">
-    <meta content="Talk to the Bengal Odyssey travel desk — plan a custom journey, ask about an existing booking, or visit our studio in Berhampore." name="description">
+    <meta content="The Bengal Odyssey travel desk workspace — message a planner, check desk status, visit the studio, or browse common questions." name="description">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,58 +22,51 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Senior UI/UX Premium Stylesheet (Adheres to AGENTS.md rules) -->
+    <!-- Senior UI/UX Premium Dashboard Stylesheet (Adheres to AGENTS.md rules) -->
     <style>
         /* --------------------------------------------------
            DESIGN TOKENS — 60 / 30 / 10 DISCIPLINE
         -------------------------------------------------- */
         :root {
-            /* 60% Dominant Base */
             --page-bg: #f4f6fa;
             --ink: #0b1528;
+            --ink-soft: #111d33;
 
-            /* 30% Structural Surface */
             --surface: #ffffff;
             --surface-subtle: #f8fafc;
             --surface-muted: #f1f5f9;
             --border: #e6ebf2;
             --border-strong: #d7dfe9;
 
-            /* 10% Purposeful Accent */
             --navy: #13357b;
             --navy-deep: #0d2557;
             --navy-tint: #eef2fb;
             --sky: #0284c7;
             --sky-light: #38bdf8;
 
-            /* Semantic */
             --success: #047857;
             --success-bg: #ecfdf5;
+            --success-line: #cdeee2;
             --gold: #b98a2f;
             --gold-bg: #fdf6e7;
             --danger: #b91c1c;
             --danger-bg: #fef2f2;
 
-            /* Typography */
             --heading: #0f172a;
             --text: #334155;
             --muted: #64748b;
 
-            /* Layered Subtle Shadows */
             --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
             --shadow-md: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 6px rgba(15, 23, 42, 0.04);
             --shadow-lg: 0 24px 48px -16px rgba(11, 21, 40, 0.32);
 
-            /* Radii */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
 
-            /* Motion */
             --ease: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
-            /* 8px Grid */
             --space-4: 4px;
             --space-8: 8px;
             --space-16: 16px;
@@ -107,18 +100,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 400px;
-            background: radial-gradient(1200px 320px at 50% -80px, rgba(19, 53, 123, 0.07), transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
         a {
             color: var(--navy);
         }
@@ -142,364 +123,436 @@
             margin: 0;
         }
 
-        .shell {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-32);
-            position: relative;
-            z-index: 1;
+        section[id],
+        div[id] {
+            scroll-margin-top: 96px;
         }
 
         a:focus-visible,
         button:focus-visible,
-        summary:focus-visible {
+        summary:focus-visible,
+        input:focus-visible {
             outline: 2px solid var(--sky);
             outline-offset: 2px;
             border-radius: var(--radius-sm);
         }
 
         /* --------------------------------------------------
-           APP HEADER
+           APP SHELL: DARK WORKSPACE SIDEBAR + LIGHT CANVAS
         -------------------------------------------------- */
-        .site-header {
+        .app {
+            display: grid;
+            grid-template-columns: 264px minmax(0, 1fr);
+            min-height: 100vh;
+            align-items: start;
+        }
+
+        /* Sidebar */
+        .side {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            min-height: 80px;
-            padding: 0 var(--space-32);
+            height: 100vh;
+            overflow-y: auto;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: var(--space-24);
-            position: relative;
+            padding: var(--space-24) var(--space-16);
+            background: var(--ink);
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+            z-index: 20;
         }
 
-        .brand {
+        .side-brand {
             display: flex;
             align-items: center;
             gap: var(--space-8);
+            padding: 0 var(--space-8);
             text-decoration: none;
-            flex-shrink: 0;
         }
 
-        .brand img {
-            height: 44px;
+        .side-brand img {
+            height: 40px;
             width: auto;
         }
 
-        .brand-name {
+        .side-name {
             display: block;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            color: var(--ink);
-            line-height: 1.15;
+            color: #ffffff;
+            line-height: 1.2;
         }
 
-        .brand-tag {
+        .side-sub {
             display: block;
-            font-size: 0.68rem;
+            margin-top: var(--space-4);
+            font-size: 0.62rem;
             font-weight: 600;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-top: var(--space-4);
+            color: rgba(255, 255, 255, 0.42);
         }
 
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: var(--space-4);
-        }
-
-        .main-nav a {
-            padding: var(--space-8) var(--space-16);
-            border-radius: 999px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-decoration: none;
-            transition: var(--ease);
-            white-space: nowrap;
-        }
-
-        .main-nav a:hover {
-            color: var(--heading);
-            background: var(--surface-muted);
-        }
-
-        .main-nav a.is-active {
-            color: var(--navy);
-            background: var(--navy-tint);
-        }
-
-        .main-nav a:active {
-            transform: translateY(1px);
-        }
-
-        .header-actions {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-        }
-
-        .icon-btn {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--muted);
-            font-size: 0.92rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--ease);
-        }
-
-        .icon-btn:hover {
-            color: var(--navy);
-            border-color: var(--navy);
-            background: var(--navy-tint);
-        }
-
-        .icon-btn:active {
-            transform: translateY(1px) scale(0.97);
-        }
-
-        .user-chip {
-            display: flex;
-            align-items: center;
-            gap: var(--space-16);
-            padding-left: var(--space-16);
-            margin-left: var(--space-8);
-            border-left: 1px solid var(--border);
-            text-decoration: none;
-        }
-
-        .user-chip img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px var(--border-strong);
-        }
-
-        .user-chip .name {
+        .side-label {
             display: block;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--heading);
-            line-height: 1.25;
-        }
-
-        .user-chip .role {
-            display: block;
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--muted);
-            line-height: 1.4;
-        }
-
-        .nav-toggle {
-            display: none;
-        }
-
-        /* --------------------------------------------------
-           HERO — TRAVEL DESK INTRO
-        -------------------------------------------------- */
-        .hero {
-            padding-top: var(--space-32);
-        }
-
-        .hero-panel {
-            position: relative;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-            gap: var(--space-48);
-            align-items: center;
-            padding: var(--space-48);
-            border-radius: var(--radius-xl);
-            background-color: var(--ink);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hero-panel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(560px 280px at 88% -10%, rgba(56, 189, 248, 0.14), transparent 70%),
-                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 40px);
-            pointer-events: none;
-        }
-
-        .hero-panel::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: var(--space-48);
-            right: var(--space-48);
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
-            pointer-events: none;
-        }
-
-        .hero-copy {
-            position: relative;
-            z-index: 1;
-        }
-
-        .eyebrow {
-            display: block;
-            font-size: 0.7rem;
+            padding: 0 var(--space-16);
+            margin-bottom: var(--space-8);
+            font-size: 0.6rem;
             font-weight: 700;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--sky-light);
-            margin-bottom: var(--space-8);
+            color: rgba(255, 255, 255, 0.38);
         }
 
-        .hero-name {
-            font-size: clamp(2rem, 3.6vw, 2.75rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-sm);
+            border-left: 2px solid transparent;
+            color: rgba(255, 255, 255, 0.64);
+            font-size: 0.86rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--ease);
+            white-space: nowrap;
+        }
+
+        .side-nav a i {
+            width: 16px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            transition: var(--ease);
+        }
+
+        .side-nav a:hover {
+            background: rgba(255, 255, 255, 0.06);
             color: #ffffff;
         }
 
-        .hero-lede {
-            margin-top: var(--space-16);
-            max-width: 520px;
-            font-size: 0.98rem;
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.72);
+        .side-nav a:hover i {
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .hero-meta {
+        .side-nav a.is-active {
+            background: rgba(255, 255, 255, 0.09);
+            border-left-color: var(--sky-light);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .side-nav a.is-active i {
+            color: var(--sky-light);
+        }
+
+        .side-nav a:active {
+            transform: translateY(1px);
+        }
+
+        .side-foot {
+            margin-top: auto;
             display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-8) var(--space-24);
-            margin-top: var(--space-24);
-            font-size: 0.86rem;
-            color: rgba(255, 255, 255, 0.72);
+            flex-direction: column;
+            gap: var(--space-16);
         }
 
-        .hero-meta span {
-            display: inline-flex;
+        .planner-mini {
+            padding: var(--space-16);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .planner-top {
+            display: flex;
             align-items: center;
             gap: var(--space-8);
         }
 
-        .hero-meta i {
-            color: var(--sky-light);
-            width: 16px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        /* Desk card */
-        .desk-card {
-            position: relative;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .desk-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--space-16);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: var(--space-16);
-        }
-
-        .live-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-4);
-            padding: var(--space-4) var(--space-8);
-            border-radius: var(--radius-sm);
-            background: rgba(16, 185, 129, 0.14);
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            color: #6ee7b7;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-transform: none;
-            white-space: nowrap;
-        }
-
-        .live-pill::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #34d399;
-        }
-
-        .agent {
-            display: flex;
-            align-items: center;
-            gap: var(--space-16);
-        }
-
-        .agent img {
-            width: 56px;
-            height: 56px;
+        .planner-top img {
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
             flex-shrink: 0;
         }
 
-        .agent-name {
-            font-size: 1rem;
+        .planner-name {
+            display: block;
+            font-size: 0.82rem;
             font-weight: 700;
             color: #ffffff;
             line-height: 1.3;
         }
 
-        .agent-role {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.62);
-            line-height: 1.5;
+        .planner-role {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
             margin-top: var(--space-4);
         }
 
-        .desk-actions {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-8);
-            margin-top: var(--space-24);
-            padding-top: var(--space-16);
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        .planner-role::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34d399;
+            flex-shrink: 0;
         }
 
-        .btn-solid-light,
-        .btn-ghost-light {
+        .planner-mini a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+            padding: var(--space-8);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--ease);
+        }
+
+        .planner-mini a:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .planner-mini a:active {
+            transform: translateY(1px);
+        }
+
+        .side-help {
+            padding: 0 var(--space-8);
+            font-size: 0.68rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.42);
+        }
+
+        .side-help span {
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.58rem;
+            color: rgba(255, 255, 255, 0.38);
+            margin-bottom: var(--space-4);
+        }
+
+        .side-help a {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .side-help a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        /* --------------------------------------------------
+           TOP UTILITY BAR
+        -------------------------------------------------- */
+        .workspace {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            background: rgba(244, 246, 250, 0.88);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            min-height: 72px;
+            padding: 0 var(--space-32);
+        }
+
+        .crumbs {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: 0.78rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .crumbs a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .crumbs a:hover {
+            color: var(--navy);
+        }
+
+        .crumbs i {
+            font-size: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .crumbs strong {
+            color: var(--heading);
+            font-weight: 700;
+        }
+
+        /* Working help search */
+        .help-search {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            width: 280px;
+            height: 40px;
+            padding: 0 var(--space-16);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: var(--ease);
+        }
+
+        .help-search:focus-within {
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(19, 53, 123, 0.1);
+        }
+
+        .help-search i {
+            color: var(--muted);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .help-search input {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.82rem;
+            color: var(--heading);
+        }
+
+        .help-search input::placeholder {
+            color: #94a3b8;
+        }
+
+        .topbar-status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-sm);
+            background: var(--success-bg);
+            border: 1px solid var(--success-line);
+            color: var(--success);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .topbar-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+
+        .topbar-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px var(--border-strong);
+            flex-shrink: 0;
+        }
+
+        /* --------------------------------------------------
+           CONTENT
+        -------------------------------------------------- */
+        .content {
+            flex: 1;
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: var(--space-32);
+        }
+
+        .page-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: var(--space-24);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-24);
+        }
+
+        .eyebrow {
+            display: block;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: var(--space-8);
+        }
+
+        .page-title {
+            font-size: clamp(1.65rem, 2.4vw, 2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        .page-lede {
+            margin-top: var(--space-8);
+            max-width: 620px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .head-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+        }
+
+        .btn-navy,
+        .btn-quiet {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -507,7 +560,8 @@
             min-height: 44px;
             padding: 0 var(--space-16);
             border-radius: var(--radius-md);
-            font-size: 0.88rem;
+            font-family: inherit;
+            font-size: 0.84rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
@@ -515,151 +569,186 @@
             border: 1px solid transparent;
         }
 
-        .btn-solid-light {
-            background: #ffffff;
-            color: var(--ink);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
-        }
-
-        .btn-solid-light:hover {
-            color: var(--navy);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
-        }
-
-        .btn-solid-light:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
-        }
-
-        .btn-ghost-light {
-            background: transparent;
+        .btn-navy {
+            background: var(--navy);
             color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.26);
         }
 
-        .btn-ghost-light:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+        .btn-navy:hover {
+            background: var(--navy-deep);
             transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(19, 53, 123, 0.34);
         }
 
-        .btn-ghost-light:active {
+        .btn-navy:active {
             transform: translateY(1px);
-            background: rgba(255, 255, 255, 0.16);
+            box-shadow: 0 2px 8px rgba(19, 53, 123, 0.26);
         }
 
-        .btn-solid-light i,
-        .btn-ghost-light i {
-            font-size: 0.82rem;
+        .btn-navy:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-quiet {
+            background: var(--surface);
+            color: var(--heading);
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-quiet:hover {
+            color: var(--navy);
+            border-color: #c3cfe3;
+            background: #fbfcfe;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-quiet:active {
+            transform: translateY(1px);
+        }
+
+        .btn-navy i,
+        .btn-quiet i {
+            font-size: 0.8rem;
         }
 
         /* --------------------------------------------------
-           CONTACT METHOD CARDS
+           KPI CARDS WITH SPARKLINES
         -------------------------------------------------- */
-        .contact-cards {
+        .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: var(--space-16);
-            margin-top: var(--space-24);
         }
 
-        .contact-card {
-            display: flex;
-            gap: var(--space-16);
-            padding: var(--space-24);
+        .kpi {
+            padding: var(--space-16);
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
             transition: var(--ease);
-            text-decoration: none;
         }
 
-        .contact-card:hover {
+        .kpi:hover {
             border-color: var(--border-strong);
             box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
 
-        .contact-card:active {
-            transform: translateY(0);
+        .kpi-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-8);
         }
 
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-md);
+        .kpi-label {
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .kpi-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: var(--radius-sm);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
             background: var(--navy-tint);
             color: var(--navy);
+            font-size: 0.7rem;
+            flex-shrink: 0;
         }
 
-        .contact-icon.is-sky {
+        .kpi-icon.is-sky {
             background: #e8f4fd;
             color: var(--sky);
         }
 
-        .contact-icon.is-gold {
+        .kpi-icon.is-gold {
             background: var(--gold-bg);
             color: var(--gold);
         }
 
-        .contact-label {
-            display: block;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--muted);
-            line-height: 1.4;
-            margin-bottom: var(--space-4);
+        .kpi-icon.is-emerald {
+            background: var(--success-bg);
+            color: var(--success);
         }
 
-        .contact-value {
+        .kpi-value {
             display: block;
-            font-size: 0.94rem;
-            font-weight: 700;
+            margin-top: var(--space-8);
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             color: var(--heading);
-            line-height: 1.45;
-            letter-spacing: -0.01em;
         }
 
-        .contact-sub {
-            display: block;
-            font-size: 0.78rem;
+        .kpi-value small {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            color: var(--muted);
+            margin-left: var(--space-4);
+        }
+
+        .kpi-foot {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: var(--space-16);
+            margin-top: var(--space-8);
+        }
+
+        .kpi-trend {
+            font-size: 0.68rem;
+            font-weight: 600;
             color: var(--muted);
             line-height: 1.5;
-            margin-top: var(--space-4);
         }
 
-        .contact-card .go {
-            margin-left: auto;
-            align-self: flex-start;
-            color: #94a3b8;
-            font-size: 0.66rem;
-            transition: var(--ease);
+        .kpi-trend.is-up {
+            color: var(--success);
         }
 
-        .contact-card:hover .go {
-            color: var(--navy);
-            transform: translateX(2px);
+        .spark {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .spark i {
+            display: block;
+            width: 4px;
+            border-radius: 2px;
+            background: #dde5f1;
+        }
+
+        .spark i.on {
+            background: var(--sky);
         }
 
         /* --------------------------------------------------
-           MAIN GRID
+           WIDGET GRID + PANELS
         -------------------------------------------------- */
-        .layout {
+        .widget-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
             gap: var(--space-24);
             align-items: start;
-            padding-top: var(--space-24);
-            padding-bottom: var(--space-64);
+            margin-top: var(--space-24);
         }
 
         .stack {
@@ -683,7 +772,7 @@
             justify-content: space-between;
             gap: var(--space-16);
             flex-wrap: wrap;
-            padding: var(--space-24);
+            padding: var(--space-16) var(--space-24);
             border-bottom: 1px solid var(--border);
         }
 
@@ -691,20 +780,20 @@
             display: flex;
             align-items: center;
             gap: var(--space-8);
-            font-size: 1.06rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--heading);
-            letter-spacing: -0.015em;
+            letter-spacing: -0.01em;
         }
 
         .panel-title i {
             color: var(--navy);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
         }
 
         .panel-sub {
             margin-top: var(--space-4);
-            font-size: 0.84rem;
+            font-size: 0.78rem;
             color: var(--muted);
             line-height: 1.5;
         }
@@ -713,31 +802,112 @@
             padding: var(--space-24);
         }
 
+        .panel-body.is-tight {
+            padding-top: var(--space-8);
+            padding-bottom: var(--space-16);
+        }
+
+        .link-quiet {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            transition: var(--ease);
+            white-space: nowrap;
+        }
+
+        .link-quiet:hover {
+            color: var(--navy-deep);
+        }
+
+        .link-quiet i {
+            font-size: 0.62rem;
+            transition: transform 0.2s ease;
+        }
+
+        .link-quiet:hover i {
+            transform: translateX(3px);
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--success);
+            white-space: nowrap;
+        }
+
+        .live-badge i {
+            font-size: 0.4rem;
+        }
+
         /* --------------------------------------------------
-           FORM
+           COMPOSER
         -------------------------------------------------- */
-        .form-panel-head {
-            padding: var(--space-32) var(--space-32) 0;
+        .compose-head {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-24);
+            border-bottom: 1px solid var(--border);
+            background: var(--surface-subtle);
         }
 
-        .form-title {
-            font-size: 1.4rem;
+        .compose-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            color: #ffffff;
+            font-size: 0.7rem;
             font-weight: 800;
-            letter-spacing: -0.025em;
-            color: var(--heading);
-            line-height: 1.25;
+            letter-spacing: 0.04em;
         }
 
-        .form-lede {
-            margin-top: var(--space-8);
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .compose-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.35;
+        }
+
+        .compose-sub {
+            font-size: 0.76rem;
             color: var(--muted);
-            max-width: 560px;
+            line-height: 1.5;
+            margin-top: var(--space-4);
+        }
+
+        .compose-badge {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-sm);
+            background: var(--success-bg);
+            border: 1px solid var(--success-line);
+            color: var(--success);
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
         }
 
         .query-form {
-            padding: var(--space-24) var(--space-32) var(--space-32);
+            padding: var(--space-24);
         }
 
         .form-grid {
@@ -757,7 +927,7 @@
         }
 
         .field label {
-            font-size: 0.78rem;
+            font-size: 0.74rem;
             font-weight: 600;
             line-height: 1.4;
             color: var(--heading);
@@ -769,8 +939,13 @@
             margin-left: var(--space-4);
         }
 
+        .field label .optional {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
         .field .hint {
-            font-size: 0.74rem;
+            font-size: 0.7rem;
             color: var(--muted);
             line-height: 1.5;
             margin-top: var(--space-4);
@@ -779,14 +954,14 @@
         .form-control-c,
         .form-select-c {
             width: 100%;
-            min-height: 48px;
+            min-height: 44px;
             padding: 0 var(--space-16);
             border: 1px solid var(--border-strong);
             border-radius: 10px;
             background: var(--surface);
             color: var(--heading);
             font-family: inherit;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 500;
             line-height: 1.5;
             transition: var(--ease);
@@ -818,8 +993,8 @@
         }
 
         textarea.form-control-c {
-            min-height: 152px;
-            padding: 12px var(--space-16);
+            min-height: 128px;
+            padding: var(--space-16);
             resize: vertical;
             line-height: 1.6;
         }
@@ -839,7 +1014,7 @@
             display: flex;
             align-items: flex-start;
             gap: var(--space-8);
-            font-size: 0.8rem;
+            font-size: 0.76rem;
             line-height: 1.6;
             color: var(--muted);
         }
@@ -847,7 +1022,7 @@
         .consent input {
             width: 16px;
             height: 16px;
-            margin-top: 3px;
+            margin-top: var(--space-4);
             accent-color: var(--navy);
             flex-shrink: 0;
             cursor: pointer;
@@ -870,79 +1045,102 @@
             align-items: center;
             gap: var(--space-16);
             margin-top: var(--space-24);
-        }
-
-        .btn-navy {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-8);
-            min-height: 48px;
-            padding: 0 var(--space-24);
-            border: 1px solid transparent;
-            border-radius: var(--radius-md);
-            background: var(--navy);
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            cursor: pointer;
-            transition: var(--ease);
-            box-shadow: 0 4px 14px rgba(19, 53, 123, 0.28);
-        }
-
-        .btn-navy:hover {
-            background: var(--navy-deep);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(19, 53, 123, 0.36);
-        }
-
-        .btn-navy:focus-visible {
-            outline: 2px solid var(--sky);
-            outline-offset: 2px;
-        }
-
-        .btn-navy:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 8px rgba(19, 53, 123, 0.28);
-        }
-
-        .btn-navy:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .btn-navy i {
-            font-size: 0.78rem;
+            padding-top: var(--space-16);
+            border-top: 1px solid var(--surface-muted);
         }
 
         .form-assurance {
             display: inline-flex;
             align-items: center;
             gap: var(--space-8);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             color: var(--muted);
             line-height: 1.5;
         }
 
         .form-assurance i {
             color: var(--success);
-            font-size: 0.72rem;
+            font-size: 0.68rem;
         }
 
         /* --------------------------------------------------
-           SIDEBAR
+           ACTIVITY FEED
         -------------------------------------------------- */
+        .feed {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feed-item {
+            display: flex;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .feed-item:last-child {
+            border-bottom: 0;
+        }
+
+        .feed-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy-tint);
+            color: var(--navy);
+            font-size: 0.62rem;
+            border: 1px solid #dbe4f5;
+        }
+
+        .feed-dot.is-emerald {
+            background: var(--success-bg);
+            color: var(--success);
+            border-color: var(--success-line);
+        }
+
+        .feed-dot.is-gold {
+            background: var(--gold-bg);
+            color: var(--gold);
+            border-color: #f0dfb8;
+        }
+
+        .feed-text {
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--text);
+        }
+
+        .feed-text strong {
+            color: var(--heading);
+            font-weight: 700;
+        }
+
+        .feed-time {
+            display: block;
+            margin-top: var(--space-4);
+            font-size: 0.68rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .feed-foot {
+            padding: var(--space-16) var(--space-24);
+            border-top: 1px solid var(--border);
+            background: var(--surface-subtle);
+        }
+
+        /* Hours */
         .hours-row {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
             gap: var(--space-16);
             padding: var(--space-8) 0;
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             line-height: 1.5;
         }
 
@@ -950,16 +1148,12 @@
             border-top: 1px solid var(--surface-muted);
         }
 
-        .hours-row dt,
         .hours-row .day {
-            margin: 0;
             color: var(--muted);
             font-weight: 500;
         }
 
-        .hours-row dd,
         .hours-row .time {
-            margin: 0;
             color: var(--heading);
             font-weight: 600;
             font-variant-numeric: tabular-nums;
@@ -975,91 +1169,41 @@
             display: inline-flex;
             align-items: center;
             padding: 0 var(--space-8);
-            margin-left: var(--space-8);
+            margin-left: var(--space-4);
             border-radius: var(--radius-sm);
             background: var(--navy-tint);
             color: var(--navy);
-            font-size: 0.62rem;
+            font-size: 0.58rem;
             font-weight: 700;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            line-height: 1.6;
+            line-height: 1.8;
             vertical-align: 1px;
         }
 
-        .hours-note {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-8);
-            margin-top: var(--space-16);
-            padding: var(--space-16);
-            border-radius: var(--radius-md);
-            background: var(--surface-subtle);
-            border: 1px solid var(--border);
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: var(--muted);
-        }
-
-        .hours-note i {
-            color: var(--sky);
-            margin-top: var(--space-4);
-            font-size: 0.78rem;
-        }
-
-        /* Steps */
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-16);
-        }
-
-        .step {
-            display: flex;
-            gap: var(--space-16);
-        }
-
-        .step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--navy-tint);
-            border: 1px solid #dbe4f5;
-            color: var(--navy);
-            font-size: 0.72rem;
-            font-weight: 800;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .step h3 {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--heading);
-            line-height: 1.45;
-        }
-
-        .step p {
-            margin-top: var(--space-4);
-            font-size: 0.8rem;
-            line-height: 1.55;
-            color: var(--muted);
-        }
-
+        /* Urgent */
         .urgent {
+            position: relative;
+            overflow: hidden;
             padding: var(--space-24);
             border-radius: var(--radius-lg);
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.72);
+            color: rgba(255, 255, 255, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .urgent::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(280px 140px at 100% 0%, rgba(56, 189, 248, 0.16), transparent 70%);
+            pointer-events: none;
+        }
+
         .urgent-label {
+            position: relative;
             display: block;
-            font-size: 0.66rem;
+            font-size: 0.62rem;
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
@@ -1068,24 +1212,27 @@
         }
 
         .urgent h3 {
-            font-size: 1rem;
+            position: relative;
+            font-size: 0.96rem;
             font-weight: 700;
             color: #ffffff;
             line-height: 1.4;
         }
 
         .urgent p {
-            font-size: 0.8rem;
+            position: relative;
+            font-size: 0.76rem;
             line-height: 1.6;
             margin-top: var(--space-8);
         }
 
         .urgent a {
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: var(--space-8);
             margin-top: var(--space-16);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             color: #ffffff;
             text-decoration: none;
@@ -1100,81 +1247,23 @@
         }
 
         .urgent a i {
-            font-size: 0.7rem;
+            font-size: 0.66rem;
         }
 
         /* --------------------------------------------------
-           VISIT / MAP
+           MAP + FAQ
         -------------------------------------------------- */
-        .visit-grid {
+        .lower-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
             gap: var(--space-24);
-            padding: var(--space-24);
-            align-items: stretch;
-        }
-
-        .visit-details {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-16);
-            padding: var(--space-8);
-        }
-
-        .visit-item {
-            display: flex;
-            gap: var(--space-16);
-        }
-
-        .visit-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-sm);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: var(--surface-muted);
-            color: var(--navy);
-            font-size: 0.82rem;
-        }
-
-        .visit-item dt {
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin: 0 0 var(--space-4);
-            line-height: 1.4;
-        }
-
-        .visit-item dd {
-            margin: 0;
-            font-size: 0.88rem;
-            font-weight: 500;
-            line-height: 1.6;
-            color: var(--heading);
-        }
-
-        .visit-item dd a {
-            color: var(--heading);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border-strong);
-            transition: var(--ease);
-        }
-
-        .visit-item dd a:hover {
-            color: var(--navy);
-            border-bottom-color: var(--navy);
+            align-items: start;
+            margin-top: var(--space-24);
         }
 
         .map-frame {
             position: relative;
             min-height: 320px;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            border: 1px solid var(--border);
             background: var(--surface-muted);
         }
 
@@ -1184,7 +1273,7 @@
             height: 100%;
             min-height: 320px;
             border: 0;
-            filter: saturate(0.9);
+            filter: saturate(0.92);
         }
 
         .map-caption {
@@ -1196,13 +1285,11 @@
             gap: var(--space-8);
             padding: var(--space-8) var(--space-16);
             border-radius: var(--radius-sm);
-            background: rgba(11, 21, 40, 0.9);
+            background: rgba(11, 21, 40, 0.92);
             color: #ffffff;
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            line-height: 1.4;
             text-decoration: none;
-            backdrop-filter: blur(8px);
             transition: var(--ease);
         }
 
@@ -1213,34 +1300,56 @@
 
         .map-caption i {
             color: var(--sky-light);
-            font-size: 0.72rem;
+            font-size: 0.68rem;
         }
 
-        /* --------------------------------------------------
-           FAQ
-        -------------------------------------------------- */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: var(--space-16);
-            padding: var(--space-24);
+        .visit-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8) var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            border-top: 1px solid var(--border);
+            background: var(--surface-subtle);
+        }
+
+        .visit-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: 0.72rem;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+
+        .visit-meta i {
+            color: var(--navy);
+            font-size: 0.68rem;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
         }
 
         .faq {
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: var(--surface);
-            transition: var(--ease);
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.2s ease;
+        }
+
+        .faq:last-child {
+            border-bottom: 0;
         }
 
         .faq:hover {
-            border-color: var(--border-strong);
             background: #fbfcfe;
         }
 
         .faq[open] {
-            border-color: #c9d4e6;
             background: var(--surface-subtle);
+        }
+
+        .faq[hidden] {
+            display: none;
         }
 
         .faq summary {
@@ -1251,10 +1360,11 @@
             padding: var(--space-16) var(--space-24);
             cursor: pointer;
             list-style: none;
-            font-size: 0.9rem;
+            font-size: 0.84rem;
             font-weight: 700;
             line-height: 1.5;
             color: var(--heading);
+            transition: color 0.2s ease;
         }
 
         .faq summary::-webkit-details-marker {
@@ -1266,8 +1376,8 @@
         }
 
         .faq summary .faq-icon {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             flex-shrink: 0;
             display: inline-flex;
@@ -1275,7 +1385,7 @@
             justify-content: center;
             background: var(--navy-tint);
             color: var(--navy);
-            font-size: 0.62rem;
+            font-size: 0.56rem;
             transition: transform 0.2s ease;
         }
 
@@ -1285,327 +1395,346 @@
 
         .faq p {
             padding: 0 var(--space-24) var(--space-16);
-            font-size: 0.86rem;
+            font-size: 0.8rem;
             line-height: 1.65;
             color: var(--muted);
         }
 
-        /* --------------------------------------------------
-           CTA BAND
-        -------------------------------------------------- */
-        .cta-band {
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--space-32);
-            flex-wrap: wrap;
-            padding: var(--space-32) var(--space-48);
-            border-radius: var(--radius-lg);
-            background: var(--ink);
-            margin-bottom: var(--space-64);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .cta-band::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(480px 200px at 90% 0%, rgba(56, 189, 248, 0.14), transparent 70%);
-            pointer-events: none;
-        }
-
-        .cta-copy {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-copy h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            color: #ffffff;
-            line-height: 1.25;
-        }
-
-        .cta-copy p {
-            margin-top: var(--space-4);
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.66);
+        .faq-empty {
+            padding: var(--space-24);
+            font-size: 0.82rem;
+            color: var(--muted);
             line-height: 1.6;
         }
 
-        .cta-actions {
+        /* --------------------------------------------------
+           INSPIRATION STRIP
+        -------------------------------------------------- */
+        .inspire {
+            margin-top: var(--space-32);
+        }
+
+        .inspire-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: var(--space-16);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-16);
+        }
+
+        .inspire-head h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .inspire-head p {
+            margin-top: var(--space-4);
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .inspire-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-16);
+        }
+
+        .inspire-card {
             position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            aspect-ratio: 16 / 9;
+            text-decoration: none;
+            background: var(--ink);
+            box-shadow: var(--shadow-md);
+        }
+
+        .inspire-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .inspire-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11, 21, 40, 0) 35%, rgba(11, 21, 40, 0.88) 100%);
+            pointer-events: none;
+        }
+
+        .inspire-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .inspire-card:active img {
+            transform: scale(1.02);
+        }
+
+        .inspire-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 1;
+            padding: var(--space-16);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: var(--space-16);
+        }
+
+        .inspire-tag {
+            display: block;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sky-light);
+            margin-bottom: var(--space-4);
+        }
+
+        .inspire-name {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.35;
+        }
+
+        .inspire-price {
+            display: block;
+            margin-top: var(--space-4);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .inspire-arrow {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: #ffffff;
+            font-size: 0.58rem;
+            transition: var(--ease);
+        }
+
+        .inspire-card:hover .inspire-arrow {
+            background: #ffffff;
+            border-color: #ffffff;
+            color: var(--navy);
+            transform: translateX(2px);
+        }
+
+        /* --------------------------------------------------
+           APP FOOTER
+        -------------------------------------------------- */
+        .app-footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            padding: var(--space-16) max(var(--space-32), calc((100% - 1320px) / 2 + var(--space-32)));
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-8);
+            font-size: 0.74rem;
+            color: var(--muted);
+        }
+
+        .app-footer a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .app-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .app-footer-links {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-16);
         }
 
         /* --------------------------------------------------
-           FOOTER
-        -------------------------------------------------- */
-        .site-footer {
-            background: var(--ink);
-            color: rgba(226, 232, 240, 0.72);
-            position: relative;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
-            gap: var(--space-48);
-            padding: var(--space-48) 0;
-        }
-
-        .footer-brand img {
-            height: 44px;
-            width: auto;
-            margin-bottom: var(--space-16);
-        }
-
-        .footer-brand p {
-            font-size: 0.88rem;
-            line-height: 1.65;
-            max-width: 340px;
-        }
-
-        .footer-col h4 {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #ffffff;
-            margin-bottom: var(--space-16);
-        }
-
-        .footer-col a {
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-            width: fit-content;
-            padding: var(--space-4) 0;
-            font-size: 0.88rem;
-            color: rgba(226, 232, 240, 0.72);
-            text-decoration: none;
-            transition: var(--ease);
-        }
-
-        .footer-col a:hover {
-            color: #ffffff;
-            transform: translateX(4px);
-        }
-
-        .footer-col a:active {
-            transform: translateX(2px);
-        }
-
-        .socials {
-            display: flex;
-            gap: var(--space-8);
-            margin-top: var(--space-16);
-        }
-
-        .socials a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.82rem;
-            transition: var(--ease);
-        }
-
-        .socials a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.35);
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        .socials a:active {
-            transform: translateY(0);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: var(--space-24) 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--space-8);
-            font-size: 0.8rem;
-        }
-
-        .footer-bottom a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer-bottom a:hover {
-            color: var(--sky-light);
-        }
-
-        /* --------------------------------------------------
            RESPONSIVE
         -------------------------------------------------- */
         @media screen and (max-width: 1199px) {
-            .layout {
+            .app {
+                grid-template-columns: 232px minmax(0, 1fr);
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .lower-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
 
-            .hero-panel {
-                gap: var(--space-32);
-            }
-
-            .visit-grid {
-                grid-template-columns: minmax(0, 1fr);
+            .help-search {
+                width: 220px;
             }
         }
 
-        @media screen and (max-width: 991px) {
-            .hero-panel {
-                grid-template-columns: minmax(0, 1fr);
-                padding: var(--space-32);
-            }
-
-            .hero-panel::after {
-                left: var(--space-32);
-                right: var(--space-32);
-            }
-
-            .contact-cards {
+        @media screen and (max-width: 1023px) {
+            .app {
                 grid-template-columns: minmax(0, 1fr);
             }
 
-            .nav-toggle {
-                display: inline-flex;
+            .side {
+                position: static;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                gap: var(--space-16);
+                padding: var(--space-8) var(--space-16);
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
-            .main-nav {
+            .side-brand {
+                padding: 0;
+                flex-shrink: 0;
+            }
+
+            .side-brand img {
+                height: 32px;
+            }
+
+            .side-name {
                 display: none;
-                position: absolute;
-                top: calc(100% + 1px);
-                left: var(--space-16);
-                right: var(--space-16);
-                flex-direction: column;
-                align-items: stretch;
+            }
+
+            .side-label,
+            .side-foot {
+                display: none;
+            }
+
+            .side-nav {
+                flex-direction: row;
                 gap: var(--space-4);
+                flex-shrink: 0;
+            }
+
+            .side-nav a {
+                border-left: 0;
+                border-bottom: 2px solid transparent;
                 padding: var(--space-8);
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-md);
-                box-shadow: var(--shadow-md);
+                font-size: 0.8rem;
             }
 
-            .main-nav.is-open {
-                display: flex;
+            .side-nav a.is-active {
+                border-bottom-color: var(--sky-light);
+                background: transparent;
             }
 
-            .main-nav a {
-                border-radius: var(--radius-sm);
+            .side-nav a i {
+                width: auto;
             }
 
-            .faq-grid {
+            .topbar {
+                top: 0;
+            }
+
+            .content {
+                padding: var(--space-24) var(--space-16);
+            }
+
+            .widget-grid {
                 grid-template-columns: minmax(0, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-                gap: var(--space-32);
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
             }
         }
 
         @media screen and (max-width: 767px) {
-            .shell {
+            .topbar-inner {
+                min-height: 64px;
                 padding: 0 var(--space-16);
+                gap: var(--space-8);
             }
 
-            .header-inner {
-                padding: 0 var(--space-16);
-                min-height: 72px;
-                gap: var(--space-16);
-            }
-
-            .brand img {
-                height: 38px;
-            }
-
-            .brand-tag,
-            .user-chip .meta-text {
+            .help-search {
                 display: none;
             }
 
-            .user-chip {
-                padding-left: var(--space-8);
-                gap: 0;
+            .crumbs {
+                font-size: 0.72rem;
             }
 
-            .hero {
-                padding-top: var(--space-16);
+            .topbar-status {
+                display: none;
             }
 
-            .hero-panel {
-                padding: var(--space-24);
-                border-radius: var(--radius-lg);
+            .topbar-avatar {
+                margin-left: auto;
             }
 
-            .hero-panel::after {
-                left: var(--space-24);
-                right: var(--space-24);
+            .page-head {
+                align-items: flex-start;
+                gap: var(--space-16);
             }
 
-            .hero-meta {
-                flex-direction: column;
+            .head-actions {
+                width: 100%;
+            }
+
+            .head-actions .btn-navy,
+            .head-actions .btn-quiet {
+                flex: 1;
+            }
+
+            .kpi-grid {
                 gap: var(--space-8);
             }
 
-            .contact-cards {
-                gap: var(--space-8);
+            .kpi {
+                padding: var(--space-16);
+            }
+
+            .kpi-value {
+                font-size: 1.4rem;
+            }
+
+            .spark {
+                display: none;
+            }
+
+            .widget-grid,
+            .stack,
+            .lower-grid {
+                gap: var(--space-16);
                 margin-top: var(--space-16);
             }
 
-            .contact-card {
-                padding: var(--space-16);
-            }
-
-            .layout {
-                padding-top: var(--space-16);
-                padding-bottom: var(--space-48);
-                gap: var(--space-16);
-            }
-
-            .stack {
-                gap: var(--space-16);
-            }
-
             .panel-head,
-            .panel-body {
+            .panel-body,
+            .query-form,
+            .compose-head {
                 padding: var(--space-16);
             }
 
-            .form-panel-head {
-                padding: var(--space-24) var(--space-16) 0;
-            }
-
-            .query-form {
-                padding: var(--space-16);
+            .feed-item,
+            .feed-foot {
+                padding-left: var(--space-16);
+                padding-right: var(--space-16);
             }
 
             .form-grid {
                 grid-template-columns: minmax(0, 1fr);
-                gap: var(--space-16);
             }
 
             .form-foot {
@@ -1613,7 +1742,7 @@
                 align-items: stretch;
             }
 
-            .btn-navy {
+            .form-foot .btn-navy {
                 width: 100%;
             }
 
@@ -1621,9 +1750,8 @@
                 justify-content: center;
             }
 
-            .visit-grid {
-                padding: var(--space-16);
-                gap: var(--space-16);
+            .compose-badge {
+                display: none;
             }
 
             .map-frame,
@@ -1631,48 +1759,51 @@
                 min-height: 260px;
             }
 
-            .faq-grid {
+            .visit-meta {
                 padding: var(--space-16);
-                gap: var(--space-8);
             }
 
-            .cta-band {
-                padding: var(--space-24);
-                margin-bottom: var(--space-48);
-                gap: var(--space-24);
+            .inspire {
+                margin-top: var(--space-24);
             }
 
-            .cta-actions {
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .cta-actions .btn-solid-light,
-            .cta-actions .btn-ghost-light {
-                width: 100%;
-            }
-
-            .footer-grid {
+            .inspire-grid {
                 grid-template-columns: minmax(0, 1fr);
-                gap: var(--space-32);
-                padding: var(--space-32) 0;
             }
 
-            .footer-brand {
-                grid-column: auto;
+            .inspire-card {
+                aspect-ratio: 16 / 10;
+            }
+
+            .faq summary {
+                padding: var(--space-16);
+            }
+
+            .faq p {
+                padding: 0 var(--space-16) var(--space-16);
+            }
+
+            .app-footer {
+                padding: var(--space-16);
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
         @media screen and (max-width: 480px) {
-            .brand-name {
-                font-size: 0.98rem;
+            .side-nav a {
+                font-size: 0.76rem;
             }
 
-            .hero-name {
-                font-size: 1.8rem;
+            .kpi-grid {
+                grid-template-columns: minmax(0, 1fr);
             }
 
-            .contact-card .go {
+            .kpi-value {
+                font-size: 1.3rem;
+            }
+
+            .side-nav a i {
                 display: none;
             }
         }
@@ -1693,122 +1824,157 @@
 
 <body>
 
-    <!-- Header Start -->
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="home.html" class="brand" aria-label="Bengal Odyssey home">
+    <div class="app">
+        <!-- Sidebar Start -->
+        <aside class="side" aria-label="Workspace navigation">
+            <a href="home.html" class="side-brand" aria-label="Bengal Odyssey home">
                 <img src="img/logo.png" alt="">
                 <span>
-                    <span class="brand-name">Bengal Odyssey</span>
-                    <span class="brand-tag">Travel Desk</span>
+                    <span class="side-name">Bengal Odyssey</span>
+                    <span class="side-sub">Travel desk</span>
                 </span>
             </a>
 
-            <nav class="main-nav" id="mainNav" aria-label="Primary">
-                <a href="home.html">Home</a>
-                <a href="booking.html">Book a Tour</a>
-                <a href="user_profile.html">My Account</a>
-                <a href="contact.html" class="is-active" aria-current="page">Support</a>
-                <a href="booking.html">Plan a Trip</a>
-            </nav>
-
-            <div class="header-actions">
-                <a href="booking.html" class="user-chip" aria-label="Signed in as Tanmay Das">
-                    <img src="img/user.jpg" alt="">
-                    <span class="meta-text">
-                        <span class="name">Tanmay Das</span>
-                        <span class="role">Gold traveller</span>
-                    </span>
-                </a>
-                <button type="button" class="icon-btn nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
+            <div>
+                <span class="side-label">Workspace</span>
+                <nav class="side-nav" aria-label="Workspace sections">
+                    <a href="home.html"><i class="fas fa-home" aria-hidden="true"></i> Overview</a>
+                    <a href="#compose" class="is-active"><i class="fas fa-pen" aria-hidden="true"></i> New message</a>
+                    <a href="#activity"><i class="fas fa-stream" aria-hidden="true"></i> Desk activity</a>
+                    <a href="#studio"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Studio</a>
+                    <a href="#faq"><i class="far fa-question-circle" aria-hidden="true"></i> Help centre</a>
+                </nav>
             </div>
-        </div>
-    </header>
-    <!-- Header End -->
 
-    <main>
-        <!-- Hero Start -->
-        <section class="hero" aria-labelledby="contactTitle">
-            <div class="shell">
-                <div class="hero-panel">
-                    <div class="hero-copy">
-                        <span class="eyebrow">Contact &middot; Bengal Odyssey</span>
-                        <h1 class="hero-name" id="contactTitle">Plan it with a human.</h1>
-                        <p class="hero-lede">Every itinerary we build starts with a conversation. Tell us the pace you like, the places you have been meaning to see, and we will shape the rest around it.</p>
-                        <p class="hero-meta">
-                            <span><i class="far fa-clock" aria-hidden="true"></i> Mon&ndash;Sat &middot; 9:00&ndash;19:00 IST</span>
-                            <span><i class="fas fa-bolt" aria-hidden="true"></i> Average reply in 2 hours</span>
-                            <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Berhampore, West Bengal</span>
-                        </p>
+            <div class="side-foot">
+                <div class="planner-mini">
+                    <div class="planner-top">
+                        <img src="img/user2.webp" alt="Portrait of Ananya Sen">
+                        <div>
+                            <span class="planner-name">Ananya Sen</span>
+                            <span class="planner-role">Online now</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/918348146101" rel="noopener">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat with your planner
+                    </a>
+                </div>
+                <p class="side-help">
+                    <span>Urgent trip support</span>
+                    <a href="tel:+918348146101">+91 83481 46101</a>
+                </p>
+            </div>
+        </aside>
+        <!-- Sidebar End -->
+
+        <div class="workspace">
+            <!-- Topbar Start -->
+            <header class="topbar">
+                <div class="topbar-inner">
+                    <nav class="crumbs" aria-label="Breadcrumb">
+                        <a href="home.html">Bengal Odyssey</a>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <a href="contact.html">Support</a>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <strong aria-current="page">Travel desk</strong>
+                    </nav>
+
+                    <label class="help-search" for="helpSearch">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="search" id="helpSearch" placeholder="Search help &amp; questions" autocomplete="off">
+                    </label>
+
+                    <span class="topbar-status">Desk open</span>
+                    <a href="user_profile.html" aria-label="Signed in as Tanmay Das">
+                        <img src="img/user.jpg" alt="Tanmay Das" class="topbar-avatar">
+                    </a>
+                </div>
+            </header>
+            <!-- Topbar End -->
+
+            <main class="content">
+                <!-- Page head -->
+                <div class="page-head">
+                    <div>
+                        <span class="eyebrow">Contact &middot; Travel desk</span>
+                        <h1 class="page-title">Let&rsquo;s shape your next journey.</h1>
+                        <p class="page-lede">One planner, one thread, no call centres. Tell us the month, the mood and the people coming along &mdash; we will handle the route and the honest maths behind it.</p>
+                    </div>
+                    <div class="head-actions">
+                        <a href="tel:+918348146101" class="btn-navy"><i class="fas fa-phone-alt" aria-hidden="true"></i> Call the desk</a>
+                        <a href="https://wa.me/918348146101" class="btn-quiet" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- KPI cards -->
+                <div class="kpi-grid" aria-label="Desk performance">
+                    <div class="kpi">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Avg. first reply</span>
+                            <span class="kpi-icon is-sky"><i class="far fa-clock" aria-hidden="true"></i></span>
+                        </div>
+                        <span class="kpi-value">1h 48m</span>
+                        <div class="kpi-foot">
+                            <span class="kpi-trend is-up">&darr; 22m this week</span>
+                            <span class="spark" aria-hidden="true">
+                                <i style="height: 40%"></i><i class="on" style="height: 55%"></i><i class="on" style="height: 48%"></i><i class="on" style="height: 66%"></i><i class="on" style="height: 58%"></i><i class="on" style="height: 74%"></i><i class="on" style="height: 70%"></i>
+                            </span>
+                        </div>
                     </div>
 
-                    <aside class="desk-card" aria-label="Your travel planner">
-                        <div class="desk-card-top">
-                            Your travel desk
-                            <span class="live-pill">Online now</span>
+                    <div class="kpi">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Traveller rating</span>
+                            <span class="kpi-icon is-gold"><i class="fas fa-star" aria-hidden="true"></i></span>
                         </div>
-                        <div class="agent">
-                            <img src="img/user2.webp" alt="Portrait of Ananya Sen">
+                        <span class="kpi-value">4.9<small>/ 5</small></span>
+                        <div class="kpi-foot">
+                            <span class="kpi-trend">312 verified reviews</span>
+                            <span class="spark" aria-hidden="true">
+                                <i class="on" style="height: 62%"></i><i class="on" style="height: 58%"></i><i class="on" style="height: 70%"></i><i class="on" style="height: 66%"></i><i class="on" style="height: 78%"></i><i class="on" style="height: 72%"></i><i class="on" style="height: 84%"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="kpi">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Travellers hosted</span>
+                            <span class="kpi-icon is-emerald"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+                        </div>
+                        <span class="kpi-value">1,250<small>+</small></span>
+                        <div class="kpi-foot">
+                            <span class="kpi-trend is-up">+86 this season</span>
+                            <span class="spark" aria-hidden="true">
+                                <i style="height: 34%"></i><i style="height: 42%"></i><i class="on" style="height: 50%"></i><i class="on" style="height: 58%"></i><i class="on" style="height: 64%"></i><i class="on" style="height: 76%"></i><i class="on" style="height: 88%"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="kpi">
+                        <div class="kpi-top">
+                            <span class="kpi-label">Desk capacity</span>
+                            <span class="kpi-icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
+                        </div>
+                        <span class="kpi-value">62<small>%</small></span>
+                        <div class="kpi-foot">
+                            <span class="kpi-trend">3 planners on shift</span>
+                            <span class="spark" aria-hidden="true">
+                                <i style="height: 44%"></i><i class="on" style="height: 52%"></i><i class="on" style="height: 60%"></i><i class="on" style="height: 56%"></i><i class="on" style="height: 62%"></i><i style="height: 48%"></i><i style="height: 40%"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composer + activity -->
+                <div class="widget-grid">
+                    <section class="panel" id="compose" aria-labelledby="composeTitle">
+                        <div class="compose-head">
+                            <span class="compose-avatar" aria-hidden="true">BO</span>
                             <div>
-                                <div class="agent-name">Ananya Sen</div>
-                                <p class="agent-role">Senior travel planner &middot; 6 years in Bengal</p>
+                                <h2 class="compose-title" id="composeTitle">New message</h2>
+                                <p class="compose-sub">Assigned to Ananya Sen &middot; replies during desk hours.</p>
                             </div>
-                        </div>
-                        <div class="desk-actions">
-                            <a href="https://wa.me/918348146101" class="btn-solid-light" rel="noopener">
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
-                            </a>
-                            <a href="tel:+918348146101" class="btn-ghost-light">
-                                <i class="fas fa-phone-alt" aria-hidden="true"></i> +91 83481 46101
-                            </a>
-                        </div>
-                    </aside>
-                </div>
-
-                <!-- Quick contact methods -->
-                <div class="contact-cards">
-                    <a href="tel:+918348146101" class="contact-card">
-                        <span class="contact-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></span>
-                        <span>
-                            <span class="contact-label">Call the desk</span>
-                            <span class="contact-value">+91 83481 46101</span>
-                            <span class="contact-sub">Weekdays, 9:00&ndash;19:00 IST</span>
-                        </span>
-                        <i class="fas fa-arrow-up go" aria-hidden="true"></i>
-                    </a>
-                    <a href="mailto:hello@bengalodyssey.in" class="contact-card">
-                        <span class="contact-icon is-sky"><i class="fas fa-envelope" aria-hidden="true"></i></span>
-                        <span>
-                            <span class="contact-label">Write to us</span>
-                            <span class="contact-value">hello@bengalodyssey.in</span>
-                            <span class="contact-sub">Replies within one business day</span>
-                        </span>
-                        <i class="fas fa-arrow-up go" aria-hidden="true"></i>
-                    </a>
-                    <a href="#visit" class="contact-card">
-                        <span class="contact-icon is-gold"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
-                        <span>
-                            <span class="contact-label">Visit the studio</span>
-                            <span class="contact-value">Station Road, Berhampore</span>
-                            <span class="contact-sub">Murshidabad, West Bengal 742101</span>
-                        </span>
-                        <i class="fas fa-arrow-right go" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- Hero End -->
-
-        <!-- Form + Sidebar Start -->
-        <div class="shell">
-            <div class="layout">
-                <div class="stack">
-                    <section class="panel" aria-labelledby="formTitle">
-                        <div class="form-panel-head">
-                            <h2 class="form-title" id="formTitle">Send us a message</h2>
-                            <p class="form-lede">Share a rough idea or a fully formed plan &mdash; either is perfect. A planner reads every message personally.</p>
+                            <span class="compose-badge">Secure</span>
                         </div>
 
                         <form class="query-form" method="post" action="/qsubmit">
@@ -1824,7 +1990,7 @@
                                 </div>
 
                                 <div class="field">
-                                    <label for="phone">Phone <span style="color: var(--muted); font-weight: 500;">(optional)</span></label>
+                                    <label for="phone">Phone <span class="optional">(optional)</span></label>
                                     <input type="tel" class="form-control-c" id="phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel">
                                 </div>
 
@@ -1864,276 +2030,259 @@
                             </div>
                         </form>
                     </section>
-                </div>
 
-                <!-- Sidebar -->
-                <aside class="stack" aria-label="Travel desk information">
-                    <section class="panel" aria-labelledby="hoursTitle">
-                        <div class="panel-head">
-                            <div>
-                                <h2 class="panel-title" id="hoursTitle">
-                                    <i class="far fa-clock" aria-hidden="true"></i> Desk hours
-                                </h2>
-                                <p class="panel-sub">Indian Standard Time, all year round.</p>
+                    <div class="stack">
+                        <!-- Activity -->
+                        <section class="panel" id="activity" aria-labelledby="activityTitle">
+                            <div class="panel-head">
+                                <div>
+                                    <h2 class="panel-title" id="activityTitle">
+                                        <i class="fas fa-stream" aria-hidden="true"></i> Desk activity
+                                    </h2>
+                                </div>
+                                <span class="live-badge"><i class="fas fa-circle" aria-hidden="true"></i> Live</span>
                             </div>
-                        </div>
-                        <div class="panel-body">
-                            <dl style="margin: 0;">
+
+                            <div class="feed">
+                                <div class="feed-item">
+                                    <span class="feed-dot is-emerald" aria-hidden="true"><i class="fas fa-check"></i></span>
+                                    <div>
+                                        <p class="feed-text"><strong>Ananya</strong> replied to Rohan&rsquo;s Sundarbans enquiry.</p>
+                                        <span class="feed-time">12 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="feed-item">
+                                    <span class="feed-dot" aria-hidden="true"><i class="fas fa-file-alt"></i></span>
+                                    <div>
+                                        <p class="feed-text">Custom itinerary sent &mdash; <strong>Darjeeling, 6 days</strong>.</p>
+                                        <span class="feed-time">48 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="feed-item">
+                                    <span class="feed-dot is-gold" aria-hidden="true"><i class="fas fa-phone"></i></span>
+                                    <div>
+                                        <p class="feed-text">Callback requested by <strong>Meera Nair</strong>.</p>
+                                        <span class="feed-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="feed-foot">
+                                <a href="user_profile.html" class="link-quiet">View your question history <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </section>
+
+                        <!-- Hours -->
+                        <section class="panel" aria-labelledby="hoursTitle">
+                            <div class="panel-head">
+                                <div>
+                                    <h2 class="panel-title" id="hoursTitle">
+                                        <i class="far fa-clock" aria-hidden="true"></i> Desk hours
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="panel-body is-tight">
                                 <div class="hours-row is-today">
-                                    <dt class="day">Monday &ndash; Friday <span class="today-chip">Today</span></dt>
-                                    <dd class="time">9:00 &ndash; 19:00</dd>
+                                    <span class="day">Mon&ndash;Fri <span class="today-chip">Today</span></span>
+                                    <span class="time">9:00&ndash;19:00</span>
                                 </div>
                                 <div class="hours-row">
-                                    <dt class="day">Saturday</dt>
-                                    <dd class="time">10:00 &ndash; 16:00</dd>
+                                    <span class="day">Saturday</span>
+                                    <span class="time">10:00&ndash;16:00</span>
                                 </div>
                                 <div class="hours-row">
-                                    <dt class="day">Sunday</dt>
-                                    <dd class="time">Closed</dd>
+                                    <span class="day">Sunday</span>
+                                    <span class="time">Closed</span>
                                 </div>
-                            </dl>
-                            <div class="hours-note">
-                                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                <span>Messages sent after hours are answered the next morning, before the first trip departs.</span>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section class="panel" aria-labelledby="stepsTitle">
-                        <div class="panel-head">
-                            <div>
-                                <h2 class="panel-title" id="stepsTitle">
-                                    <i class="fas fa-route" aria-hidden="true"></i> What happens next
-                                </h2>
-                            </div>
+                        <!-- Urgent -->
+                        <div class="urgent">
+                            <span class="urgent-label">Travelling in the next 48 hours?</span>
+                            <h3>Call the on-trip line</h3>
+                            <p>For pick-up changes, delays or anything urgent on an active trip, phone us directly rather than using the form.</p>
+                            <a href="tel:+918348146101">+91 83481 46101 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                         </div>
-                        <div class="panel-body">
-                            <div class="steps">
-                                <div class="step">
-                                    <span class="step-num" aria-hidden="true">1</span>
-                                    <div>
-                                        <h3>A planner reads it</h3>
-                                        <p>No autoresponder. Your message goes straight to the desk and is assigned to a planner.</p>
-                                    </div>
-                                </div>
-                                <div class="step">
-                                    <span class="step-num" aria-hidden="true">2</span>
-                                    <div>
-                                        <h3>You get a first outline</h3>
-                                        <p>A rough route, honest costs and the trade-offs that matter &mdash; usually within two hours.</p>
-                                    </div>
-                                </div>
-                                <div class="step">
-                                    <span class="step-num" aria-hidden="true">3</span>
-                                    <div>
-                                        <h3>We refine together</h3>
-                                        <p>Dates, pace and stays are adjusted until the plan feels right. Then you confirm.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <div class="urgent">
-                        <span class="urgent-label">Travelling in the next 48 hours?</span>
-                        <h3>Call the on-trip line</h3>
-                        <p>For pick-up changes, delays or anything urgent on an active trip, phone us directly rather than using the form.</p>
-                        <a href="tel:+918348146101">+91 83481 46101 <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
-                </aside>
-            </div>
-        </div>
-        <!-- Form + Sidebar End -->
-
-        <!-- Visit Start -->
-        <section class="shell" id="visit" aria-labelledby="visitTitle">
-            <div class="panel" style="margin-bottom: var(--space-24);">
-                <div class="panel-head">
-                    <div>
-                        <h2 class="panel-title" id="visitTitle">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Visit the studio
-                        </h2>
-                        <p class="panel-sub">A short walk from Berhampore Court station &mdash; good coffee, better maps.</p>
-                    </div>
-                    <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="btn-navy" style="min-height: 40px; padding: 0 var(--space-16); font-size: 0.82rem;" target="_blank" rel="noopener">
-                        Get directions <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                    </a>
                 </div>
 
-                <div class="visit-grid">
-                    <dl class="visit-details">
-                        <div class="visit-item">
-                            <span class="visit-icon"><i class="fas fa-location-arrow" aria-hidden="true"></i></span>
+                <!-- Map + FAQ -->
+                <div class="lower-grid">
+                    <section class="panel" id="studio" aria-labelledby="studioTitle">
+                        <div class="panel-head">
                             <div>
-                                <dt>Address</dt>
-                                <dd>12, Station Road, Berhampore,<br>Murshidabad, West Bengal 742101</dd>
+                                <h2 class="panel-title" id="studioTitle">
+                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Visit the studio
+                                </h2>
+                                <p class="panel-sub">12, Station Road, Berhampore &mdash; a short walk from the station.</p>
                             </div>
+                            <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="link-quiet" target="_blank" rel="noopener">
+                                Directions <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                            </a>
                         </div>
-                        <div class="visit-item">
-                            <span class="visit-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
-                            <div>
-                                <dt>Email</dt>
-                                <dd><a href="mailto:hello@bengalodyssey.in">hello@bengalodyssey.in</a></dd>
-                            </div>
-                        </div>
-                        <div class="visit-item">
-                            <span class="visit-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></span>
-                            <div>
-                                <dt>Phone</dt>
-                                <dd><a href="tel:+918348146101">+91 83481 46101</a></dd>
-                            </div>
-                        </div>
-                        <div class="visit-item">
-                            <span class="visit-icon"><i class="far fa-clock" aria-hidden="true"></i></span>
-                            <div>
-                                <dt>Studio hours</dt>
-                                <dd>Mon&ndash;Sat &middot; 10:00&ndash;18:00<br>Sunday visits by appointment</dd>
-                            </div>
-                        </div>
-                    </dl>
 
-                    <div class="map-frame">
-                        <iframe title="Map showing Bengal Odyssey studio in Berhampore, West Bengal" src="https://maps.google.com/maps?q=Berhampore%2C%20Murshidabad%2C%20West%20Bengal&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="map-caption" target="_blank" rel="noopener">
-                            <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Open in Google Maps
+                        <div class="map-frame">
+                            <iframe title="Map showing Bengal Odyssey studio in Berhampore, West Bengal" src="https://maps.google.com/maps?q=Berhampore%2C%20Murshidabad%2C%20West%20Bengal&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <a href="https://maps.google.com/?q=Berhampore,Murshidabad,West+Bengal" class="map-caption" target="_blank" rel="noopener">
+                                <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Open in Google Maps
+                            </a>
+                        </div>
+
+                        <div class="visit-meta">
+                            <span><i class="fas fa-clock" aria-hidden="true"></i> Mon&ndash;Sat &middot; 10:00&ndash;18:00</span>
+                            <span><i class="fas fa-phone-alt" aria-hidden="true"></i> +91 83481 46101</span>
+                            <span><i class="fas fa-envelope" aria-hidden="true"></i> hello@bengalodyssey.in</span>
+                        </div>
+                    </section>
+
+                    <section class="panel" id="faq" aria-labelledby="faqTitle">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title" id="faqTitle">
+                                    <i class="far fa-question-circle" aria-hidden="true"></i> Help centre
+                                </h2>
+                                <p class="panel-sub">The four questions we answer most.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-list" id="faqList">
+                            <details class="faq">
+                                <summary>
+                                    How quickly will I hear back?
+                                    <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <p>During desk hours, most enquiries get a first reply within two hours. Anything sent overnight is answered the next morning &mdash; always by a planner, never a template.</p>
+                            </details>
+
+                            <details class="faq">
+                                <summary>
+                                    Can you build a fully custom itinerary?
+                                    <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <p>Yes, and it is most of what we do. Share your dates, group and interests, and we will design a private route with stays, transfers and guides quoted separately so nothing is hidden.</p>
+                            </details>
+
+                            <details class="faq">
+                                <summary>
+                                    What are the payment terms?
+                                    <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <p>A 30% deposit confirms dates, with the balance due 15 days before departure. Changes are free up to 15 days out; cancellations within 7 days retain the deposit.</p>
+                            </details>
+
+                            <details class="faq">
+                                <summary>
+                                    Do you arrange station pick-ups?
+                                    <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <p>Station and airport transfers are part of every itinerary we quote, including the early-morning departures for the hills and the Sundarbans.</p>
+                            </details>
+
+                            <p class="faq-empty" id="faqEmpty" hidden>No matching questions. Try &ldquo;reply&rdquo;, &ldquo;payment&rdquo; or &ldquo;pick-up&rdquo; &mdash; or send us a message above.</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Inspiration -->
+                <section class="inspire" id="journeys" aria-labelledby="inspireTitle">
+                    <div class="inspire-head">
+                        <div>
+                            <span class="eyebrow">Popular this season</span>
+                            <h2 id="inspireTitle">Where travellers are heading</h2>
+                            <p>Three routes the desk is booking most right now.</p>
+                        </div>
+                        <a href="booking.html" class="link-quiet">See all journeys <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="inspire-grid">
+                        <a href="booking.html" class="inspire-card">
+                            <img src="img/explore-tour-1.jpeg" alt="Tea gardens near Darjeeling" loading="lazy">
+                            <span class="inspire-body">
+                                <span>
+                                    <span class="inspire-tag">Himalayan</span>
+                                    <span class="inspire-name">Darjeeling Tea Trail</span>
+                                    <span class="inspire-price">6D / 5N &middot; from &#8377;48,900</span>
+                                </span>
+                                <span class="inspire-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                            </span>
+                        </a>
+
+                        <a href="booking.html" class="inspire-card">
+                            <img src="img/destination-4.jpg" alt="Mangrove creeks of the Sundarbans" loading="lazy">
+                            <span class="inspire-body">
+                                <span>
+                                    <span class="inspire-tag">Wildlife</span>
+                                    <span class="inspire-name">Sundarbans Wild Escape</span>
+                                    <span class="inspire-price">4D / 3N &middot; from &#8377;32,400</span>
+                                </span>
+                                <span class="inspire-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                            </span>
+                        </a>
+
+                        <a href="booking.html" class="inspire-card">
+                            <img src="img/Digha.jpg" alt="Digha coastline" loading="lazy">
+                            <span class="inspire-body">
+                                <span>
+                                    <span class="inspire-tag">Coastal</span>
+                                    <span class="inspire-name">Digha Coastal Weekend</span>
+                                    <span class="inspire-price">2D / 1N &middot; from &#8377;9,800</span>
+                                </span>
+                                <span class="inspire-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                            </span>
                         </a>
                     </div>
-                </div>
-            </div>
-        </section>
-        <!-- Visit End -->
+                </section>
+            </main>
 
-        <!-- FAQ Start -->
-        <section class="shell" aria-labelledby="faqTitle">
-            <div class="panel">
-                <div class="panel-head">
-                    <div>
-                        <h2 class="panel-title" id="faqTitle">
-                            <i class="far fa-question-circle" aria-hidden="true"></i> Before you write
-                        </h2>
-                        <p class="panel-sub">The four questions the desk answers most often.</p>
-                    </div>
-                </div>
-
-                <div class="faq-grid">
-                    <details class="faq">
-                        <summary>
-                            How quickly will I hear back?
-                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
-                        </summary>
-                        <p>During desk hours, most enquiries get a first reply within two hours. Anything sent overnight is answered the next morning &mdash; always by a planner, never a template.</p>
-                    </details>
-
-                    <details class="faq">
-                        <summary>
-                            Can you build a fully custom itinerary?
-                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
-                        </summary>
-                        <p>Yes, and it is most of what we do. Share your dates, group and interests, and we will design a private route with stays, transfers and guides quoted separately so nothing is hidden.</p>
-                    </details>
-
-                    <details class="faq">
-                        <summary>
-                            What are the payment and cancellation terms?
-                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
-                        </summary>
-                        <p>A 30% deposit confirms dates, with the balance due 15 days before departure. Changes are free up to 15 days out; cancellations within 7 days retain the deposit. Full terms are sent with every quote.</p>
-                    </details>
-
-                    <details class="faq">
-                        <summary>
-                            Do you arrange pick-ups from Kolkata or Berhampore?
-                            <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span>
-                        </summary>
-                        <p>We do &mdash; station and airport transfers are part of every itinerary we quote, including the early-morning departures for the hills and the Sundarbans.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-        <!-- FAQ End -->
-
-        <!-- CTA Start -->
-        <div class="shell">
-            <div class="cta-band">
-                <div class="cta-copy">
-                    <h2>Still deciding where to go?</h2>
-                    <p>Bring us a month and a mood. We will bring the map.</p>
-                </div>
-                <div class="cta-actions">
-                    <a href="booking.html" class="btn-solid-light">Start a booking <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    <a href="tel:+918348146101" class="btn-ghost-light"><i class="fas fa-phone-alt" aria-hidden="true"></i> Call the desk</a>
-                </div>
-            </div>
-        </div>
-        <!-- CTA End -->
-    </main>
-
-    <!-- Footer Start -->
-    <footer class="site-footer">
-        <div class="shell">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="img/logo.png" alt="Bengal Odyssey">
-                    <p>Thoughtfully crafted journeys across West Bengal &mdash; from the tea gardens of Darjeeling to the mangrove creeks of the Sundarbans.</p>
-                    <div class="socials">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Explore</h4>
-                    <a href="home.html">Home</a>
+            <!-- App footer -->
+            <footer class="app-footer">
+                <span>&copy; 2026 <a href="home.html">Bengal Odyssey</a> &middot; Berhampore, Murshidabad</span>
+                <span class="app-footer-links">
                     <a href="booking.html">Book a tour</a>
                     <a href="user_profile.html">My account</a>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <a href="contact.html">Contact the desk</a>
-                    <a href="#">Privacy policy</a>
-                    <a href="#">Terms &amp; conditions</a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <span>&copy; 2026 <a href="home.html">Bengal Odyssey</a>. All rights reserved.</span>
-                <span>Berhampore, Murshidabad &middot; West Bengal, India</span>
-            </div>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </span>
+            </footer>
         </div>
-    </footer>
-    <!-- Footer End -->
+    </div>
 
     <script>
         (function () {
             'use strict';
 
-            var navToggle = document.getElementById('navToggle');
-            var mainNav = document.getElementById('mainNav');
+            // Help-centre search filters the FAQ list
+            var search = document.getElementById('helpSearch');
+            var faqs = Array.prototype.slice.call(document.querySelectorAll('#faqList .faq'));
+            var empty = document.getElementById('faqEmpty');
 
-            if (navToggle && mainNav) {
-                navToggle.addEventListener('click', function () {
-                    var open = mainNav.classList.toggle('is-open');
-                    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-                    navToggle.innerHTML = open
-                        ? '<i class="fas fa-times" aria-hidden="true"></i>'
-                        : '<i class="fas fa-bars" aria-hidden="true"></i>';
-                });
+            function filterFaqs() {
+                if (!search) {
+                    return;
+                }
 
-                mainNav.addEventListener('click', function (event) {
-                    if (event.target.closest('a')) {
-                        mainNav.classList.remove('is-open');
-                        navToggle.setAttribute('aria-expanded', 'false');
+                var query = search.value.trim().toLowerCase();
+                var matches = 0;
+
+                faqs.forEach(function (item) {
+                    var match = !query || item.textContent.toLowerCase().indexOf(query) !== -1;
+                    item.hidden = !match;
+                    if (match) {
+                        matches++;
                     }
                 });
+
+                if (empty) {
+                    empty.hidden = matches !== 0;
+                }
             }
 
-            // Keep only one FAQ panel open at a time
-            var faqs = Array.prototype.slice.call(document.querySelectorAll('.faq'));
+            if (search) {
+                search.addEventListener('input', filterFaqs);
+            }
 
+            // One FAQ open at a time
             faqs.forEach(function (item) {
                 item.addEventListener('toggle', function () {
                     if (item.open) {
@@ -2143,6 +2292,18 @@
                             }
                         });
                     }
+                });
+            });
+
+            // Sidebar active state follows clicks
+            var sideLinks = Array.prototype.slice.call(document.querySelectorAll('.side-nav a[href^="#"]'));
+
+            sideLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    sideLinks.forEach(function (other) {
+                        other.classList.remove('is-active');
+                    });
+                    link.classList.add('is-active');
                 });
             });
         })();
