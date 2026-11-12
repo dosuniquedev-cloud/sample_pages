@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
-
-<html>
+<html lang="en">
 
 <head>
-    <title>Welcome ADMIN</title>
+    <title>Admin Portal &mdash; Database Control Center</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="css/main.css" />
     <noscript>
         <link rel="stylesheet" href="css/noscript.css" />
@@ -18,27 +18,26 @@
         <div id="overlay"></div>
         <div id="main">
 
-
             <header id="header">
-                <h1>Welcome.. ADMIN</h1>
-                <p>Please Click On The table You want To See</p>
+                <h1>Welcome, Admin</h1>
+                <p>Select a database table to view and manage system records</p>
                 <nav>
                     <ul>
                         <li>
                             <div class="block">
-                                <a href="{{url('/displayall')}}" class="icon solid fa-table"></a>
+                                <a href="{{url('/displayall')}}" class="icon solid fa-table" aria-label="View Registration Data Table" title="Registration Data"></a>
                                 <span class="label">Registration Data</span>
                             </div>
                         </li>
                         <li>
                             <div class="block">
-                                <a href="{{url('/qdisplay')}}" class="icon solid fa-table"></a>
+                                <a href="{{url('/qdisplay')}}" class="icon solid fa-table" aria-label="View Query Data Table" title="Query Data"></a>
                                 <span class="label">Query Data</span>
                             </div>
                         </li>
                         <li>
                             <div class="block">
-                                <a href="{{url('/bdisplay')}}" class="icon solid fa-table"></a>
+                                <a href="{{url('/bdisplay')}}" class="icon solid fa-table" aria-label="View Booking Details Data Table" title="Booking Details Data"></a>
                                 <span class="label">Booking Details Data</span>
                             </div>
                         </li>
@@ -46,13 +45,10 @@
                 </nav>
             </header>
 
-
-
         </div>
     </div>
     <script>
         window.onload = function () { document.body.classList.remove('is-preload'); }
-        window.ontouchmove = function () { return false; }
         window.onorientationchange = function () { document.body.scrollTop = 0; }
     </script>
 </body>
