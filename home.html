@@ -346,15 +346,18 @@
                 max-height: 36px !important;
                 filter: none;
             }
-            /* Sticky Book Now: solid navy pill */
+            /* Sticky Book Now: solid navy pill with crisp white text */
             .sticky-top.navbar-light .btn-primary {
                 background-color: var(--accent) !important;
-                color: #fff !important;
-                box-shadow: 0 2px 8px rgba(19,53,123,0.28) !important;
+                color: #ffffff !important;
+                border: 2px solid var(--accent) !important;
+                box-shadow: 0 4px 14px rgba(19, 53, 123, 0.3) !important;
             }
             .sticky-top.navbar-light .btn-primary:hover {
-                background-color: #1a4494 !important;
-                box-shadow: 0 6px 20px rgba(19,53,123,0.38) !important;
+                background-color: #0284c7 !important;
+                border-color: #0284c7 !important;
+                color: #ffffff !important;
+                box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45) !important;
             }
         }
 
@@ -424,36 +427,40 @@
             transform: translateY(1px) !important;
         }
 
-        /* ---- Book Now CTA pill ---- */
+        /* ---- Book Now CTA pill (Maximum Contrast in Resting & Hover States) ---- */
         .navbar .btn-primary {
             font-family: var(--font-brand) !important;
-            font-weight: 700 !important;
-            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            font-size: 0.85rem !important;
             border-radius: var(--radius-xl) !important;
-            padding: 10px 28px !important;
+            padding: 10px 26px !important;
             transition: var(--ease) !important;
-            letter-spacing: 0.02em !important;
-            border: none !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
             margin: 14px 0 14px 16px !important;
-            /* Floating state: white pill, navy text — max contrast pop */
-            background-color: #fff !important;
-            color: var(--accent) !important;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.20), 0 1px 3px rgba(0,0,0,0.12) !important;
+            /* Floating state: Solid brand navy with crisp white border and PURE WHITE text (10.5:1 contrast) */
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            border: 2px solid rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
         }
         .navbar .btn-primary:hover {
-            background-color: var(--accent-sky-lt) !important;
-            color: #0d2557 !important;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.22) !important;
-            transform: translateY(-1px) !important;
+            background-color: #0284c7 !important;
+            color: #ffffff !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5) !important;
+            transform: translateY(-2px) !important;
         }
         .navbar .btn-primary:focus-visible {
-            outline: 2px solid #fff !important;
+            outline: 2px solid var(--accent-sky-lt) !important;
             outline-offset: 3px !important;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35) !important;
         }
         .navbar .btn-primary:active {
             transform: translateY(1px) !important;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
-            background-color: #e0f2fe !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+            background-color: var(--accent-dark) !important;
+            color: #ffffff !important;
         }
         .navbar .btn-primary:disabled {
             opacity: 0.55 !important;
@@ -1000,42 +1007,272 @@
         }
 
         /* ============================================================
-           PACKAGES SECTION — Uniform Cards & Floating Badges
+           PACKAGES SECTION — Left & Right Luxury 2-Column Grid
            ============================================================ */
-        .packages .packages-carousel {
+        .packages-grid {
+            margin-top: 10px;
+        }
+
+        .package-card-horizontal {
+            background: #ffffff !important;
+            border-radius: var(--radius-lg) !important;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.03) !important;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
             position: relative;
-            padding-top: 10px;
+        }
+
+        .package-card-horizontal:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            border-color: rgba(19, 53, 123, 0.25);
+        }
+
+        /* Image Column (Left Side of Card) */
+        .package-card-img-col {
+            position: relative;
+        }
+
+        .package-card-img-wrap {
+            position: relative;
+            height: 100%;
+            min-height: 250px;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .package-card-img-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 38, 0.35) 0%, rgba(8, 15, 38, 0) 40%, rgba(8, 15, 38, 0.75) 100%);
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .package-card-img-wrap img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            display: block;
+        }
+
+        .package-card-horizontal:hover .package-card-img-wrap img {
+            transform: scale(1.08) !important;
+        }
+
+        /* Category Tag Chip (Top Left of Photo) */
+        .package-card-img-wrap .packages-badge-tag {
+            position: absolute !important;
+            top: 14px !important;
+            left: 14px !important;
+            z-index: 4;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--accent) !important;
+            font-family: var(--font-brand);
+            font-size: 0.72rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 10px !important;
+            border-radius: var(--radius-xl) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Price Floating Pill Badge (Bottom of Photo) */
+        .package-card-img-wrap .packages-price {
+            position: absolute !important;
+            bottom: 14px !important;
+            left: 14px !important;
+            right: auto !important;
+            top: auto !important;
+            z-index: 4;
+            font-family: var(--font-brand) !important;
+            font-weight: 800 !important;
+            font-size: 0.95rem !important;
+            letter-spacing: 0.01em;
+            background: rgba(8, 15, 38, 0.88) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #ffffff !important;
+            padding: 5px 12px !important;
+            border-radius: var(--radius-xl) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .package-card-img-wrap .packages-price-unit {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.82);
+            letter-spacing: 0;
+        }
+
+        /* Content Column (Right Side of Card) */
+        .package-card-body-col {
+            background: #ffffff !important;
+        }
+
+        .package-card-body {
+            padding: 22px 24px !important;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .packages-meta-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .packages-meta-chips .badge-chip {
+            background: #f8fafc;
+            color: var(--text-heading);
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 4px 9px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .packages-meta-chips .badge-chip i {
+            color: var(--accent);
+            font-size: 0.74rem;
+        }
+
+        .package-card-body h5 {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+            color: var(--text-heading) !important;
+            margin-bottom: 6px !important;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            transition: color 0.2s ease;
+        }
+
+        .package-card-horizontal:hover .package-card-body h5 {
+            color: var(--accent) !important;
+        }
+
+        .package-card-body .packages-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .package-card-body .packages-rating .fa-star {
+            color: #f59e0b !important;
+            font-size: 0.82rem;
+        }
+
+        .package-card-body .packages-rating-badge {
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            line-height: 1;
+        }
+
+        .package-card-body .packages-reviews-count {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .package-card-body .packages-desc {
+            font-size: 0.865rem !important;
+            line-height: 1.55 !important;
+            color: var(--text-muted) !important;
+            margin-bottom: 16px !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+        }
+
+        /* Action Footer */
+        .package-card-body .packages-action-footer {
+            padding-top: 14px !important;
+            border-top: 1px solid var(--border) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-top: auto !important;
+            background: transparent !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .package-card-img-wrap {
+                min-height: 200px;
+                height: 200px;
+            }
         }
 
         .packages-item {
             border-radius: var(--radius-lg) !important;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.03) !important;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
             background: #ffffff !important;
             border: 1px solid var(--border);
             position: relative;
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
         }
 
         .packages-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
-            border-color: rgba(19, 53, 123, 0.22);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            border-color: rgba(19, 53, 123, 0.25);
         }
 
-        /* Fixed Image Height & Smooth Zoom */
+        /* Fixed Image Height & Cinematic Zoom */
         .packages-item .packages-img {
-            height: 240px;
+            height: 230px;
             position: relative;
             overflow: hidden;
             background: #0f172a;
+        }
+
+        .packages-item .packages-img::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 38, 0.35) 0%, rgba(8, 15, 38, 0) 40%, rgba(8, 15, 38, 0.75) 100%);
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         .packages-item .packages-img img {
             width: 100% !important;
             height: 100% !important;
             object-fit: cover !important;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
             display: block;
         }
 
@@ -1049,60 +1286,102 @@
             display: none !important;
         }
 
-        /* Price Floating Pill Badge */
+        /* Category Tag Chip (Top Left) */
+        .packages-item .packages-badge-tag {
+            position: absolute !important;
+            top: 14px !important;
+            left: 14px !important;
+            z-index: 4;
+            background: rgba(255, 255, 255, 0.92) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--accent) !important;
+            font-family: var(--font-brand);
+            font-size: 0.72rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 5px 12px !important;
+            border-radius: var(--radius-xl) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Price Floating Pill Badge (Top Right) */
         .packages-item .packages-price {
             position: absolute !important;
             top: 14px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
+            right: 14px !important;
+            left: auto !important;
+            transform: none !important;
             width: auto !important;
-            min-width: 110px;
-            text-align: center;
+            text-align: right;
             font-family: var(--font-brand) !important;
             font-weight: 800 !important;
             font-size: 0.95rem !important;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             background: var(--accent) !important;
             color: #ffffff !important;
-            padding: 6px 18px !important;
+            padding: 6px 14px !important;
             border-radius: var(--radius-xl) !important;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
-            z-index: 6;
+            box-shadow: 0 4px 14px rgba(8, 15, 38, 0.35) !important;
+            z-index: 4;
             border: 1px solid rgba(255, 255, 255, 0.25);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 4px;
         }
 
-        /* Frosted Dark Glass Meta Bar */
+        .packages-item .packages-price-unit {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0;
+        }
+
+        /* Frosted Dark Glass Meta Bar (Bottom of Photo) */
         .packages-item .packages-info {
             background: rgba(8, 15, 38, 0.82) !important;
             backdrop-filter: blur(8px) !important;
             -webkit-backdrop-filter: blur(8px) !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
             border-bottom: none !important;
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            z-index: 5;
+            z-index: 4;
+            padding: 8px 12px !important;
         }
 
         .packages-item .packages-info small {
-            font-size: 0.775rem !important;
-            font-weight: 500 !important;
+            font-size: 0.76rem !important;
+            font-weight: 600 !important;
             color: rgba(255, 255, 255, 0.92) !important;
-            border-color: rgba(255, 255, 255, 0.12) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .packages-item .packages-info small i {
             color: var(--accent-sky-lt) !important;
+            font-size: 0.8rem;
         }
 
         /* Content Area */
         .packages-content {
             background: #ffffff !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex-grow: 1 !important;
         }
 
-        .packages-content .p-4 {
-            padding: 24px !important;
+        .packages-content .packages-body {
+            padding: 22px 24px 16px !important;
+            flex-grow: 1;
         }
 
         .packages-content h5 {
@@ -1110,61 +1389,142 @@
             font-weight: 700 !important;
             font-size: 1.15rem !important;
             color: var(--text-heading) !important;
-            margin-bottom: 4px !important;
+            margin-bottom: 6px !important;
             letter-spacing: -0.01em;
+            line-height: 1.3;
+            transition: color 0.2s ease;
         }
 
-        .packages-content small.text-uppercase {
-            font-size: 0.75rem !important;
-            letter-spacing: 0.08em !important;
-            font-weight: 600 !important;
-            color: var(--accent-sky) !important;
-            display: inline-block;
-            margin-bottom: 8px;
+        .packages-item:hover .packages-content h5 {
+            color: var(--accent) !important;
         }
 
-        .packages-content .fa-star {
+        .packages-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .packages-rating .fa-star {
             color: #f59e0b !important;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
         }
 
-        .packages-content p {
-            font-size: 0.88rem !important;
+        .packages-rating-badge {
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            line-height: 1;
+        }
+
+        .packages-reviews-count {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .packages-desc {
+            font-size: 0.875rem !important;
             line-height: 1.6 !important;
             color: var(--text-muted) !important;
-            margin-bottom: 16px !important;
-            min-height: 80px;
-        }
-
-        /* Bottom Action Buttons */
-        .packages-content .row.bg-primary {
-            background-color: var(--accent) !important;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+            margin-bottom: 0 !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            margin: 0 !important;
+            text-overflow: ellipsis;
+            min-height: 4.2em;
         }
 
-        .packages-content .btn-hover {
+        /* Luxury Action Footer */
+        .packages-action-footer {
+            padding: 14px 20px !important;
+            background: #f8fafc !important;
+            border-top: 1px solid var(--border) !important;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-top: auto !important;
+        }
+
+        .btn-package-detail {
             font-family: var(--font-brand) !important;
             font-weight: 700 !important;
             font-size: 0.85rem !important;
-            letter-spacing: 0.04em !important;
-            text-transform: uppercase !important;
-            padding: 12px 20px !important;
-            color: #ffffff !important;
+            color: var(--text-heading) !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
             transition: var(--ease) !important;
-            display: block;
-            text-align: center;
+            padding: 6px 4px;
         }
 
-        .packages-content .btn-hover:hover {
+        .btn-package-detail i {
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-package-detail:hover {
+            color: var(--accent) !important;
+        }
+
+        .btn-package-detail:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-package-detail:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+
+        .package-btn-book {
+            font-family: var(--font-brand) !important;
+            font-weight: 700 !important;
+            font-size: 0.82rem !important;
+            letter-spacing: 0.03em !important;
+            text-transform: uppercase !important;
+            padding: 8px 20px !important;
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            border: none !important;
+            box-shadow: 0 2px 6px rgba(19, 53, 123, 0.25) !important;
+            transition: var(--ease) !important;
+        }
+
+        .package-btn-book:hover {
             background-color: var(--accent-dark) !important;
             color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(19, 53, 123, 0.35) !important;
         }
 
-        .packages-content .btn-hover:focus-visible {
-            outline: 2px solid var(--accent-sky-lt);
-            outline-offset: -2px;
+        .package-btn-book:focus-visible {
+            outline: 2px solid var(--accent-sky-lt) !important;
+            outline-offset: 2px !important;
+        }
+
+        .package-btn-book:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(19, 53, 123, 0.2) !important;
+        }
+
+        /* Fallback for legacy split bar if any */
+        .packages-content .row.bg-primary {
+            background-color: transparent !important;
+            border-top: 1px solid var(--border) !important;
+            margin: 0 !important;
+            padding: 10px 16px !important;
+        }
+
+        .packages-content .btn-hover {
+            color: var(--accent) !important;
+            font-weight: 700 !important;
+            font-size: 0.85rem !important;
         }
 
         /* Owl Carousel Nav Buttons */
@@ -1476,8 +1836,254 @@
         }
 
         /* ============================================================
-           MEET OUR GUIDES SECTION
+           MEET OUR GUIDES SECTION — Executive Lead Spotlight & Trust Cards
            ============================================================ */
+        .guide {
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .guide-spotlight-card {
+            background: #ffffff !important;
+            border-radius: var(--radius-xl) !important;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .guide-spotlight-card:hover {
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            border-color: rgba(19, 53, 123, 0.22);
+            transform: translateY(-4px);
+        }
+
+        .guide-spotlight-img-wrap {
+            position: relative;
+            height: 100%;
+            min-height: 420px;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .guide-spotlight-img-wrap img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: top center !important;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            display: block;
+        }
+
+        .guide-spotlight-card:hover .guide-spotlight-img-wrap img {
+            transform: scale(1.06) !important;
+        }
+
+        .guide-spotlight-img-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 15, 38, 0.1) 0%, rgba(8, 15, 38, 0) 50%, rgba(8, 15, 38, 0.75) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .guide-verified-badge {
+            position: absolute !important;
+            bottom: 18px !important;
+            left: 18px !important;
+            z-index: 4;
+            background: rgba(8, 15, 38, 0.85) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #ffffff !important;
+            border-radius: var(--radius-xl) !important;
+            padding: 6px 14px !important;
+            font-size: 0.78rem !important;
+            font-weight: 600 !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .guide-verified-badge i {
+            color: var(--accent-sky-lt) !important;
+        }
+
+        .guide-spotlight-body {
+            padding: 40px !important;
+        }
+
+        .guide-role-badge {
+            background: rgba(19, 53, 123, 0.08) !important;
+            color: var(--accent) !important;
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.06em !important;
+            padding: 5px 12px !important;
+            border-radius: var(--radius-xl) !important;
+            display: inline-block;
+        }
+
+        .guide-rating-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .guide-rating-pill i {
+            color: #f59e0b;
+        }
+
+        .guide-spotlight-body .guide-name {
+            font-family: var(--font-brand) !important;
+            font-weight: 800 !important;
+            font-size: 1.85rem !important;
+            color: var(--text-heading) !important;
+            letter-spacing: -0.02em;
+        }
+
+        .guide-spotlight-body .guide-specialty {
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            color: var(--accent-sky) !important;
+            letter-spacing: 0.01em;
+        }
+
+        .guide-spotlight-body .guide-bio {
+            font-size: 0.92rem !important;
+            line-height: 1.65 !important;
+            color: var(--text-muted) !important;
+        }
+
+        /* Stat Boxes */
+        .guide-stat-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            text-align: center;
+            transition: var(--ease);
+        }
+
+        .guide-stat-box:hover {
+            border-color: rgba(19, 53, 123, 0.3);
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .guide-stat-box .stat-num {
+            font-family: var(--font-brand);
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+
+        .guide-stat-box .stat-lbl {
+            font-size: 0.725rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Social Pill Buttons */
+        .guide-social-links .btn-guide-social {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            transition: var(--ease);
+            text-decoration: none;
+        }
+
+        .guide-social-links .btn-guide-social:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(19, 53, 123, 0.28);
+        }
+
+        .guide-social-links .btn-guide-social:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .guide-social-links .btn-guide-social:active {
+            transform: translateY(1px);
+        }
+
+        /* Guide Trust Pillars Row (Below Spotlight Card) */
+        .guide-pillar-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            transition: var(--ease);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .guide-pillar-card:hover {
+            border-color: rgba(19, 53, 123, 0.25);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .guide-pillar-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: var(--radius-md);
+            background: rgba(19, 53, 123, 0.08);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: var(--ease);
+        }
+
+        .guide-pillar-card:hover .guide-pillar-icon {
+            background: var(--accent);
+            color: #ffffff;
+            transform: scale(1.08);
+        }
+
+        .guide-pillar-title {
+            font-family: var(--font-brand);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+
+        .guide-pillar-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Fallback for classic .guide-item if ever reused */
         .guide-item {
             border-radius: var(--radius-lg) !important;
             overflow: hidden;
@@ -1513,80 +2119,18 @@
             transform: scale(1.06) !important;
         }
 
-        /* Disable clunky full height wipe from style.css */
         .guide .guide-item .guide-title::after,
         .guide .guide-item:hover .guide-title::after {
             display: none !important;
         }
 
-        /* Floating Pill Social Icons Badge */
-        .guide-icons {
-            position: absolute !important;
-            bottom: 14px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            background: rgba(8, 15, 38, 0.82) !important;
-            backdrop-filter: blur(8px) !important;
-            -webkit-backdrop-filter: blur(8px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
-            border-radius: var(--radius-xl) !important;
-            padding: 6px 12px !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 6px !important;
-            z-index: 5;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-        }
-
-        .guide-icons .btn-square {
-            width: 32px !important;
-            height: 32px !important;
-            border-radius: 50% !important;
-            background: rgba(255, 255, 255, 0.12) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
-            color: #ffffff !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            font-size: 0.82rem !important;
-            transition: var(--ease) !important;
-        }
-
-        .guide-icons .btn-square:hover {
-            background: var(--accent-sky) !important;
-            border-color: var(--accent-sky-lt) !important;
-            color: #ffffff !important;
-            transform: scale(1.14);
-            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4);
-        }
-
-        .guide-icons .btn-square:focus-visible {
-            outline: 2px solid var(--accent-sky-lt);
-            outline-offset: 2px;
-        }
-
-        .guide-title {
-            background-color: #ffffff !important;
-            padding: 22px !important;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .guide-title h4 {
-            font-family: var(--font-brand) !important;
-            font-weight: 700 !important;
-            font-size: 1.15rem !important;
-            color: var(--text-heading) !important;
-            margin: 0 0 4px 0 !important;
-        }
-
-        .guide-title p {
-            font-size: 0.85rem !important;
-            color: var(--accent) !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-            margin: 0 !important;
+        @media (max-width: 991.98px) {
+            .guide-spotlight-img-wrap {
+                min-height: 320px;
+            }
+            .guide-spotlight-body {
+                padding: 28px !important;
+            }
         }
 
         /* ============================================================
@@ -2531,181 +3075,172 @@
                     <h5 class="section-title px-3">Packages</h5>
                     <h1 class="mb-0">Our popular Packages</h1>
                 </div>
-                <div class="packages-carousel owl-carousel">
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-4.webp" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                                style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-map-marker-alt me-2"></i>Murshidabad Heritage Tour</small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-user me-2"></i>Solo/Group</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">8000 &#8377</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Murshidabad Heritage Tour</h5>
-                                <small class="text-uppercase">Tour Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
+                <div class="row g-4 packages-grid">
+                    <!-- Package 1 (Left): Murshidabad -->
+                    <div class="col-lg-6">
+                        <div class="package-card-horizontal">
+                            <div class="row g-0 h-100">
+                                <div class="col-sm-5 package-card-img-col">
+                                    <div class="package-card-img-wrap">
+                                        <img src="img/packages-4.webp" alt="Murshidabad Heritage Tour">
+                                        <span class="packages-badge-tag"><i class="fa fa-tag me-1"></i> Tour Deals</span>
+                                        <div class="packages-price">8000 &#8377; <span class="packages-price-unit">/ person</span></div>
+                                    </div>
                                 </div>
-                                <p class="mb-4">This package offers a glimpse into the cultural, historical, and
-                                    architectural heritage of Murshidabad,
-                                    allowing travelers to immerse themselves in the rich tapestry of the region's past.
-                                    Prices mentioned are approximate
-                                    and may vary based on factors such as accommodation preferences, transportation
-                                    options, and specific inclusions.
-                                    It's advisable to consult with the tour operator for the most accurate pricing and
-                                    detailed itinerary.</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                <div class="col-sm-7 package-card-body-col d-flex flex-column">
+                                    <div class="package-card-body">
+                                        <div class="packages-meta-chips">
+                                            <span class="badge-chip"><i class="fa fa-map-marker-alt me-1"></i> Murshidabad</span>
+                                            <span class="badge-chip"><i class="fa fa-calendar-alt me-1"></i> 3 Days</span>
+                                            <span class="badge-chip"><i class="fa fa-user-friends me-1"></i> Solo / Group</span>
+                                        </div>
+                                        <h5>Murshidabad Heritage Tour</h5>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <div class="packages-rating">
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                            </div>
+                                            <span class="packages-rating-badge">5.0</span>
+                                            <span class="packages-reviews-count">(28 Reviews)</span>
+                                        </div>
+                                        <p class="packages-desc">This package offers an unforgettable journey into the cultural, historical, and architectural heritage of Murshidabad, exploring palatial nawabi architecture and scenic riverbanks with expert local storytellers.</p>
+                                        <div class="packages-action-footer">
+                                            <a href="{{url('/package')}}" class="btn-package-detail"><span>View Details</span> <i class="fa fa-arrow-right ms-1"></i></a>
+                                            <a href="{{url('/booking')}}" class="btn btn-primary package-btn-book rounded-pill">Book Now</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                                style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-map-marker-alt me-2"></i>Darjeeling Delight</small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-user me-2"></i>solo/group</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">9000 &#8377</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Darjeeling Delight</h5>
-                                <small class="text-uppercase">Tour Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
+                    <!-- Package 2 (Right): Darjeeling -->
+                    <div class="col-lg-6">
+                        <div class="package-card-horizontal">
+                            <div class="row g-0 h-100">
+                                <div class="col-sm-5 package-card-img-col">
+                                    <div class="package-card-img-wrap">
+                                        <img src="img/packages-2.jpg" alt="Darjeeling Delight">
+                                        <span class="packages-badge-tag"><i class="fa fa-tag me-1"></i> Tour Deals</span>
+                                        <div class="packages-price">9000 &#8377; <span class="packages-price-unit">/ person</span></div>
+                                    </div>
                                 </div>
-                                <p class="mb-4">Experience the charm of Darjeeling with visits to its iconic tea
-                                    gardens, witness the mesmerizing sunrise at Tiger Hill,
-                                    explore the scenic Batasia Loop, and enjoy a memorable ride on the historic
-                                    Darjeeling Himalayan Railway, also known as the "Toy Train."</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                                style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-map-marker-alt me-2"></i>Sundarbans Safari</small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-user me-2"></i>solo/group</small>
-                            </div>
-                            <div class="packages-price py-2 px-4">6000 &#8377</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Sundarbans Safari</h5>
-                                <small class="text-uppercase">Travel Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">Immerse yourself in the wilderness of the Sundarbans mangrove forest,
-                                    home to the elusive Royal Bengal tigers, crocodiles,
-                                    and diverse bird species. Embark on thrilling safaris, explore the intricate network
-                                    of waterways, and indulge in birdwatching amidst
-                                    the tranquil beauty of the Sundarbans.</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
+                                <div class="col-sm-7 package-card-body-col d-flex flex-column">
+                                    <div class="package-card-body">
+                                        <div class="packages-meta-chips">
+                                            <span class="badge-chip"><i class="fa fa-map-marker-alt me-1"></i> Darjeeling</span>
+                                            <span class="badge-chip"><i class="fa fa-calendar-alt me-1"></i> 3 Days</span>
+                                            <span class="badge-chip"><i class="fa fa-user-friends me-1"></i> Solo / Group</span>
+                                        </div>
+                                        <h5>Darjeeling Delight</h5>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <div class="packages-rating">
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                            </div>
+                                            <span class="packages-rating-badge">5.0</span>
+                                            <span class="packages-reviews-count">(34 Reviews)</span>
+                                        </div>
+                                        <p class="packages-desc">Experience the charm of Darjeeling with scenic rolling tea estates, sunrise at Tiger Hill, the historic Batasia Loop, and a memorable ride on the world-famous UNESCO Himalayan Toy Train.</p>
+                                        <div class="packages-action-footer">
+                                            <a href="{{url('/package')}}" class="btn-package-detail"><span>View Details</span> <i class="fa fa-arrow-right ms-1"></i></a>
+                                            <a href="{{url('/booking')}}" class="btn btn-primary package-btn-book rounded-pill">Book Now</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                                style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-map-marker-alt me-2"></i>Kolkata Heritage Tour</small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-calendar-alt me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-user me-2"></i>solo/group</small>
+                    <!-- Package 3 (Left): Sundarbans -->
+                    <div class="col-lg-6">
+                        <div class="package-card-horizontal">
+                            <div class="row g-0 h-100">
+                                <div class="col-sm-5 package-card-img-col">
+                                    <div class="package-card-img-wrap">
+                                        <img src="img/packages-3.jpg" alt="Sundarbans Safari">
+                                        <span class="packages-badge-tag"><i class="fa fa-tag me-1"></i> Travel Deals</span>
+                                        <div class="packages-price">6000 &#8377; <span class="packages-price-unit">/ person</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 package-card-body-col d-flex flex-column">
+                                    <div class="package-card-body">
+                                        <div class="packages-meta-chips">
+                                            <span class="badge-chip"><i class="fa fa-map-marker-alt me-1"></i> Sundarbans</span>
+                                            <span class="badge-chip"><i class="fa fa-calendar-alt me-1"></i> 3 Days</span>
+                                            <span class="badge-chip"><i class="fa fa-user-friends me-1"></i> Solo / Group</span>
+                                        </div>
+                                        <h5>Sundarbans Safari</h5>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <div class="packages-rating">
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                            </div>
+                                            <span class="packages-rating-badge">5.0</span>
+                                            <span class="packages-reviews-count">(42 Reviews)</span>
+                                        </div>
+                                        <p class="packages-desc">Immerse yourself in the wilderness of the Sundarbans mangrove forest, home to Royal Bengal tigers, estuarine crocodiles, and tranquil guided riverboat waterways through primeval delta channels.</p>
+                                        <div class="packages-action-footer">
+                                            <a href="{{url('/package')}}" class="btn-package-detail"><span>View Details</span> <i class="fa fa-arrow-right ms-1"></i></a>
+                                            <a href="{{url('/booking')}}" class="btn btn-primary package-btn-book rounded-pill">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="packages-price py-2 px-4">8000 &#8377</div>
                         </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Kolkata Heritage Tour</h5>
-                                <small class="text-uppercase">Tour Deals</small>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
+                    </div>
+                    <!-- Package 4 (Right): Kolkata -->
+                    <div class="col-lg-6">
+                        <div class="package-card-horizontal">
+                            <div class="row g-0 h-100">
+                                <div class="col-sm-5 package-card-img-col">
+                                    <div class="package-card-img-wrap">
+                                        <img src="img/packages-1.jpg" alt="Kolkata Heritage Tour">
+                                        <span class="packages-badge-tag"><i class="fa fa-tag me-1"></i> Tour Deals</span>
+                                        <div class="packages-price">8000 &#8377; <span class="packages-price-unit">/ person</span></div>
+                                    </div>
                                 </div>
-                                <p class="mb-4">Delve into the vibrant history and culture of Kolkata, the "City of
-                                    Joy." Explore architectural marvels like
-                                    Victoria Memorial and Howrah Bridge, delve into the treasures of Indian Museum, and
-                                    seek blessings at the sacred Kalighat Temple.
-                                    Experience the timeless charm of Kolkata's streets, bustling markets, and delectable
-                                    cuisine.</p>
+                                <div class="col-sm-7 package-card-body-col d-flex flex-column">
+                                    <div class="package-card-body">
+                                        <div class="packages-meta-chips">
+                                            <span class="badge-chip"><i class="fa fa-map-marker-alt me-1"></i> Kolkata</span>
+                                            <span class="badge-chip"><i class="fa fa-calendar-alt me-1"></i> 3 Days</span>
+                                            <span class="badge-chip"><i class="fa fa-user-friends me-1"></i> Solo / Group</span>
+                                        </div>
+                                        <h5>Kolkata Heritage Tour</h5>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <div class="packages-rating">
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                                <small class="fa fa-star"></small>
+                                            </div>
+                                            <span class="packages-rating-badge">5.0</span>
+                                            <span class="packages-reviews-count">(50 Reviews)</span>
+                                        </div>
+                                        <p class="packages-desc">Delve into the vibrant soul of the "City of Joy." Explore architectural marvels including Victoria Memorial, Howrah Bridge, Indian Museum, and timeless cultural landmarks across heritage lanes.</p>
+                                        <div class="packages-action-footer">
+                                            <a href="{{url('/package')}}" class="btn-package-detail"><span>View Details</span> <i class="fa fa-arrow-right ms-1"></i></a>
+                                            <a href="{{url('/booking')}}" class="btn btn-primary package-btn-book rounded-pill">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
-                                </div>
-                                <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Book Now</a>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container text-center mt-4">
-            <a href="{{url('/package')}}" class="btn btn-primary rounded-pill py-3 px-5">Explore More Packages</a>
+        <div class="container text-center mt-5">
+            <a href="{{url('/package')}}" class="btn btn-primary rounded-pill py-3 px-5 fw-bold">Explore More Packages <i class="fa fa-arrow-right ms-2"></i></a>
         </div>
         <!-- Packages End -->
 
@@ -3050,33 +3585,91 @@
                     <h5 class="section-title px-3">Meet Our Guides</h5>
                     <h1 class="mb-0">Explore with Our Experienced Guides</h1>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <img src="img/guide-1.jpeg" class="img-fluid w-100 rounded-top" alt="Guide 1">
-                                <div class="guide-icons rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="#"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="#"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="#"><i
-                                            class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="#"><i
-                                            class="fab fa-linkedin-in"></i></a>
+                <!-- Executive Lead Guide Spotlight Card -->
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-11 col-xl-10">
+                        <div class="guide-spotlight-card">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-5 guide-spotlight-img-wrap">
+                                    <img src="img/guide-1.jpeg" class="img-fluid" alt="Tanmay Das - Lead Guide">
+                                    <div class="guide-verified-badge"><i class="fa fa-award me-2"></i>Certified Master Guide</div>
                                 </div>
-                            </div>
-                            <div class="guide-title text-center bg-light rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Tanmay Das</h4>
-                                    <p class="mb-0">Adventure Specialist</p>
+                                <div class="col-md-7 guide-spotlight-body">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <span class="guide-role-badge">Chief Expedition Lead</span>
+                                        <div class="guide-rating-pill">
+                                            <i class="fa fa-star"></i>
+                                            <span>4.98</span>
+                                            <span class="text-muted fw-normal small">(180+ Tours)</span>
+                                        </div>
+                                    </div>
+                                    <h2 class="guide-name mb-1">Tanmay Das</h2>
+                                    <p class="guide-specialty mb-3"><i class="fa fa-compass me-2"></i>Adventure Specialist & Bengal Heritage Naturalist</p>
+                                    <p class="guide-bio mb-4">Dedicated to crafting authentic, safe, and deeply immersive journeys across West Bengal. From tracking wildlife across the Sundarbans mangrove creeks to navigating historic terai trails and colonial architecture, Tanmay brings over 8 years of certified expedition leadership.</p>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-6 col-sm-4">
+                                            <div class="guide-stat-box">
+                                                <div class="stat-num">8+</div>
+                                                <div class="stat-lbl">Years Field Exp.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-4">
+                                            <div class="guide-stat-box">
+                                                <div class="stat-num">250+</div>
+                                                <div class="stat-lbl">Expeditions Led</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-4">
+                                            <div class="guide-stat-box">
+                                                <div class="stat-num">100%</div>
+                                                <div class="stat-lbl">Safety Record</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-3 border-top">
+                                        <div class="guide-social-links d-flex gap-2">
+                                            <a class="btn-guide-social" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn-guide-social" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn-guide-social" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                            <a class="btn-guide-social" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                        <a href="{{url('/booking')}}" class="btn btn-primary rounded-pill px-4 py-2 fw-bold">Plan Tour With Tanmay <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-
-
+                <!-- Guide Trust Pillars -->
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="guide-pillar-card">
+                            <div class="guide-pillar-icon"><i class="fa fa-binoculars"></i></div>
+                            <div>
+                                <h6 class="guide-pillar-title">Certified Naturalists</h6>
+                                <p class="guide-pillar-text">Wildlife Institute accredited experts with deep insights into flora, fauna, and mangrove ecosystems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="guide-pillar-card">
+                            <div class="guide-pillar-icon"><i class="fa fa-landmark"></i></div>
+                            <div>
+                                <h6 class="guide-pillar-title">Living History Storytellers</h6>
+                                <p class="guide-pillar-text">Native regional historians sharing authentic folklore, nawabi history, and colonial architectural lore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="guide-pillar-card">
+                            <div class="guide-pillar-icon"><i class="fa fa-user-shield"></i></div>
+                            <div>
+                                <h6 class="guide-pillar-title">First-Aid & Safety Certified</h6>
+                                <p class="guide-pillar-text">Comprehensive wilderness safety training, rapid response equipment, and personalized travel pacing.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3154,8 +3747,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-4">
-                    <a href="{{url('/blog')}}" class="btn btn-primary">Click here for more Travel Blog</a>
+                <div class="text-center mt-5">
+                    <a href="{{url('/blog')}}" class="btn btn-primary rounded-pill py-3 px-5 fw-bold">Explore More Travel Blogs <i class="fa fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </div>
